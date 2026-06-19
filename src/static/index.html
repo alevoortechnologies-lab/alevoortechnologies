@@ -701,6 +701,7 @@
 let DATA = {};
 
 async function loadData() {
+  showSkeletons();
   try {
     const res = await fetch('/data.json');
     DATA = await res.json();
@@ -712,8 +713,26 @@ async function loadData() {
       services: [],process:[],whyUs:[],testimonials:[],pricing:{content:[],yt:[],onetime:[]},portfolio:[],team:[],faqs:[]
     };
   }
+  // brief delay so skeleton transition is visible
+  await new Promise(r => setTimeout(r, 400));
   renderAll();
   hideLoading();
+}
+
+function skelCards(n) {
+  let s = '';
+  for (let i = 0; i < n; i++) {
+    s += `<div class="skel-card"><div class="skeleton skel-block"></div><div class="skeleton skel-line md"></div><div class="skeleton skel-line sm"></div></div>`;
+  }
+  return s;
+}
+
+function showSkeletons() {
+  const map = { 'services-grid': 6, 'testi-grid': 3, 'team-grid': 3 };
+  Object.entries(map).forEach(([id, n]) => {
+    const el = document.getElementById(id);
+    if (el) el.innerHTML = skelCards(n);
+  });
 }
 
 function hideLoading() {
