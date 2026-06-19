@@ -765,8 +765,8 @@ function renderStats() {
 function renderServices() {
   const el = document.getElementById('services-grid');
   if (!DATA.services) return;
-  el.innerHTML = DATA.services.map(s => `
-    <div class="service-card">
+  el.innerHTML = DATA.services.map((s,i) => `
+    <div class="service-card anim-in" style="animation-delay:${i*0.07}s">
       <div class="service-icon">${s.icon}</div>
       <div>
         <div class="service-name">${s.name}</div>
