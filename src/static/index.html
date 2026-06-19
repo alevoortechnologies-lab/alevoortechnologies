@@ -813,8 +813,8 @@ function renderWhyUs() {
 function renderTestimonials() {
   const el = document.getElementById('testi-grid');
   if (!DATA.testimonials) return;
-  el.innerHTML = DATA.testimonials.map(t => `
-    <div class="testi-card">
+  el.innerHTML = DATA.testimonials.map((t,i) => `
+    <div class="testi-card anim-in" style="animation-delay:${i*0.08}s">
       <div class="testi-text">"${t.text}"</div>
       <div class="testi-stars">${'★'.repeat(t.stars)}</div>
       <div class="testi-footer">
@@ -825,7 +825,7 @@ function renderTestimonials() {
             <div class="testi-role">${t.role}</div>
           </div>
         </div>
-        <button style="background:#fff;border:1px solid #ddd;border-radius:50px;padding:4px 12px;font-size:11px;color:#555;cursor:pointer">Visit ↗</button>
+        <button style="background:var(--white);border:1px solid var(--border);border-radius:50px;padding:4px 12px;font-size:11px;color:var(--gray);cursor:pointer">Visit ↗</button>
       </div>
     </div>`).join('');
 }
