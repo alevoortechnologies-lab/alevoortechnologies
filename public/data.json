@@ -2,9 +2,9 @@
   "brand": {
     "name": "Alevoor Technologies",
     "logo": "AT",
-    "tagline": "Focus On Creating. We Handle The Growth.",
-    "subtitle": "Alevoor Technologies manages editing, posting and optimization.",
-    "description": "Building Creators. Scaling Reach. We help creators and brands grow on YouTube and Instagram through strategy, consistency, and optimized execution.",
+    "tagline": "Focus On Innovation. We Build The Tech.",
+    "subtitle": "End-to-end software, web, and digital solutions engineered for scale.",
+    "description": "Building Software. Scaling Businesses. We engineer digital products — from custom platforms to AI integrations — that power modern brands.",
     "phone": "+91 9483886270",
     "email": "alevoor@gmail.com",
     "instagram": "@alevoor",
@@ -12,10 +12,10 @@
     "founderTitle": "Founder & CEO, Alevoor Technologies"
   },
   "stats": [
-    { "value": "50+", "label": "YouTube Managed" },
-    { "value": "10M+", "label": "Insta Growth" },
-    { "value": "100+", "label": "Happy Creators" },
-    { "value": "3x", "label": "Avg. Growth" }
+    { "value": "50+", "label": "Projects Delivered" },
+    { "value": "10M+", "label": "Users Impacted" },
+    { "value": "100+", "label": "Happy Clients" },
+    { "value": "3x", "label": "Tech Solutions" }
   ],
   "services": [
     { "icon": "📱", "name": "Content Marketing", "desc": "Full-stack social media content strategy and scheduling across platforms." },
