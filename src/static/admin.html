@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Panel — Alevoor Technologies</title>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    :root{--teal:#0db88a;--teal-dark:#0a9e76;--purple:#7c3aed;--navy:#0d1b2a;--bg:#f8fafb;--border:#eee}
+    body{font-family:'DM Sans',sans-serif;background:var(--bg);color:#1a1a2e}
+    h1,h2,h3,h4{font-family:'Sora',sans-serif}
+    /* AUTH */
+    #auth-screen{min-height:100vh;background:linear-gradient(135deg,#e8fdf5,#f0ecff);display:flex;align-items:center;justify-content:center;padding:2rem}
+    .auth-card{background:#fff;border-radius:24px;padding:40px;max-width:420px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,0.1)}
+    .auth-logo{width:56px;height:56px;border-radius:14px;background:linear-gradient(135deg,var(--teal),var(--purple));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:18px;font-family:'Sora',sans-serif;margin:0 auto 16px}
+    .auth-title{font-size:24px;font-weight:800;color:#1a1a2e;text-align:center;margin-bottom:4px}
+    .auth-sub{color:#888;font-size:14px;text-align:center;margin-bottom:24px}
+    .auth-tabs{display:flex;gap:4px;background:#f0f0f0;border-radius:10px;padding:4px;margin-bottom:22px}
+    .auth-tab{flex:1;padding:8px;border-radius:7px;border:none;background:none;font-size:13px;font-weight:500;cursor:pointer;transition:all 0.2s;color:#666;font-family:'DM Sans',sans-serif}
+    .auth-tab.active{background:#fff;color:#1a1a2e;box-shadow:0 1px 4px rgba(0,0,0,0.1)}
+    .auth-error{background:#fff0f0;color:#e53e3e;border-radius:8px;padding:10px 14px;font-size:13px;margin-bottom:12px;display:none}
+    .auth-success{background:#f0fff4;color:#22c55e;border-radius:8px;padding:10px 14px;font-size:13px;margin-bottom:12px;display:none}
+    .form-group{margin-bottom:14px}
+    .form-label{display:block;font-size:12px;font-weight:500;color:#555;margin-bottom:5px}
+    .form-input{width:100%;padding:10px 14px;border:1px solid #ddd;border-radius:8px;font-size:14px;font-family:'DM Sans',sans-serif;outline:none;transition:border 0.2s}
+    .form-input:focus{border-color:var(--teal)}
+    .btn-auth{background:var(--teal);color:#fff;border:none;width:100%;padding:12px;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;margin-top:6px;font-family:'DM Sans',sans-serif;transition:background 0.2s}
+    .btn-auth:hover{background:var(--teal-dark)}
+    /* ADMIN LAYOUT */
+    #admin-screen{display:none;min-height:100vh;flex-direction:row}
+    #admin-screen.show{display:flex}
+    .sidebar{width:240px;background:var(--navy);color:#aaa;display:flex;flex-direction:column;min-height:100vh;flex-shrink:0;position:sticky;top:0;height:100vh;overflow-y:auto}
+    .sidebar-top{padding:16px 20px 0}
+    .back-btn{display:flex;align-items:center;gap:6px;color:var(--teal);font-size:13px;cursor:pointer;margin-bottom:16px;background:none;border:none;font-family:'DM Sans',sans-serif}
+    .sidebar-logo{display:flex;align-items:center;gap:10px;padding-bottom:16px;border-bottom:1px solid rgba(255,255,255,0.08);margin-bottom:10px}
+    .sidebar-logo-badge{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--teal),var(--purple));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:13px;flex-shrink:0}
+    .sidebar-brand{font-family:'Sora',sans-serif;font-weight:700;color:#fff;font-size:13px}
+    .sidebar-brand-sub{font-size:11px;color:var(--teal)}
+    .nav-item{display:flex;align-items:center;gap:10px;padding:10px 20px;font-size:13px;cursor:pointer;transition:all 0.15s;border-left:3px solid transparent;color:#aaa}
+    .nav-item:hover{background:rgba(255,255,255,0.05);color:#fff}
+    .nav-item.active{background:rgba(13,184,138,0.1);color:var(--teal);border-left-color:var(--teal)}
+    .nav-icon{font-size:15px;flex-shrink:0}
+    .sidebar-bottom{margin-top:auto;padding:16px 20px;border-top:1px solid rgba(255,255,255,0.08)}
+    .user-email{font-size:11px;color:#666;margin-bottom:4px;word-break:break-all}
+    .user-name{font-size:13px;color:#aaa;margin-bottom:10px;font-weight:500}
+    .signout-btn{display:flex;align-items:center;gap:8px;color:#888;font-size:13px;cursor:pointer;background:none;border:none;font-family:'DM Sans',sans-serif;transition:color 0.2s}
+    .signout-btn:hover{color:#fff}
+    /* CONTENT */
+    .admin-content{flex:1;padding:32px;overflow-y:auto}
+    .breadcrumb{font-size:12px;color:#999;margin-bottom:6px}
+    .page-title{font-size:24px;font-weight:800;color:#1a1a2e;margin-bottom:24px}
+    .card{background:#fff;border:1px solid var(--border);border-radius:14px;padding:20px;margin-bottom:20px}
+    .stat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin-bottom:24px}
+    .stat-card{background:#fff;border:1px solid var(--border);border-radius:14px;padding:18px;display:flex;justify-content:space-between;align-items:flex-start}
+    .stat-label{font-size:12px;color:#888;margin-bottom:4px}
+    .stat-val{font-size:26px;font-weight:800;color:#1a1a2e;font-family:'Sora',sans-serif}
+    .stat-desc{font-size:11px;color:#aaa;margin-top:2px}
+    .stat-icon{font-size:22px}
+    .manage-link{font-size:12px;color:var(--teal);cursor:pointer;margin-top:8px;display:inline-block;font-weight:500}
+    .manage-link:hover{text-decoration:underline}
+    .user-card{background:linear-gradient(135deg,var(--teal),var(--purple));border-radius:14px;padding:20px;display:flex;align-items:center;gap:14px;margin-bottom:24px;color:#fff}
+    .user-card-avatar{width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px;flex-shrink:0}
+    .user-card-name{font-weight:700;font-size:16px}
+    .user-card-email{font-size:12px;opacity:0.8}
+    .admin-badge{background:rgba(255,255,255,0.2);padding:2px 10px;border-radius:50px;font-size:11px;font-weight:600;margin-top:4px;display:inline-block}
+    /* TABLE */
+    .table-wrap{overflow-x:auto}
+    table{width:100%;border-collapse:collapse}
+    th{background:#f8fafb;padding:10px 14px;text-align:left;font-size:11px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid var(--border)}
+    td{padding:11px 14px;font-size:13px;color:#333;border-bottom:1px solid #f5f5f5}
+    tr:last-child td{border-bottom:none}
+    tr:hover td{background:#f9fffe}
+    .action-btn{border:1px solid #ddd;border-radius:6px;padding:4px 10px;font-size:11px;cursor:pointer;color:#555;transition:all 0.2s;background:none;margin-right:4px;font-family:'DM Sans',sans-serif}
+    .action-btn:hover{border-color:var(--teal);color:var(--teal)}
+    .action-btn.del:hover{border-color:#e53e3e;color:#e53e3e}
+    .badge-popular{background:#e8f4ff;color:#1d6fb8;padding:3px 10px;border-radius:50px;font-size:11px;font-weight:600}
+    .badge-best{background:#f0ecff;color:var(--purple);padding:3px 10px;border-radius:50px;font-size:11px;font-weight:600}
+    .badge-approved{background:#e8fdf5;color:var(--teal-dark);padding:3px 10px;border-radius:50px;font-size:11px;font-weight:600}
+    .badge-pending{background:#fff8e1;color:#e6a817;padding:3px 10px;border-radius:50px;font-size:11px;font-weight:600}
+    /* ADD FORM */
+    .add-form{background:#f8fafb;border:1px dashed #ddd;border-radius:12px;padding:20px;margin-top:16px}
+    .add-form h4{font-size:14px;font-weight:700;color:#1a1a2e;margin-bottom:14px}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .btn-add{background:var(--teal);color:#fff;border:none;padding:9px 20px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background 0.2s}
+    .btn-add:hover{background:var(--teal-dark)}
+    /* SECTION TITLE */
+    .section-title{font-size:17px;font-weight:700;color:#1a1a2e;margin-bottom:14px}
+    /* TOAST */
+    #admin-toast{position:fixed;bottom:20px;right:20px;background:#22c55e;color:#fff;padding:12px 20px;border-radius:12px;font-size:13px;font-weight:500;z-index:9999;transform:translateY(20px);opacity:0;transition:all 0.3s;pointer-events:none}
+    #admin-toast.show{transform:translateY(0);opacity:1}
+    /* SECTION PANELS */
+    .section-panel{display:none}
+    .section-panel.active{display:block}
+    textarea.form-input{height:70px;resize:none}
+  </style>
+</head>
+<body>
+
+<!-- AUTH -->
+<div id="auth-screen">
+  <div class="auth-card">
+    <div class="auth-logo">AT</div>
+    <h2 class="auth-title">Admin Access</h2>
+    <p class="auth-sub">Alevoor Technologies Dashboard</p>
+    <div class="auth-tabs">
+      <button class="auth-tab active" onclick="switchAuthTab('signin')">Sign In</button>
+      <button class="auth-tab" onclick="switchAuthTab('signup')">Sign Up</button>
+    </div>
+    <div class="auth-error" id="auth-error"></div>
+    <div class="auth-success" id="auth-success"></div>
+    <!-- SIGN IN -->
+    <div id="signin-form">
+      <div class="form-group"><label class="form-label">Email</label><input class="form-input" type="email" id="si-email" placeholder="your@email.com"/></div>
+      <div class="form-group"><label class="form-label">Password</label><input class="form-input" type="password" id="si-pass" placeholder="••••••••"/></div>
+      <button class="btn-auth" onclick="doSignIn()">Sign In</button>
+    </div>
+    <!-- SIGN UP -->
+    <div id="signup-form" style="display:none">
+      <div class="form-group"><label class="form-label">Full Name</label><input class="form-input" id="su-name" placeholder="Your Name"/></div>
+      <div class="form-group"><label class="form-label">Email</label><input class="form-input" type="email" id="su-email" placeholder="your@email.com"/></div>
+      <div class="form-group"><label class="form-label">Password</label><input class="form-input" type="password" id="su-pass" placeholder="••••••••"/></div>
+      <div class="form-group"><label class="form-label">Signup Code</label><input class="form-input" id="su-code" placeholder="Enter access code"/></div>
+      <button class="btn-auth" onclick="doSignUp()">Create Account</button>
+    </div>
+  </div>
+</div>
+
+<!-- ADMIN -->
+<div id="admin-screen">
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="sidebar-top">
+      <button class="back-btn" onclick="window.location.href='/'">← Back to Site</button>
+      <div class="sidebar-logo">
+        <div class="sidebar-logo-badge">AT</div>
+        <div><div class="sidebar-brand">Alevoor Technologies</div><div class="sidebar-brand-sub">Admin Panel</div></div>
+      </div>
+    </div>
+    <div id="sidebar-nav">
+      <div class="nav-item active" onclick="showSection('dashboard')"><span class="nav-icon">⊞</span>Dashboard</div>
+      <div class="nav-item" onclick="showSection('hero')"><span class="nav-icon">🏠</span>Hero Section</div>
+      <div class="nav-item" onclick="showSection('services')"><span class="nav-icon">🗂</span>Services</div>
+      <div class="nav-item" onclick="showSection('pricing')"><span class="nav-icon">💳</span>Pricing Plans</div>
+      <div class="nav-item" onclick="showSection('onetime')"><span class="nav-icon">⚡</span>One-Time Services</div>
+      <div class="nav-item" onclick="showSection('stats')"><span class="nav-icon">📊</span>Impact Stats</div>
+      <div class="nav-item" onclick="showSection('process')"><span class="nav-icon">📋</span>Process Steps</div>
+      <div class="nav-item" onclick="showSection('team')"><span class="nav-icon">👥</span>Team</div>
+      <div class="nav-item" onclick="showSection('testimonials')"><span class="nav-icon">💬</span>Testimonials</div>
+      <div class="nav-item" onclick="showSection('portfolio')"><span class="nav-icon">🖼</span>Portfolio</div>
+      <div class="nav-item" onclick="showSection('faqs')"><span class="nav-icon">❓</span>FAQs</div>
+      <div class="nav-item" onclick="showSection('contact')"><span class="nav-icon">📞</span>Contact Info</div>
+    </div>
+    <div class="sidebar-bottom">
+      <div class="user-name" id="sb-name">Admin</div>
+      <div class="user-email" id="sb-email">admin@alevoor.com</div>
+      <button class="signout-btn" onclick="doSignOut()">🚪 Sign Out</button>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="admin-content">
+    <div class="breadcrumb" id="breadcrumb">Admin / Dashboard</div>
+    <div class="page-title" id="page-title">Dashboard</div>
+
+    <!-- DASHBOARD -->
+    <div class="section-panel active" id="panel-dashboard">
+      <div class="user-card">
+        <div class="user-card-avatar" id="uc-avatar">RA</div>
+        <div>
+          <div class="user-card-name" id="uc-name">Rishabh Alevoor</div>
+          <div class="user-card-email" id="uc-email">admin@alevoor.com</div>
+          <div class="admin-badge">Administrator</div>
+        </div>
+      </div>
+      <div class="stat-grid" id="dash-stats"></div>
+    </div>
+
+    <!-- HERO -->
+    <div class="section-panel" id="panel-hero">
+      <div class="card">
+        <div class="section-title">Edit Hero Content</div>
+        <div class="form-group"><label class="form-label">Headline</label><input class="form-input" id="h-headline" value="Focus On Creating."/></div>
+        <div class="form-group"><label class="form-label">Accent Line</label><input class="form-input" id="h-accent" value="We Handle The Growth."/></div>
+        <div class="form-group"><label class="form-label">Subtitle</label><input class="form-input" id="h-subtitle" value="Alevoor Technologies manages editing, posting and optimization."/></div>
+        <div class="form-group"><label class="form-label">CTA Button 1</label><input class="form-input" id="h-cta1" value="Book Free Consultation"/></div>
+        <div class="form-group"><label class="form-label">CTA Button 2</label><input class="form-input" id="h-cta2" value="Get Started"/></div>
+        <button class="btn-add" onclick="saveHero()">Save Changes ✓</button>
+      </div>
+    </div>
+
+    <!-- SERVICES -->
+    <div class="section-panel" id="panel-services">
+      <div class="card">
+        <div class="section-title">Services (<span id="svc-count">0</span>)</div>
+        <div class="table-wrap"><table><thead><tr><th>Icon</th><th>Name</th><th>Description</th><th>Actions</th></tr></thead><tbody id="svc-table"></tbody></table></div>
+        <div class="add-form">
+          <h4>Add New Service</h4>
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">Icon Emoji</label><input class="form-input" id="ns-icon" placeholder="📱"/></div>
+            <div class="form-group"><label class="form-label">Name</label><input class="form-input" id="ns-name" placeholder="Service Name"/></div>
+          </div>
+          <div class="form-group"><label class="form-label">Description</label><input class="form-input" id="ns-desc" placeholder="Short description"/></div>
+          <button class="btn-add" onclick="addService()">+ Add Service</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRICING -->
+    <div class="section-panel" id="panel-pricing">
+      <div class="card">
+        <div class="section-title">Content Marketing Plans (<span id="price-count">0</span>)</div>
+        <div class="table-wrap"><table><thead><tr><th>Name</th><th>Price</th><th>Period</th><th>Popular</th><th>Actions</th></tr></thead><tbody id="price-table"></tbody></table></div>
+        <div class="add-form">
+          <h4>Add Pricing Plan</h4>
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">Plan Name</label><input class="form-input" id="np-name" placeholder="Growth Plan"/></div>
+            <div class="form-group"><label class="form-label">Price</label><input class="form-input" id="np-price" placeholder="₹8,000 – ₹20,000"/></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">Period</label><input class="form-input" id="np-period" placeholder="/month"/></div>
+            <div class="form-group"><label class="form-label">Subtitle</label><input class="form-input" id="np-sub" placeholder="For growing creators"/></div>
+          </div>
+          <div class="form-group"><label class="form-label">Features (comma separated)</label><input class="form-input" id="np-features" placeholder="Feature 1, Feature 2, Feature 3"/></div>
+          <button class="btn-add" onclick="addPricingPlan()">+ Add Plan</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ONE TIME -->
+    <div class="section-panel" id="panel-onetime">
+      <div class="card">
+        <div class="section-title">One-Time Services (<span id="ot-count">0</span>)</div>
+        <div class="table-wrap"><table><thead><tr><th>Name</th><th>Price</th><th>Best Value</th><th>Actions</th></tr></thead><tbody id="ot-table"></tbody></table></div>
+        <div class="add-form">
+          <h4>Add One-Time Service</h4>
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">Name</label><input class="form-input" id="no-name" placeholder="Website Creation"/></div>
+            <div class="form-group"><label class="form-label">Price</label><input class="form-input" id="no-price" placeholder="₹8,000 – ₹12,000"/></div>
+          </div>
+          <div class="form-group"><label class="form-label">Description</label><input class="form-input" id="no-desc" placeholder="Short description"/></div>
+          <button class="btn-add" onclick="addOneTime()">+ Add Service</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- STATS -->
+    <div class="section-panel" id="panel-stats">
+      <div class="card">
+        <div class="section-title">Impact Stats (<span id="stat-count">0</span>)</div>
+        <div class="table-wrap"><table><thead><tr><th>Value</th><th>Label</th><th>Actions</th></tr></thead><tbody id="stat-table"></tbody></table></div>
+        <div class="add-form">
+          <h4>Add Stat</h4>
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">Value</label><input class="form-input" id="nst-val" placeholder="50+"/></div>
+            <div class="form-group"><label class="form-label">Label</label><input class="form-input" id="nst-label" placeholder="YouTube Managed"/></div>
+          </div>
+          <button class="btn-add" onclick="addStat()">+ Add Stat</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROCESS -->
+    <div class="section-panel" id="panel-process">
+      <div class="card">
+        <div class="section-title">Process Steps (<span id="proc-count">0</span>)</div>
+        <div class="table-wrap"><table><thead><tr><th>#</th><th>Title</th><th>Description</th><th>Actions</th></tr></thead><tbody id="proc-table"></tbody></table></div>
+        <div class="add-form">
+          <h4>Add Step</h4>
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">Step Title</label><input class="form-input" id="npc-title" placeholder="Client Onboarding"/></div>
+            <div class="form-group"><label class="form-label">Icon Emoji</label><input class="form-input" id="npc-icon" placeholder="💬"/></div>
+          </div>
+          <div class="form-group"><label class="form-label">Description</label><textarea class="form-input" id="npc-desc" placeholder="Describe this step..."></textarea></div>
+          <button class="btn-add" onclick="addProcess()">+ Add Step</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TEAM -->
+    <div class="section-panel" id="panel-team">
+      <div class="card">
+        <div class="section-title">Team Members (<span id="team-count">0</span>)</div>
+        <div class="table-wrap"><table><thead><tr><th>Avatar</th><th>Name</th><th>Role</th><th>Actions</th></tr></thead><tbody id="team-table"></tbody></table></div>
+        <div class="add-form">
+          <h4>Add Team Member</h4>
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">Name</label><input class="form-input" id="nt-name" placeholder="Rishabh Alevoor"/></div>
+            <div class="form-group"><label class="form-label">Role</label><input class="form-input" id="nt-role" placeholder="Founder & CEO"/></div>
+          </div>
+          <div class="form-group"><label class="form-label">Initials (2 letters)</label><input class="form-input" id="nt-init" placeholder="RA" maxlength="2"/></div>
+          <button class="btn-add" onclick="addTeam()">+ Add Member</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TESTIMONIALS -->
+    <div class="section-panel" id="panel-testimonials">
+      <div class="card">
+        <div class="section-title">Testimonials (<span id="testi-count">0</span>)</div>
+        <div class="table-wrap"><table><thead><tr><th>Name</th><th>Role</th><th>Stars</th><th>Status</th><th>Actions</th></tr></thead><tbody id="testi-table"></tbody></table></div>
+        <div class="add-form">
+          <h4>Add Testimonial</h4>
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">Name</label><input class="form-input" id="ntes-name" placeholder="John Doe"/></div>
+            <div class="form-group"><label class="form-label">Role</label><input class="form-input" id="ntes-role" placeholder="Tech YouTuber"/></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">Initials</label><input class="form-input" id="ntes-init" placeholder="JD" maxlength="2"/></div>
+            <div class="form-group"><label class="form-label">Stars (1-5)</label><select class="form-input" id="ntes-stars"><option>5</option><option>4</option><option>3</option><option>2</option><option>1</option></select></div>
+          </div>
+          <div class="form-group"><label class="form-label">Review Text</label><textarea class="form-input" id="ntes-text" placeholder="Amazing service..."></textarea></div>
+          <button class="btn-add" onclick="addTestimonial()">+ Add Testimonial</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PORTFOLIO -->
+    <div class="section-panel" id="panel-portfolio">
+      <div class="card">
+        <div class="section-title">Portfolio Items (<span id="port-count">0</span>)</div>
+        <div class="table-wrap"><table><thead><tr><th>Icon</th><th>Title</th><th>Category</th><th>Result</th><th>Actions</th></tr></thead><tbody id="port-table"></tbody></table></div>
+        <div class="add-form">
+          <h4>Add Portfolio Item</h4>
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">Title</label><input class="form-input" id="np2-title" placeholder="Channel Name"/></div>
+            <div class="form-group"><label class="form-label">Category</label><input class="form-input" id="np2-cat" placeholder="Finance YouTube"/></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">Result</label><input class="form-input" id="np2-result" placeholder="8 → 4,170 subscribers"/></div>
+            <div class="form-group"><label class="form-label">Icon Emoji</label><input class="form-input" id="np2-icon" placeholder="💰"/></div>
+          </div>
+          <div class="form-group"><label class="form-label">Description</label><textarea class="form-input" id="np2-desc" placeholder="What we did..."></textarea></div>
+          <button class="btn-add" onclick="addPortfolio()">+ Add Item</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQs -->
+    <div class="section-panel" id="panel-faqs">
+      <div class="card">
+        <div class="section-title">FAQs (<span id="faq-count">0</span>)</div>
+        <div class="table-wrap"><table><thead><tr><th>#</th><th>Question</th><th>Answer</th><th>Actions</th></tr></thead><tbody id="faq-table"></tbody></table></div>
+        <div class="add-form">
+          <h4>Add FAQ</h4>
+          <div class="form-group"><label class="form-label">Question</label><input class="form-input" id="nf-q" placeholder="How long to see results?"/></div>
+          <div class="form-group"><label class="form-label">Answer</label><textarea class="form-input" id="nf-a" placeholder="Most clients see results in..."></textarea></div>
+          <button class="btn-add" onclick="addFAQ()">+ Add FAQ</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTACT INFO -->
+    <div class="section-panel" id="panel-contact">
+      <div class="card">
+        <div class="section-title">Contact Information</div>
+        <div class="form-group"><label class="form-label">Phone Number</label><input class="form-input" id="ci-phone" placeholder="+91 9483886270"/></div>
+        <div class="form-group"><label class="form-label">Email Address</label><input class="form-input" id="ci-email" placeholder="alevoor@gmail.com"/></div>
+        <div class="form-group"><label class="form-label">Instagram Handle</label><input class="form-input" id="ci-insta" placeholder="@alevoor"/></div>
+        <div class="form-group"><label class="form-label">Founder Name</label><input class="form-input" id="ci-founder" placeholder="Rishabh Alevoor"/></div>
+        <div class="form-group"><label class="form-label">Founder Title</label><input class="form-input" id="ci-title" placeholder="Founder & CEO, Alevoor Technologies"/></div>
+        <button class="btn-add" onclick="saveContact()">Save Contact Info ✓</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="admin-toast">✓ Saved successfully!</div>
+
+<script>
+const SIGNUP_CODE = "Rishi@123";
+const STORAGE_KEY = 'alevoor_site_data';
+const USERS_KEY = 'alevoor_admin_users';
+const SESSION_KEY = 'alevoor_admin_session';
+
+// ─── DATA ─────────────────────────────────────────────────────────────────
+let DATA = {};
+let currentUser = null;
+let currentSection = 'dashboard';
+
+async function loadData() {
+  // Try localStorage first
+  const saved = localStorage.getItem(STORAGE_KEY);
+  if (saved) { DATA = JSON.parse(saved); return; }
+  // Try fetch
+  try {
+    const res = await fetch('/data.json');
+    DATA = await res.json();
+    saveData();
+  } catch(e) { DATA = { brand:{}, stats:[], services:[], process:[], whyUs:[], testimonials:[], pricing:{content:[],yt:[],onetime:[]}, portfolio:[], team:[], faqs:[] }; }
+}
+
+function saveData() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(DATA));
+  showToast('Changes saved! Refresh the main site to see updates.');
+}
+
+// ─── AUTH ─────────────────────────────────────────────────────────────────
+function switchAuthTab(tab) {
+  document.querySelectorAll('.auth-tab').forEach((t,i) => t.classList.toggle('active', (i===0&&tab==='signin')||(i===1&&tab==='signup')));
+  document.getElementById('signin-form').style.display = tab==='signin'?'block':'none';
+  document.getElementById('signup-form').style.display = tab==='signup'?'block':'none';
+  hideAuthMsg();
+}
+
+function showAuthError(msg) {
+  const el = document.getElementById('auth-error');
+  el.textContent = msg; el.style.display = 'block';
+  document.getElementById('auth-success').style.display = 'none';
+}
+function showAuthSuccess(msg) {
+  const el = document.getElementById('auth-success');
+  el.textContent = msg; el.style.display = 'block';
+  document.getElementById('auth-error').style.display = 'none';
+}
+function hideAuthMsg() {
+  document.getElementById('auth-error').style.display = 'none';
+  document.getElementById('auth-success').style.display = 'none';
+}
+
+function doSignUp() {
+  const name = document.getElementById('su-name').value.trim();
+  const email = document.getElementById('su-email').value.trim();
+  const pass = document.getElementById('su-pass').value;
+  const code = document.getElementById('su-code').value;
+  if (!name||!email||!pass) { showAuthError('All fields are required.'); return; }
+  if (code !== SIGNUP_CODE) { showAuthError('Invalid signup code. Please contact the administrator.'); return; }
+  const users = JSON.parse(localStorage.getItem(USERS_KEY)||'[]');
+  if (users.find(u=>u.email===email)) { showAuthError('Email already registered.'); return; }
+  users.push({name,email,password:pass});
+  localStorage.setItem(USERS_KEY, JSON.stringify(users));
+  showAuthSuccess('Account created! Please sign in.');
+  setTimeout(() => switchAuthTab('signin'), 1500);
+}
+
+function doSignIn() {
+  const email = document.getElementById('si-email').value.trim();
+  const pass = document.getElementById('si-pass').value;
+  if (!email||!pass) { showAuthError('Please enter email and password.'); return; }
+  const users = JSON.parse(localStorage.getItem(USERS_KEY)||'[]');
+  const user = users.find(u=>u.email===email && u.password===pass);
+  if (!user) { showAuthError('Invalid email or password.'); return; }
+  localStorage.setItem(SESSION_KEY, JSON.stringify(user));
+  enterAdmin(user);
+}
+
+function doSignOut() {
+  localStorage.removeItem(SESSION_KEY);
+  document.getElementById('admin-screen').classList.remove('show');
+  document.getElementById('auth-screen').style.display = 'flex';
+  currentUser = null;
+}
+
+function enterAdmin(user) {
+  currentUser = user;
+  document.getElementById('auth-screen').style.display = 'none';
+  document.getElementById('admin-screen').classList.add('show');
+  document.getElementById('sb-name').textContent = user.name;
+  document.getElementById('sb-email').textContent = user.email;
+  document.getElementById('uc-name').textContent = user.name;
+  document.getElementById('uc-email').textContent = user.email;
+  const initials = user.name.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
+  document.getElementById('uc-avatar').textContent = initials;
+  renderDashboard();
+}
+
+// ─── SECTIONS ─────────────────────────────────────────────────────────────
+function showSection(id) {
+  currentSection = id;
+  document.querySelectorAll('.section-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  const navItems = document.querySelectorAll('.nav-item');
+  navItems.forEach(n=>{ if(n.textContent.toLowerCase().includes(id.replace('-',' ').split('panel-').pop())) n.classList.add('active'); });
+  // Set active on clicked item
+  event && event.currentTarget && event.currentTarget.classList.add('active');
+  const titles = {dashboard:'Dashboard',hero:'Hero Section',services:'Services',pricing:'Pricing Plans',onetime:'One-Time Services',stats:'Impact Stats',process:'Process Steps',team:'Team',testimonials:'Testimonials',portfolio:'Portfolio',faqs:'FAQs',contact:'Contact Info'};
+  document.getElementById('breadcrumb').textContent = `Admin / ${titles[id]||id}`;
+  document.getElementById('page-title').textContent = titles[id]||id;
+  renderSection(id);
+}
+
+// Fix active state
+document.querySelectorAll('.nav-item').forEach(item => {
+  item.addEventListener('click', function() {
+    document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+
+function renderSection(id) {
+  switch(id) {
+    case 'dashboard': renderDashboard(); break;
+    case 'services': renderServicesTable(); break;
+    case 'pricing': renderPricingTable(); break;
+    case 'onetime': renderOneTimeTable(); break;
+    case 'stats': renderStatsTable(); break;
+    case 'process': renderProcessTable(); break;
+    case 'team': renderTeamTable(); break;
+    case 'testimonials': renderTestiTable(); break;
+    case 'portfolio': renderPortTable(); break;
+    case 'faqs': renderFAQTable(); break;
+    case 'contact': loadContactForm(); break;
+  }
+}
+
+function renderDashboard() {
+  const items = [
+    {label:'Services',val:DATA.services?.length||0,desc:'Service offerings',icon:'🗂',sec:'services'},
+    {label:'Pricing Plans',val:DATA.pricing?.content?.length||0,desc:'Monthly plans',icon:'💳',sec:'pricing'},
+    {label:'One-Time Services',val:DATA.pricing?.onetime?.length||0,desc:'Quick setup',icon:'⚡',sec:'onetime'},
+    {label:'Impact Stats',val:DATA.stats?.length||0,desc:'Impact metrics',icon:'📊',sec:'stats'},
+    {label:'Process Steps',val:DATA.process?.length||0,desc:'How it works',icon:'📋',sec:'process'},
+    {label:'Team Members',val:DATA.team?.length||0,desc:'Your team',icon:'👥',sec:'team'},
+    {label:'Testimonials',val:DATA.testimonials?.length||0,desc:`${DATA.testimonials?.filter(t=>!t.approved)?.length||0} pending`,icon:'💬',sec:'testimonials'},
+    {label:'Portfolio Items',val:DATA.portfolio?.length||0,desc:'Case studies',icon:'🖼',sec:'portfolio'},
+    {label:'FAQs',val:DATA.faqs?.length||0,desc:'Questions & answers',icon:'❓',sec:'faqs'},
+  ];
+  document.getElementById('dash-stats').innerHTML = items.map(i=>`
+    <div class="stat-card">
+      <div><div class="stat-label">${i.label}</div><div class="stat-val">${i.val}</div><div class="stat-desc">${i.desc}</div><span class="manage-link" onclick="showSection('${i.sec}')">Manage →</span></div>
+      <div class="stat-icon">${i.icon}</div>
+    </div>`).join('');
+}
+
+function renderServicesTable() {
+  const arr = DATA.services||[];
+  document.getElementById('svc-count').textContent = arr.length;
+  document.getElementById('svc-table').innerHTML = arr.map((s,i)=>`
+    <tr><td>${s.icon}</td><td><strong>${s.name}</strong></td><td style="color:#888;max-width:280px">${s.desc}</td>
+    <td><button class="action-btn del" onclick="removeItem('services',${i})">Remove</button></td></tr>`).join('');
+}
+function addService() {
+  const icon=document.getElementById('ns-icon').value.trim()||'📌';
+  const name=document.getElementById('ns-name').value.trim();
+  const desc=document.getElementById('ns-desc').value.trim();
+  if(!name) return;
+  DATA.services.push({icon,name,desc});
+  saveData(); renderServicesTable();
+  ['ns-icon','ns-name','ns-desc'].forEach(id=>document.getElementById(id).value='');
+}
+
+function renderPricingTable() {
+  const arr = DATA.pricing?.content||[];
+  document.getElementById('price-count').textContent = arr.length;
+  document.getElementById('price-table').innerHTML = arr.map((p,i)=>`
+    <tr><td><strong>${p.name}</strong></td><td>${p.price}</td><td>${p.period}</td>
+    <td>${p.popular?'<span class="badge-popular">Popular</span>':'-'}</td>
+    <td><button class="action-btn del" onclick="removePricing(${i})">Remove</button></td></tr>`).join('');
+}
+function addPricingPlan() {
+  const name=document.getElementById('np-name').value.trim();
+  const price=document.getElementById('np-price').value.trim();
+  const period=document.getElementById('np-period').value.trim()||'/month';
+  const subtitle=document.getElementById('np-sub').value.trim();
+  const features=document.getElementById('np-features').value.split(',').map(f=>f.trim()).filter(Boolean);
+  if(!name||!price) return;
+  if(!DATA.pricing) DATA.pricing={content:[],yt:[],onetime:[]};
+  DATA.pricing.content.push({name,price,period,subtitle,popular:false,features});
+  saveData(); renderPricingTable();
+}
+function removePricing(i) { DATA.pricing.content.splice(i,1); saveData(); renderPricingTable(); }
+
+function renderOneTimeTable() {
+  const arr = DATA.pricing?.onetime||[];
+  document.getElementById('ot-count').textContent = arr.length;
+  document.getElementById('ot-table').innerHTML = arr.map((s,i)=>`
+    <tr><td><strong>${s.name}</strong></td><td>${s.price}</td>
+    <td>${s.best?'<span class="badge-best">Best Value</span>':'-'}</td>
+    <td><button class="action-btn del" onclick="removeOneTime(${i})">Remove</button></td></tr>`).join('');
+}
+function addOneTime() {
+  const name=document.getElementById('no-name').value.trim();
+  const price=document.getElementById('no-price').value.trim();
+  const desc=document.getElementById('no-desc').value.trim();
+  if(!name||!price) return;
+  DATA.pricing.onetime.push({name,price,desc,best:false});
+  saveData(); renderOneTimeTable();
+}
+function removeOneTime(i) { DATA.pricing.onetime.splice(i,1); saveData(); renderOneTimeTable(); }
+
+function renderStatsTable() {
+  const arr = DATA.stats||[];
+  document.getElementById('stat-count').textContent = arr.length;
+  document.getElementById('stat-table').innerHTML = arr.map((s,i)=>`
+    <tr><td><strong>${s.value}</strong></td><td>${s.label}</td>
+    <td><button class="action-btn del" onclick="removeItem('stats',${i})">Remove</button></td></tr>`).join('');
+}
+function addStat() {
+  const value=document.getElementById('nst-val').value.trim();
+  const label=document.getElementById('nst-label').value.trim();
+  if(!value||!label) return;
+  DATA.stats.push({value,label});
+  saveData(); renderStatsTable();
+}
+
+function renderProcessTable() {
+  const arr = DATA.process||[];
+  document.getElementById('proc-count').textContent = arr.length;
+  document.getElementById('proc-table').innerHTML = arr.map((s,i)=>`
+    <tr><td>${s.num}</td><td><strong>${s.title}</strong></td><td style="color:#888;max-width:280px">${s.desc}</td>
+    <td><button class="action-btn del" onclick="removeItem('process',${i})">Remove</button></td></tr>`).join('');
+}
+function addProcess() {
+  const title=document.getElementById('npc-title').value.trim();
+  const icon=document.getElementById('npc-icon').value.trim()||'⚡';
+  const desc=document.getElementById('npc-desc').value.trim();
+  if(!title) return;
+  DATA.process.push({num:DATA.process.length+1,icon,title,desc});
+  saveData(); renderProcessTable();
+}
+
+function renderTeamTable() {
+  const arr = DATA.team||[];
+  document.getElementById('team-count').textContent = arr.length;
+  document.getElementById('team-table').innerHTML = arr.map((m,i)=>`
+    <tr><td><div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#0db88a,#7c3aed);display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px;font-weight:700">${m.initials}</div></td>
+    <td><strong>${m.name}</strong></td><td style="color:#888">${m.role}</td>
+    <td><button class="action-btn del" onclick="removeItem('team',${i})">Remove</button></td></tr>`).join('');
+}
+function addTeam() {
+  const name=document.getElementById('nt-name').value.trim();
+  const role=document.getElementById('nt-role').value.trim();
+  const initials=(document.getElementById('nt-init').value.trim()||name.split(' ').map(w=>w[0]).join('').slice(0,2)).toUpperCase();
+  if(!name||!role) return;
+  DATA.team.push({name,role,initials});
+  saveData(); renderTeamTable();
+}
+
+function renderTestiTable() {
+  const arr = DATA.testimonials||[];
+  document.getElementById('testi-count').textContent = arr.length;
+  document.getElementById('testi-table').innerHTML = arr.map((t,i)=>`
+    <tr><td><strong>${t.name}</strong></td><td style="color:#888">${t.role}</td><td>${'★'.repeat(t.stars)}</td>
+    <td>${t.approved?'<span class="badge-approved">Approved</span>':'<span class="badge-pending">Pending</span>'}</td>
+    <td>
+      <button class="action-btn" onclick="toggleApproval(${i})">${t.approved?'Unapprove':'Approve'}</button>
+      <button class="action-btn del" onclick="removeItem('testimonials',${i})">Remove</button>
+    </td></tr>`).join('');
+}
+function toggleApproval(i) { DATA.testimonials[i].approved = !DATA.testimonials[i].approved; saveData(); renderTestiTable(); }
+function addTestimonial() {
+  const name=document.getElementById('ntes-name').value.trim();
+  const role=document.getElementById('ntes-role').value.trim();
+  const initials=(document.getElementById('ntes-init').value.trim()||name.slice(0,2)).toUpperCase();
+  const stars=parseInt(document.getElementById('ntes-stars').value);
+  const text=document.getElementById('ntes-text').value.trim();
+  if(!name||!text) return;
+  DATA.testimonials.push({name,role,initials,stars,text,approved:false});
+  saveData(); renderTestiTable();
+}
+
+function renderPortTable() {
+  const arr = DATA.portfolio||[];
+  document.getElementById('port-count').textContent = arr.length;
+  document.getElementById('port-table').innerHTML = arr.map((p,i)=>`
+    <tr><td>${p.icon}</td><td><strong>${p.title}</strong></td><td style="color:#888">${p.category}</td><td style="color:#0db88a;font-size:12px">${p.result}</td>
+    <td><button class="action-btn del" onclick="removeItem('portfolio',${i})">Remove</button></td></tr>`).join('');
+}
+function addPortfolio() {
+  const title=document.getElementById('np2-title').value.trim();
+  const category=document.getElementById('np2-cat').value.trim();
+  const result=document.getElementById('np2-result').value.trim();
+  const icon=document.getElementById('np2-icon').value.trim()||'🚀';
+  const desc=document.getElementById('np2-desc').value.trim();
+  if(!title) return;
+  DATA.portfolio.push({title,category,result,icon,desc});
+  saveData(); renderPortTable();
+}
+
+function renderFAQTable() {
+  const arr = DATA.faqs||[];
+  document.getElementById('faq-count').textContent = arr.length;
+  document.getElementById('faq-table').innerHTML = arr.map((f,i)=>`
+    <tr><td>${i+1}</td><td><strong>${f.q}</strong></td><td style="color:#888;max-width:280px">${f.a.slice(0,60)}...</td>
+    <td><button class="action-btn del" onclick="removeItem('faqs',${i})">Remove</button></td></tr>`).join('');
+}
+function addFAQ() {
+  const q=document.getElementById('nf-q').value.trim();
+  const a=document.getElementById('nf-a').value.trim();
+  if(!q||!a) return;
+  DATA.faqs.push({q,a});
+  saveData(); renderFAQTable();
+}
+
+function loadContactForm() {
+  if(!DATA.brand) return;
+  document.getElementById('ci-phone').value = DATA.brand.phone||'';
+  document.getElementById('ci-email').value = DATA.brand.email||'';
+  document.getElementById('ci-insta').value = DATA.brand.instagram||'';
+  document.getElementById('ci-founder').value = DATA.brand.founderName||'';
+  document.getElementById('ci-title').value = DATA.brand.founderTitle||'';
+}
+function saveContact() {
+  if(!DATA.brand) DATA.brand={};
+  DATA.brand.phone = document.getElementById('ci-phone').value;
+  DATA.brand.email = document.getElementById('ci-email').value;
+  DATA.brand.instagram = document.getElementById('ci-insta').value;
+  DATA.brand.founderName = document.getElementById('ci-founder').value;
+  DATA.brand.founderTitle = document.getElementById('ci-title').value;
+  saveData();
+}
+
+function saveHero() {
+  if(!DATA.brand) DATA.brand={};
+  DATA.brand.heroHeadline = document.getElementById('h-headline').value;
+  DATA.brand.heroAccent = document.getElementById('h-accent').value;
+  DATA.brand.heroSubtitle = document.getElementById('h-subtitle').value;
+  DATA.brand.heroCTA1 = document.getElementById('h-cta1').value;
+  DATA.brand.heroCTA2 = document.getElementById('h-cta2').value;
+  saveData();
+}
+
+function removeItem(key, index) {
+  if(!DATA[key]) return;
+  DATA[key].splice(index, 1);
+  saveData();
+  renderSection(currentSection);
+}
+
+function showToast(msg) {
+  const t = document.getElementById('admin-toast');
+  t.textContent = '✓ ' + (msg||'Saved!');
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 3000);
+}
+
+// ─── INIT ─────────────────────────────────────────────────────────────────
+async function init() {
+  await loadData();
+  const session = localStorage.getItem(SESSION_KEY);
+  if (session) {
+    enterAdmin(JSON.parse(session));
+  }
+}
+init();
+</script>
+</body>
+</html>

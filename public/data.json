@@ -1,0 +1,119 @@
+{
+  "brand": {
+    "name": "Alevoor Technologies",
+    "logo": "AT",
+    "tagline": "Focus On Creating. We Handle The Growth.",
+    "subtitle": "Alevoor Technologies manages editing, posting and optimization.",
+    "description": "Building Creators. Scaling Reach. We help creators and brands grow on YouTube and Instagram through strategy, consistency, and optimized execution.",
+    "phone": "+91 9483886270",
+    "email": "alevoor@gmail.com",
+    "instagram": "@alevoor",
+    "founderName": "Rishabh Alevoor",
+    "founderTitle": "Founder & CEO, Alevoor Technologies"
+  },
+  "stats": [
+    { "value": "50+", "label": "YouTube Managed" },
+    { "value": "10M+", "label": "Insta Growth" },
+    { "value": "100+", "label": "Happy Creators" },
+    { "value": "3x", "label": "Avg. Growth" }
+  ],
+  "services": [
+    { "icon": "📱", "name": "Content Marketing", "desc": "Full-stack social media content strategy and scheduling across platforms." },
+    { "icon": "✂️", "name": "Editing Support", "desc": "Professional video & photo editing tailored to your brand voice." },
+    { "icon": "🌐", "name": "Hosting Services", "desc": "Reliable hosting solutions for your digital presence." },
+    { "icon": "📊", "name": "Inventory Software", "desc": "Custom inventory management systems for your business." },
+    { "icon": "💻", "name": "Website Development", "desc": "Modern, responsive websites built for performance and conversions." },
+    { "icon": "🔍", "name": "SEO Optimisation", "desc": "Data-driven SEO to rank higher and attract organic traffic." },
+    { "icon": "🎥", "name": "UGC Video Creation", "desc": "Authentic user-generated style video content for your brand." },
+    { "icon": "📸", "name": "UGC Photo Creation", "desc": "Lifestyle and product photography optimized for social platforms." },
+    { "icon": "✨", "name": "AI Model Creation", "desc": "Realistic AI models for product showcases and brand visuals." },
+    { "icon": "🤖", "name": "AI Chatbox Integration", "desc": "Intelligent chatbots to automate customer engagement 24/7." },
+    { "icon": "📢", "name": "Digital Marketing", "desc": "Comprehensive digital campaigns to grow your online presence." },
+    { "icon": "🛍️", "name": "Product Marketing", "desc": "Strategic product positioning and launch campaigns." },
+    { "icon": "📅", "name": "Content Calendar", "desc": "Consistent content calendars and creation pipelines." },
+    { "icon": "📧", "name": "Email Marketing", "desc": "High-converting email sequences and newsletter campaigns." },
+    { "icon": "🏦", "name": "Banking Software", "desc": "Custom banking software solutions for financial institutions." },
+    { "icon": "🧾", "name": "Billing Software", "desc": "Automated billing and invoicing systems for your business." },
+    { "icon": "🛒", "name": "E-commerce Software", "desc": "Full-featured e-commerce platforms built to scale." },
+    { "icon": "🗂️", "name": "Account Management", "desc": "Dedicated account managers to handle your digital presence." }
+  ],
+  "process": [
+    { "num": 1, "icon": "💬", "title": "Client Onboarding", "desc": "Fill out our simple form and share your goals. We learn about your content, audience, and vision for growth." },
+    { "num": 2, "icon": "📊", "title": "Strategy & Analytics Review", "desc": "We analyze your channel performance and develop a customized growth strategy tailored to your niche." },
+    { "num": 3, "icon": "🚀", "title": "Editing + Uploading", "desc": "Our team handles professional editing, optimization, and strategic uploading to maximize reach." },
+    { "num": 4, "icon": "📄", "title": "Weekly / Monthly Growth Report", "desc": "Receive detailed performance reports with insights, analytics, and actionable recommendations." }
+  ],
+  "whyUs": [
+    { "icon": "🌊", "title": "Wave-Driven Growth", "desc": "Like ocean waves from our coastal Karnataka roots — we create momentum that never stops." },
+    { "icon": "📊", "title": "Data-Backed Strategies", "desc": "Every decision is informed by analytics and proven growth methodologies." },
+    { "icon": "✅", "title": "Clean & Consistent Execution", "desc": "Reliable, on-time delivery with attention to detail in everything we do." },
+    { "icon": "💬", "title": "Transparent Communication", "desc": "Regular updates and honest feedback. No surprises, just results." },
+    { "icon": "📈", "title": "Scalable Growth Plans", "desc": "Strategies that grow with you, from beginner to established creator." }
+  ],
+  "testimonials": [
+    { "name": "The Currency India Official", "role": "Finance YouTuber", "initials": "TC", "text": "Alevoor Technologies helped us grow from 8 to 4.17K subscribers! Their strategic approach to content and analytics-driven optimization made all the difference.", "stars": 5 },
+    { "name": "Sambodhi Mechanical Engineering", "role": "Educational Creator", "initials": "SM", "text": "Our channel grew from 28 to 473 subscribers with their expert guidance. The team understands educational content perfectly and delivers quality edits.", "stars": 5 },
+    { "name": "Shilpa Art House", "role": "Art & Craft Creator", "initials": "SA", "text": "Amazing creative team! They enhanced our art content beautifully and helped us reach a wider audience. Highly professional and timely delivery.", "stars": 5 },
+    { "name": "Startup Stories", "role": "Business Content Creator", "initials": "SS", "text": "The team at Alevoor Technologies understands the startup ecosystem perfectly. Our content quality and engagement improved dramatically.", "stars": 5 },
+    { "name": "V Filmy Steps", "role": "Entertainment YouTuber", "initials": "VF", "text": "Outstanding editing and creative direction! They brought our vision to life with professional quality that rivals top production houses.", "stars": 5 },
+    { "name": "Homzyee Property Management", "role": "Real Estate Creator", "initials": "HP", "text": "Excellent service for our property showcase videos. The editing quality and turnaround time exceeded our expectations.", "stars": 5 },
+    { "name": "Rahul Sharma", "role": "Tech YouTuber", "initials": "RS", "text": "Alevoor Technologies transformed my channel completely! My subscriber count doubled in just 3 months. Their editing quality and strategy are top-notch.", "stars": 5 },
+    { "name": "Sneha Reddy", "role": "Food Blogger", "initials": "SR", "text": "Amazing thumbnails and video edits! My click-through rate improved significantly. The team is responsive and delivers quality work on time.", "stars": 5 }
+  ],
+  "pricing": {
+    "content": [
+      { "name": "Starter Creator Plan", "subtitle": "Best for new & small creators", "price": "₹2,000 – ₹8,000", "period": "/month", "popular": false, "features": ["Content strategy & ideas", "8–10 reels/shorts editing", "1–2 long videos", "Uploading & scheduling", "Caption + hashtag support", "Basic YouTube/Instagram optimization", "Weekly update"] },
+      { "name": "Growth Plan", "subtitle": "Full content growth strategy", "price": "₹8,000 – ₹20,000", "period": "/month", "popular": true, "features": ["Full content growth strategy", "12–20 reels/shorts editing", "2–4 long videos", "YouTube or Instagram management", "Monthly performance report"] },
+      { "name": "Premium Management Plan", "subtitle": "For serious creators & brands", "price": "₹25,000 – ₹50,000", "period": "/month", "popular": false, "features": ["End-to-end account management", "20–25 shorts/reels + 4–5 long videos", "YouTube + Instagram handled fully", "Community building support"] }
+    ],
+    "yt": [
+      { "name": "YT Complete Teaching", "price": "₹2,999", "period": "one-time", "best": false, "features": ["2-hour comprehensive webinar", "1-on-1 strategy call (30 mins)", "Lifetime access to recordings"] },
+      { "name": "Toolkit (6 Months)", "price": "₹2,499", "period": "for 6 months", "best": false, "features": ["Content calendar templates", "Script writing frameworks", "6 months of updates"] },
+      { "name": "Toolkit (Yearly)", "price": "₹3,999", "period": "per year", "best": true, "features": ["Everything in 6-month plan", "Full year of updates", "Priority support"] }
+    ],
+    "onetime": [
+      { "name": "Website Creation", "price": "₹8,000 – ₹12,000", "best": true, "desc": "Simple, mobile-friendly website with contact button." },
+      { "name": "AI Chat Agent", "price": "₹2,000 – ₹3,000", "best": false, "desc": "Private AI assistant for content ideas, scripts & growth help." },
+      { "name": "Website + AI Assistant", "price": "₹12,999 – ₹15,999", "best": true, "desc": "Website + private AI chat agent in one package." },
+      { "name": "Creation of Inventory", "price": "₹8,000 – ₹12,000", "best": false, "desc": "Complete inventory setup for your business or brand." },
+      { "name": "Inventory Management", "price": "₹2,000 – ₹6,000", "best": false, "desc": "Ongoing inventory tracking and management support." },
+      { "name": "SEO", "price": "₹4,000 – ₹6,000", "best": false, "desc": "Search Engine Optimization to boost your online visibility." },
+      { "name": "UGC Video Creation", "price": "₹300 – ₹500", "best": false, "desc": "Script guidance, hook-based format, 9:16 ad-ready, basic editing." },
+      { "name": "UGC Photo Creation", "price": "₹150 – ₹300", "best": false, "desc": "Lifestyle setup, product-focused shots, edited & platform-optimized." },
+      { "name": "AI Model Creation", "price": "₹2,500 – ₹3,500", "best": false, "desc": "Realistic AI model, custom background, brand-matching styling." },
+      { "name": "Product Marketing", "price": "₹4,999 – ₹14,999", "best": true, "desc": "Competitor research, product positioning, offer structuring, launch strategy." },
+      { "name": "Banking Software", "price": "₹80,000 – ₹1,00,000", "best": false, "desc": "Custom banking software solution." },
+      { "name": "Billing Software", "price": "₹45,000 – ₹60,000", "best": false, "desc": "Custom billing software solution." },
+      { "name": "E-commerce Software", "price": "₹80,000", "best": false, "desc": "Custom e-commerce platform." },
+      { "name": "Account Management", "price": "₹6,000 – ₹18,000", "best": false, "desc": "Professional account management." }
+    ]
+  },
+  "portfolio": [
+    { "icon": "💰", "title": "The Currency India Official", "category": "Finance YouTube", "desc": "Grew channel from 8 to 4.17K subscribers in 3 months through strategic content planning and SEO optimization.", "result": "8 → 4,170 subscribers" },
+    { "icon": "🎓", "title": "Sambodhi Mechanical Engineering", "category": "Educational YouTube", "desc": "Helped an educational channel grow from 28 to 473 subscribers with quality editing and consistent uploads.", "result": "28 → 473 subscribers" },
+    { "icon": "🎨", "title": "Shilpa Art House", "category": "Art & Craft YouTube", "desc": "Enhanced art content quality and reach for a creative channel using professional editing and thumbnails.", "result": "3x engagement increase" },
+    { "icon": "🎬", "title": "V Filmy Steps", "category": "Entertainment YouTube", "desc": "Delivered cinematic-quality editing for an entertainment channel, helping them compete with top creators.", "result": "5x view growth" },
+    { "icon": "🏠", "title": "Homzyee Property Management", "category": "Real Estate Brand", "desc": "Created professional property showcase videos and managed social media for a real estate brand.", "result": "2x lead generation" },
+    { "icon": "🚀", "title": "Startup Stories", "category": "Business Content", "desc": "Elevated content quality for a startup-focused creator with strategic editing and platform management.", "result": "4x content output" }
+  ],
+  "team": [
+    { "name": "Rishabh Alevoor", "role": "Founder & CEO", "initials": "RA" },
+    { "name": "Sanjay", "role": "Head of Production", "initials": "SJ" },
+    { "name": "Ashik", "role": "Head of Insta Management", "initials": "AK" },
+    { "name": "Devin", "role": "Head of Video Editing", "initials": "DV" },
+    { "name": "Vasu", "role": "Web Developer", "initials": "VA" },
+    { "name": "Priyam", "role": "Editor", "initials": "PR" },
+    { "name": "Shubham", "role": "Editor", "initials": "SH" },
+    { "name": "Keshav Tiwari", "role": "Editor", "initials": "KT" }
+  ],
+  "faqs": [
+    { "q": "How long does it take to see results?", "a": "Most clients see noticeable growth within 4–8 weeks of consistent strategy execution. Long-term growth compounds over 3–6 months." },
+    { "q": "Do I need to be on YouTube to work with you?", "a": "No! We work across Instagram, YouTube, and other platforms. We tailor our services to wherever your audience is." },
+    { "q": "What makes Alevoor Technologies different?", "a": "We combine data analytics with creative content strategy. Like waves from our coastal Karnataka roots — we create momentum that never stops." },
+    { "q": "Can I upgrade my plan later?", "a": "Absolutely. Our plans are flexible. You can upgrade, downgrade, or add services at any time based on your growth needs." },
+    { "q": "Is there a contract or commitment?", "a": "We offer monthly plans with no long-term contracts required. We believe in earning your trust month after month." },
+    { "q": "How do I get started?", "a": "Simply book a free consultation call or fill out our application form. We'll get back to you within 24 hours with a personalized growth plan." },
+    { "q": "What platforms do you manage?", "a": "We primarily manage YouTube and Instagram, but also work with TikTok, LinkedIn, and other platforms based on your needs." },
+    { "q": "Do you offer refunds?", "a": "We offer a satisfaction guarantee on our strategy work. If you're not satisfied after the first month, we'll work with you to make it right." }
+  ]
+}
