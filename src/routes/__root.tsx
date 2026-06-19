@@ -77,14 +77,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
+      { title: "Alevoor Technologies" },
+      { name: "description", content: "Engineering the infrastructure of modern commerce through scalable technology, automation, and intelligent digital solutions." },
       { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { property: "og:title", content: "Alevoor Technologies" },
+      { property: "og:description", content: "Engineering the infrastructure of modern commerce through scalable technology, automation, and intelligent digital solutions." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "Alevoor Technologies" },
+      { name: "twitter:description", content: "Engineering the infrastructure of modern commerce through scalable technology, automation, and intelligent digital solutions." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/yGt9rwRc0KcvpKegwdrz6LtRJ5m2/social-images/social-1781833472546-ChatGPT_Image_Jun_19,_2026,_05_31_14_AM.webp" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/yGt9rwRc0KcvpKegwdrz6LtRJ5m2/social-images/social-1781833472546-ChatGPT_Image_Jun_19,_2026,_05_31_14_AM.webp" },
     ],
     links: [
       {
