@@ -615,8 +615,6 @@ function renderAll() {
   renderProcess();
   renderWhyUs();
   renderTestimonials();
-  renderPricing();
-  renderPortfolio();
   renderTeam();
   renderFAQs();
   renderContact();
@@ -803,6 +801,8 @@ function scrollTo(id) {
 function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
 function openMenu() { document.getElementById('menu-overlay').classList.add('open'); }
 function closeMenu() { document.getElementById('menu-overlay').classList.remove('open'); }
+function openVideo() { document.getElementById('video-modal').classList.add('open'); document.body.style.overflow = 'hidden'; }
+function closeVideo() { document.getElementById('video-modal').classList.remove('open'); document.body.style.overflow = ''; }
 
 function switchTab(tab, btn) {
   document.querySelectorAll('.pricing-tab').forEach(t => t.classList.remove('active'));
@@ -818,15 +818,29 @@ function toggleFAQ(i) {
   if (!isOpen) item.classList.add('open');
 }
 
-function submitForm() {
-  const name = document.getElementById('f-name').value;
-  const email = document.getElementById('f-email').value;
+async function submitForm() {
+  const name = document.getElementById('f-name').value.trim();
+  const email = document.getElementById('f-email').value.trim();
+  const platform = document.getElementById('f-platform').value.trim();
+  const message = document.getElementById('f-msg').value.trim();
   if (!name || !email) { alert('Please fill in your name and email.'); return; }
-  showToast();
-  document.getElementById('f-name').value = '';
-  document.getElementById('f-email').value = '';
-  document.getElementById('f-platform').value = '';
-  document.getElementById('f-msg').value = '';
+  const btn = document.querySelector('.btn-submit');
+  const orig = btn ? btn.textContent : '';
+  if (btn) { btn.disabled = true; btn.textContent = 'Sending...'; }
+  try {
+    const res = await fetch('/api/public/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, email, platform, message })
+    });
+    if (!res.ok) throw new Error('failed');
+    showToast("✅ Message sent! We'll get back to you within 24 hours.");
+    ['f-name','f-email','f-platform','f-msg'].forEach(id => document.getElementById(id).value = '');
+  } catch (e) {
+    showToast('⚠️ Could not send right now. Please try again or WhatsApp us.');
+  } finally {
+    if (btn) { btn.disabled = false; btn.textContent = orig; }
+  }
 }
 
 function showToast(msg) {
