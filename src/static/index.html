@@ -986,8 +986,20 @@ function showToast(msg) {
 }
 
 function toggleDark() {
-  document.body.style.background = document.body.style.background === 'rgb(15, 23, 42)' ? '' : '#0f172a';
+  const dark = document.body.classList.toggle('dark');
+  try { localStorage.setItem('alevoor-theme', dark ? 'dark' : 'light'); } catch(e) {}
+  const tgl = document.querySelector('[onclick="toggleDark()"]');
+  if (tgl) tgl.textContent = dark ? '☀' : '☽';
 }
+(function initTheme(){
+  try {
+    if (localStorage.getItem('alevoor-theme') === 'dark') {
+      document.body.classList.add('dark');
+      const tgl = document.querySelector('[onclick="toggleDark()"]');
+      if (tgl) tgl.textContent = '☀';
+    }
+  } catch(e) {}
+})();
 
 // ─── SCROLL BEHAVIORS ─────────────────────────────────────────────────────
 window.addEventListener('scroll', () => {
