@@ -149,6 +149,7 @@
       <div class="nav-item" onclick="showSection('testimonials')"><span class="nav-icon">💬</span>Testimonials</div>
       <div class="nav-item" onclick="showSection('portfolio')"><span class="nav-icon">🖼</span>Portfolio</div>
       <div class="nav-item" onclick="showSection('faqs')"><span class="nav-icon">❓</span>FAQs</div>
+      <div class="nav-item" onclick="showSection('leads')"><span class="nav-icon">📥</span>Get in Touch</div>
       <div class="nav-item" onclick="showSection('contact')"><span class="nav-icon">📞</span>Contact Info</div>
     </div>
     <div class="sidebar-bottom">
@@ -362,6 +363,16 @@
         <button class="btn-add" onclick="saveContact()">Save Contact Info ✓</button>
       </div>
     </div>
+
+    <!-- LEADS / GET IN TOUCH -->
+    <div class="section-panel" id="panel-leads">
+      <div class="card">
+        <div class="section-title">Get in Touch Submissions (<span id="leads-count">0</span>)</div>
+        <p style="font-size:13px;color:#888;margin-bottom:14px">Enquiries submitted through the website's Get in Touch form are saved here automatically.</p>
+        <div style="margin-bottom:14px"><button class="btn-add" onclick="renderLeads()">🔄 Refresh</button></div>
+        <div class="table-wrap"><table><thead><tr><th>Date</th><th>Name</th><th>Email</th><th>Platform</th><th>Message</th></tr></thead><tbody id="leads-table"></tbody></table></div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -474,7 +485,7 @@ function showSection(id) {
   navItems.forEach(n=>{ if(n.textContent.toLowerCase().includes(id.replace('-',' ').split('panel-').pop())) n.classList.add('active'); });
   // Set active on clicked item
   event && event.currentTarget && event.currentTarget.classList.add('active');
-  const titles = {dashboard:'Dashboard',hero:'Hero Section',services:'Services',pricing:'Pricing Plans',onetime:'One-Time Services',stats:'Impact Stats',process:'Process Steps',team:'Team',testimonials:'Testimonials',portfolio:'Portfolio',faqs:'FAQs',contact:'Contact Info'};
+  const titles = {dashboard:'Dashboard',hero:'Hero Section',services:'Services',pricing:'Pricing Plans',onetime:'One-Time Services',stats:'Impact Stats',process:'Process Steps',team:'Team',testimonials:'Testimonials',portfolio:'Portfolio',faqs:'FAQs',contact:'Contact Info',leads:'Get in Touch'};
   document.getElementById('breadcrumb').textContent = `Admin / ${titles[id]||id}`;
   document.getElementById('page-title').textContent = titles[id]||id;
   renderSection(id);
@@ -501,6 +512,7 @@ function renderSection(id) {
     case 'portfolio': renderPortTable(); break;
     case 'faqs': renderFAQTable(); break;
     case 'contact': loadContactForm(); break;
+    case 'leads': renderLeads(); break;
   }
 }
 
@@ -699,6 +711,35 @@ function saveContact() {
   DATA.brand.founderName = document.getElementById('ci-founder').value;
   DATA.brand.founderTitle = document.getElementById('ci-title').value;
   saveData();
+}
+
+let LEADS_CODE = null;
+function escHtml(s){ return String(s).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+async function renderLeads() {
+  const tbody = document.getElementById('leads-table');
+  if (!tbody) return;
+  const code = LEADS_CODE || SIGNUP_CODE;
+  tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:#888">Loading…</td></tr>';
+  try {
+    const res = await fetch('/api/admin/leads', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ code }) });
+    if (res.status === 401) { tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:#e53e3e">Access denied.</td></tr>'; return; }
+    if (!res.ok) throw new Error('failed');
+    const out = await res.json();
+    const leads = out.leads || [];
+    LEADS_CODE = code;
+    document.getElementById('leads-count').textContent = leads.length;
+    if (!leads.length) { tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:#888">No submissions yet.</td></tr>'; return; }
+    tbody.innerHTML = leads.map(l => `
+      <tr>
+        <td style="white-space:nowrap">${new Date(l.created_at).toLocaleString()}</td>
+        <td><strong>${escHtml(l.name)}</strong></td>
+        <td><a href="mailto:${escHtml(l.email)}" style="color:#0db88a">${escHtml(l.email)}</a></td>
+        <td>${escHtml(l.platform||'-')}</td>
+        <td style="max-width:300px;color:#555">${escHtml(l.message||'-')}</td>
+      </tr>`).join('');
+  } catch (e) {
+    tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:#e53e3e">Could not load submissions.</td></tr>';
+  }
 }
 
 function saveHero() {
