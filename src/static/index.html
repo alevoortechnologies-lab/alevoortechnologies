@@ -881,8 +881,8 @@ function renderPortfolio() {
 function renderTeam() {
   const el = document.getElementById('team-grid');
   if (!DATA.team) return;
-  el.innerHTML = DATA.team.map(m => `
-    <div class="team-card">
+  el.innerHTML = DATA.team.map((m,i) => `
+    <div class="team-card anim-in" style="animation-delay:${i*0.08}s">
       <div class="team-avatar">${m.initials}</div>
       <div class="team-name">${m.name}</div>
       <div class="team-role">${m.role}</div>
