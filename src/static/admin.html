@@ -741,6 +741,8 @@ async function renderLeads() {
     tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:#e53e3e">Could not load submissions.</td></tr>';
   }
 }
+
+function saveHero() {
   if(!DATA.brand) DATA.brand={};
   DATA.brand.heroHeadline = document.getElementById('h-headline').value;
   DATA.brand.heroAccent = document.getElementById('h-accent').value;
