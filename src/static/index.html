@@ -304,6 +304,24 @@
     .hero-logo-img { width: 210px; max-width: 62%; height: auto; margin: 0 auto 28px; display: block; filter: drop-shadow(0 12px 30px rgba(13,184,138,0.25)); animation: floatLogo 4.5s ease-in-out infinite; }
     @keyframes floatLogo { 0%,100%{ transform: translateY(0) } 50%{ transform: translateY(-12px) } }
 
+    /* ─── NAV LINKS (desktop) ─── */
+    .nav-links { display: flex; align-items: center; gap: 4px; }
+    .nav-links a { font-family: 'Sora', sans-serif; font-weight: 500; font-size: 14px; color: var(--text); padding: 8px 12px; border-radius: 8px; cursor: pointer; transition: color .2s, background .2s; }
+    .nav-links a:hover { color: var(--teal); background: var(--teal-light); }
+    .nav-menu-btn { display: none; }
+    @media (max-width: 860px) {
+      .nav-links { display: none; }
+      .nav-menu-btn { display: flex; }
+    }
+
+    /* ─── HERO SLIDESHOW ─── */
+    .hero-slideshow { position: relative; width: 100%; max-width: 760px; margin: 0 auto 32px; aspect-ratio: 16/9; border-radius: 22px; overflow: hidden; box-shadow: 0 24px 60px rgba(13,27,42,0.25); border: 3px solid rgba(255,255,255,0.6); }
+    .hero-slide { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1s ease, transform 6s ease; transform: scale(1.08); }
+    .hero-slide.active { opacity: 1; transform: scale(1); }
+    .hero-dots { position: absolute; bottom: 14px; left: 0; right: 0; display: flex; justify-content: center; gap: 8px; z-index: 2; }
+    .hero-dot { width: 9px; height: 9px; border-radius: 50%; background: rgba(255,255,255,0.55); border: none; cursor: pointer; padding: 0; transition: all .2s; }
+    .hero-dot.active { background: #fff; width: 26px; border-radius: 6px; }
+
     /* ─── FOUNDER PHOTO + VIDEO ─── */
     .founder-frame { overflow: hidden; }
     .founder-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 20%; z-index: 0; }
@@ -337,9 +355,19 @@
       <div class="nav-logo" onclick="scrollToTop()">
         <img class="nav-logo-img" src="/assets/logo.png" alt="Alevoor Technologies" />
       </div>
+      <div class="nav-links">
+        <a onclick="scrollTo('hero')">Home</a>
+        <a onclick="scrollTo('mission')">Mission</a>
+        <a onclick="scrollTo('services')">Services</a>
+        <a href="/pricing">Pricing</a>
+        <a onclick="scrollTo('testimonials')">Reviews</a>
+        <a onclick="scrollTo('team')">Team</a>
+        <a onclick="scrollTo('contact')">Contact</a>
+        <a href="/admin">Admin</a>
+      </div>
       <div class="nav-actions">
         <button class="nav-icon-btn" onclick="toggleDark()" title="Toggle theme">☽</button>
-        <button class="nav-icon-btn" onclick="openMenu()" title="Menu">☰</button>
+        <button class="nav-icon-btn nav-menu-btn" onclick="openMenu()" title="Menu">☰</button>
       </div>
     </div>
   </div>
@@ -368,7 +396,12 @@
   <div class="hero-blob hero-blob-1"></div>
   <div class="hero-blob hero-blob-2"></div>
   <div class="hero-chip">Content Growth & Social Media Management Studio</div>
-  <img class="hero-logo-img" src="/assets/logo.png" alt="Alevoor Technologies logo" />
+  <div class="hero-slideshow" id="hero-slideshow">
+    <img class="hero-slide active" src="/assets/slide-1.jpg" alt="Content creator filming with ring light" />
+    <img class="hero-slide" src="/assets/slide-2.jpg" alt="Social media growth analytics dashboard" />
+    <img class="hero-slide" src="/assets/slide-3.jpg" alt="Creative team editing video content" />
+    <div class="hero-dots" id="hero-dots"></div>
+  </div>
   <h1 class="hero-h1" id="hero-headline">Focus On Creating.<span class="hero-h1-accent" id="hero-accent">We Handle The Growth.</span></h1>
   <p class="hero-sub" id="hero-subtitle">Alevoor Technologies manages editing, posting and optimization.</p>
   <div class="hero-btns">
@@ -816,6 +849,28 @@ function openMenu() { document.getElementById('menu-overlay').classList.add('ope
 function closeMenu() { document.getElementById('menu-overlay').classList.remove('open'); }
 function openVideo() { document.getElementById('video-modal').classList.add('open'); document.body.style.overflow = 'hidden'; }
 function closeVideo() { document.getElementById('video-modal').classList.remove('open'); document.body.style.overflow = ''; }
+
+/* ─── HERO SLIDESHOW ─── */
+(function initSlideshow() {
+  var slides = document.querySelectorAll('.hero-slide');
+  if (!slides.length) return;
+  var dotsWrap = document.getElementById('hero-dots');
+  var idx = 0, timer;
+  slides.forEach(function(_, i) {
+    var d = document.createElement('button');
+    d.className = 'hero-dot' + (i === 0 ? ' active' : '');
+    d.onclick = function() { go(i); reset(); };
+    dotsWrap.appendChild(d);
+  });
+  var dots = dotsWrap.querySelectorAll('.hero-dot');
+  function go(n) {
+    slides[idx].classList.remove('active'); dots[idx].classList.remove('active');
+    idx = (n + slides.length) % slides.length;
+    slides[idx].classList.add('active'); dots[idx].classList.add('active');
+  }
+  function reset() { clearInterval(timer); timer = setInterval(function() { go(idx + 1); }, 4000); }
+  reset();
+})();
 
 function switchTab(tab, btn) {
   document.querySelectorAll('.pricing-tab').forEach(t => t.classList.remove('active'));
