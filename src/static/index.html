@@ -298,20 +298,44 @@
       .pricing-tabs { gap: 6px; }
       .pricing-tab { font-size: 12px; padding: 7px 14px; }
     }
+    /* ─── LOGO IMAGES ─── */
+    .loading-logo { width: 200px; max-width: 70vw; background: #fff; padding: 26px; border-radius: 22px; animation: pulse 1.5s ease-in-out infinite; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+    .nav-logo-img { height: 42px; width: auto; display: block; }
+    .hero-logo-img { width: 210px; max-width: 62%; height: auto; margin: 0 auto 28px; display: block; filter: drop-shadow(0 12px 30px rgba(13,184,138,0.25)); animation: floatLogo 4.5s ease-in-out infinite; }
+    @keyframes floatLogo { 0%,100%{ transform: translateY(0) } 50%{ transform: translateY(-12px) } }
+
+    /* ─── FOUNDER PHOTO + VIDEO ─── */
+    .founder-frame { overflow: hidden; }
+    .founder-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 20%; z-index: 0; }
+    .founder-watch-badge { z-index: 2; cursor: pointer; }
+    .founder-play { position: absolute; inset: 0; margin: auto; width: 76px; height: 76px; border-radius: 50%; border: none; background: rgba(13,184,138,0.94); color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 36px rgba(0,0,0,0.35); transition: transform .2s, background .2s; z-index: 2; }
+    .founder-play:hover { transform: scale(1.1); background: var(--teal-dark); }
+    .founder-play::after { content: '▶'; font-size: 26px; margin-left: 5px; }
+    .founder-play-ring { position: absolute; inset: 0; margin: auto; width: 76px; height: 76px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.7); animation: ring 2s ease-out infinite; z-index: 1; }
+    @keyframes ring { 0%{ transform: scale(1); opacity: .8 } 100%{ transform: scale(1.8); opacity: 0 } }
+
+    /* ─── VIDEO MODAL ─── */
+    .video-modal { position: fixed; inset: 0; background: rgba(13,27,42,0.88); backdrop-filter: blur(6px); z-index: 2000; display: none; align-items: center; justify-content: center; padding: 20px; }
+    .video-modal.open { display: flex; animation: fadeIn .25s ease; }
+    @keyframes fadeIn { from{ opacity: 0 } to{ opacity: 1 } }
+    .video-modal-inner { position: relative; width: 100%; max-width: 760px; }
+    .video-close { position: absolute; top: -46px; right: 0; background: rgba(255,255,255,0.15); color: #fff; border: none; width: 38px; height: 38px; border-radius: 50%; font-size: 16px; cursor: pointer; }
+    .video-frame { background: var(--navy); border-radius: 18px; aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,0.4); }
+    .video-soon { color: #fff; text-align: center; font-size: 18px; line-height: 1.9; font-family: 'Sora', sans-serif; padding: 20px; }
+    .video-frame iframe { width: 100%; height: 100%; border: 0; }
   </style>
 </head>
 <body>
 
 <!-- LOADING -->
-<div id="loading"><div class="logo">AT</div></div>
+<div id="loading"><img class="loading-logo" src="/assets/logo.png" alt="Alevoor Technologies" /></div>
 
 <!-- NAV -->
 <nav id="nav">
   <div class="container">
     <div class="nav-inner">
       <div class="nav-logo" onclick="scrollToTop()">
-        <div class="nav-logo-circle">AT</div>
-        <span class="nav-logo-text">Alevoor <span>Technologies</span></span>
+        <img class="nav-logo-img" src="/assets/logo.png" alt="Alevoor Technologies" />
       </div>
       <div class="nav-actions">
         <button class="nav-icon-btn" onclick="toggleDark()" title="Toggle theme">☽</button>
@@ -325,16 +349,14 @@
 <div id="menu-overlay">
   <div class="menu-nav">
     <div class="nav-logo">
-      <div class="nav-logo-circle">AT</div>
-      <span class="nav-logo-text">Alevoor <span>Technologies</span></span>
+      <img class="nav-logo-img" src="/assets/logo.png" alt="Alevoor Technologies" />
     </div>
     <button class="nav-icon-btn" onclick="closeMenu()">✕</button>
   </div>
   <a class="menu-link" onclick="scrollTo('hero');closeMenu()">Home</a>
   <a class="menu-link" onclick="scrollTo('services');closeMenu()">Services</a>
-  <a class="menu-link" onclick="scrollTo('pricing');closeMenu()">Pricing</a>
-  <a class="menu-link" onclick="scrollTo('portfolio');closeMenu()">Portfolio</a>
-  <a class="menu-link" onclick="scrollTo('testimonials');closeMenu()">Success Stories</a>
+  <a class="menu-link" href="/pricing">Pricing</a>
+  <a class="menu-link" onclick="scrollTo('testimonials');closeMenu()">Reviews</a>
   <a class="menu-link" onclick="scrollTo('team');closeMenu()">Team</a>
   <a class="menu-link" onclick="scrollTo('contact');closeMenu()">Contact</a>
   <a class="menu-link admin-link" href="/admin.html">🔐 Admin Panel</a>
@@ -346,11 +368,7 @@
   <div class="hero-blob hero-blob-1"></div>
   <div class="hero-blob hero-blob-2"></div>
   <div class="hero-chip">Content Growth & Social Media Management Studio</div>
-  <div class="hero-logo-circle">
-    <div class="hero-logo-at">AT</div>
-    <div class="hero-logo-sub">ALEVOOR TECH</div>
-    <div class="hero-wave">🌊 🌊 🌊</div>
-  </div>
+  <img class="hero-logo-img" src="/assets/logo.png" alt="Alevoor Technologies logo" />
   <h1 class="hero-h1" id="hero-headline">Focus On Creating.<span class="hero-h1-accent" id="hero-accent">We Handle The Growth.</span></h1>
   <p class="hero-sub" id="hero-subtitle">Alevoor Technologies manages editing, posting and optimization.</p>
   <div class="hero-btns">
@@ -424,8 +442,10 @@
     <div class="founder-grid">
       <div class="fade-up">
         <div class="founder-frame">
-          <div class="founder-watch-badge">▶ Watch Introduction</div>
-          <div class="founder-frame-avatar">👤</div>
+          <img class="founder-photo" src="/assets/founder.jpg" alt="Rishabh Alevoor, Founder & CEO of Alevoor Technologies" />
+          <div class="founder-watch-badge" onclick="openVideo()">▶ Watch Introduction</div>
+          <div class="founder-play-ring"></div>
+          <button class="founder-play" onclick="openVideo()" aria-label="Play founder introduction video"></button>
         </div>
         <div class="founder-name-card">
           <div class="founder-name" id="founder-name">Rishabh Alevoor</div>
@@ -447,83 +467,8 @@
   </div>
 </section>
 
-<!-- PORTFOLIO -->
-<section id="portfolio" class="section" style="background:#fff">
-  <div class="container">
-    <div class="text-center">
-      <div class="chip">Our Work</div>
-      <h2 class="section-title">Success <span class="accent">Stories</span></h2>
-      <p class="section-sub">Real results for real creators. Here's what we've built together.</p>
-    </div>
-    <div class="portfolio-grid fade-up" id="portfolio-grid"></div>
-    <div class="text-center" style="margin-top:32px">
-      <button class="btn-primary">See All Work →</button>
-    </div>
-  </div>
-</section>
-
 <!-- TESTIMONIALS -->
-<section id="testimonials" class="section">
-  <div class="container">
-    <div class="text-center">
-      <div class="chip">Client Reviews</div>
-      <h2 class="section-title">What Our <span class="accent">Creators Say</span></h2>
-      <p class="section-sub">Join hundreds of satisfied creators who have grown their channels with us</p>
-      <button class="btn-primary" style="margin-bottom:32px">💬 Share Your Experience</button>
-    </div>
-    <div class="testi-grid fade-up" id="testi-grid"></div>
-  </div>
-</section>
 
-<!-- PRICING -->
-<section id="pricing" class="section">
-  <div class="container">
-    <div class="text-center">
-      <div class="chip">Service Packages</div>
-      <h2 class="section-title">Our <span class="accent">Pricing</span></h2>
-      <p class="section-sub">Choose the perfect package for your creative journey</p>
-    </div>
-    <div class="pricing-tabs">
-      <button class="pricing-tab active" onclick="switchTab('content',this)">Content Marketing</button>
-      <button class="pricing-tab" onclick="switchTab('yt',this)">YT Management</button>
-      <button class="pricing-tab" onclick="switchTab('onetime',this)">One-Time Services</button>
-    </div>
-    <div class="pricing-panel active" id="panel-content"></div>
-    <div class="pricing-panel" id="panel-yt"></div>
-    <div class="pricing-panel" id="panel-onetime"></div>
-  </div>
-</section>
-
-<!-- CONSULTATION -->
-<section id="consultation" class="section">
-  <div class="container">
-    <div class="consult-grid">
-      <div class="fade-up">
-        <div class="chip">Free Consultation</div>
-        <h2 class="consult-left" style="font-family:Sora;font-weight:800;font-size:2.2rem;color:var(--text);margin-bottom:12px">Ready to <span style="color:var(--teal)">Level Up?</span></h2>
-        <p style="color:var(--gray);font-size:15px;line-height:1.7;margin-bottom:4px">Book a free strategy call with our founder to discuss your content goals and discover how we can help you grow faster.</p>
-        <ul class="consult-features">
-          <li>30-minute free strategy call</li>
-          <li>Personalized growth roadmap</li>
-          <li>Content audit & recommendations</li>
-          <li>No commitment required</li>
-        </ul>
-        <button class="btn-primary" onclick="scrollTo('contact')">Book Your Free Call →</button>
-      </div>
-      <div class="consult-card fade-up">
-        <div class="consult-header">
-          <div class="consult-avatar">RA</div>
-          <div><div class="consult-name">Rishabh Alevoor</div><div class="consult-title">Founder & CEO</div></div>
-        </div>
-        <div class="consult-detail"><div class="consult-detail-icon">📅</div><div><div class="consult-detail-title">Flexible Scheduling</div><div class="consult-detail-sub">Pick a time that works for you</div></div></div>
-        <div class="consult-detail"><div class="consult-detail-icon">⏱</div><div><div class="consult-detail-title">30 Minutes</div><div class="consult-detail-sub">Focused, actionable session</div></div></div>
-        <div class="consult-detail"><div class="consult-detail-icon">📹</div><div><div class="consult-detail-title">Video Call</div><div class="consult-detail-sub">Google Meet or Zoom</div></div></div>
-        <div class="consult-available">Available this week</div>
-        <button class="btn-schedule">Schedule Now →</button>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- FAQ -->
 <section id="faq" class="section" style="background:#fff">
@@ -607,7 +552,8 @@
         <span class="footer-link" onclick="scrollTo('services')">Services</span>
         <span class="footer-link" onclick="scrollTo('process')">How It Works</span>
         <span class="footer-link" onclick="scrollTo('whyus')">Why Choose Us</span>
-        <span class="footer-link" onclick="scrollTo('testimonials')">Success Stories</span>
+        <a class="footer-link" href="/pricing">Pricing</a>
+        <span class="footer-link" onclick="scrollTo('testimonials')">Reviews</span>
         <span class="footer-link" onclick="scrollTo('contact')">Contact</span>
         <a class="footer-link" href="/admin.html" style="color:var(--teal)">🔐 Admin Panel</a>
       </div>
@@ -622,10 +568,16 @@
 <!-- FLOATING BUTTONS -->
 <div class="floating-btns">
   <button class="float-btn" id="scroll-top" onclick="scrollToTop()" title="Scroll to top">↑</button>
-  <a class="float-btn" href="https://wa.me/919483886270" target="_blank" rel="noopener" title="WhatsApp" style="background:#25D366;text-decoration:none;">
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.978-1.607zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-  </a>
-  <button class="float-btn" onclick="scrollTo('contact')" title="Contact">💬</button>
+</div>
+
+<!-- VIDEO MODAL -->
+<div id="video-modal" class="video-modal" onclick="closeVideo()">
+  <div class="video-modal-inner" onclick="event.stopPropagation()">
+    <button class="video-close" onclick="closeVideo()" aria-label="Close">✕</button>
+    <div class="video-frame" id="video-frame">
+      <div class="video-soon">🎬<br>Founder introduction video<br>coming soon!</div>
+    </div>
+  </div>
 </div>
 
 <!-- TOAST -->
