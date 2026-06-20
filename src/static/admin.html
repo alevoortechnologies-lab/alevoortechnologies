@@ -390,20 +390,22 @@ let currentUser = null;
 let currentSection = 'dashboard';
 
 async function loadData() {
+  const hasContent = (o) => o && typeof o === 'object' && Object.keys(o).length > 0 && (o.services || o.brand || o.pricing);
   // Always load the latest live content from the server first
   try {
     const res = await fetch('/api/public/site-content', { cache: 'no-store' });
     const j = await res.json();
-    if (j && j.content) { DATA = j.content; localStorage.setItem(STORAGE_KEY, JSON.stringify(DATA)); return; }
+    if (hasContent(j && j.content)) { DATA = j.content; localStorage.setItem(STORAGE_KEY, JSON.stringify(DATA)); return; }
   } catch(e) {}
-  // Fallback to localStorage
-  const saved = localStorage.getItem(STORAGE_KEY);
-  if (saved) { DATA = JSON.parse(saved); return; }
-  // Fallback to bundled defaults
+  // Fallback to bundled defaults (so admin always starts from the real site data)
   try {
     const res = await fetch('/data.json');
     DATA = await res.json();
-  } catch(e) { DATA = { brand:{}, stats:[], services:[], process:[], whyUs:[], testimonials:[], pricing:{content:[],yt:[],onetime:[]}, portfolio:[], team:[], faqs:[] }; }
+  } catch(e) {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) { DATA = JSON.parse(saved); return; }
+    DATA = { brand:{}, stats:[], services:[], process:[], whyUs:[], testimonials:[], pricing:{content:[],yt:[],onetime:[]}, portfolio:[], team:[], faqs:[] };
+  }
 }
 
 async function saveData() {
