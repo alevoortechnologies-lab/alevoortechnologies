@@ -283,8 +283,24 @@
     #toast.show { transform: translateY(0); opacity: 1; }
 
     /* ─── SCROLL ANIMATIONS ─── */
-    .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    html { scroll-behavior: smooth; }
+    .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.7s cubic-bezier(.16,.84,.44,1), transform 0.7s cubic-bezier(.16,.84,.44,1); }
     .fade-up.visible { opacity: 1; transform: translateY(0); }
+    /* staggered reveal for grid children */
+    .stagger > * { opacity: 0; transform: translateY(24px); transition: opacity .6s cubic-bezier(.16,.84,.44,1), transform .6s cubic-bezier(.16,.84,.44,1); }
+    .stagger.visible > * { opacity: 1; transform: translateY(0); }
+    .stagger.visible > *:nth-child(1){ transition-delay:.04s } .stagger.visible > *:nth-child(2){ transition-delay:.10s }
+    .stagger.visible > *:nth-child(3){ transition-delay:.16s } .stagger.visible > *:nth-child(4){ transition-delay:.22s }
+    .stagger.visible > *:nth-child(5){ transition-delay:.28s } .stagger.visible > *:nth-child(6){ transition-delay:.34s }
+    .stagger.visible > *:nth-child(7){ transition-delay:.40s } .stagger.visible > *:nth-child(8){ transition-delay:.46s }
+    /* shine sweep on primary buttons */
+    .btn-primary, .btn-submit, .menu-cta, .btn-schedule { position: relative; overflow: hidden; }
+    .btn-primary::after, .btn-submit::after, .menu-cta::after, .btn-schedule::after { content:''; position:absolute; top:0; left:-120%; width:60%; height:100%; background: linear-gradient(120deg, transparent, rgba(255,255,255,0.35), transparent); transform: skewX(-20deg); transition: left .6s ease; }
+    .btn-primary:hover::after, .btn-submit:hover::after, .menu-cta:hover::after, .btn-schedule:hover::after { left: 140%; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
+    }
+
 
     /* ─── RESPONSIVE ─── */
     @media (max-width: 768px) {
@@ -508,7 +524,7 @@
       <h2 class="section-title">What We <span class="accent">Build</span></h2>
       <p class="section-sub">Engineering custom software, web platforms, and AI integrations that drive growth, automation, and digital transformation.</p>
     </div>
-    <div class="services-grid fade-up" id="services-grid"></div>
+    <div class="services-grid fade-up stagger" id="services-grid"></div>
   </div>
 </section>
 
@@ -586,7 +602,7 @@
       <p class="section-sub">Join hundreds of satisfied businesses who have scaled with our tech solutions</p>
       <button class="btn-primary" style="margin-bottom:32px">💬 Share Your Experience</button>
     </div>
-    <div class="testi-grid fade-up" id="testi-grid"></div>
+    <div class="testi-grid fade-up stagger" id="testi-grid"></div>
   </div>
 </section>
 
@@ -612,7 +628,7 @@
       <h2 class="section-title">Meet the <span class="accent2">Engineering Team</span></h2>
       <p class="section-sub">Passionate developers and engineers dedicated to building products that scale</p>
     </div>
-    <div class="team-grid fade-up" id="team-grid"></div>
+    <div class="team-grid fade-up stagger" id="team-grid"></div>
   </div>
 </section>
 
@@ -687,11 +703,7 @@
     </div>
   </div>
 </footer>
-
-<!-- FLOATING BUTTONS -->
-<div class="floating-btns">
-  <button class="float-btn" id="scroll-top" onclick="scrollToTop()" title="Scroll to top">↑</button>
-</div>
+ 
 
 <!-- VIDEO MODAL -->
 <div id="video-modal" class="video-modal" onclick="closeVideo()">
@@ -1039,9 +1051,6 @@ function toggleDark() {
 
 // ─── SCROLL BEHAVIORS ─────────────────────────────────────────────────────
 window.addEventListener('scroll', () => {
-  // scroll-to-top button
-  const btn = document.getElementById('scroll-top');
-  btn.classList.toggle('visible', window.scrollY > 400);
   // nav shadow
   document.getElementById('nav').style.boxShadow = window.scrollY > 10 ? '0 2px 20px rgba(0,0,0,0.08)' : 'none';
   // fade-up animations
