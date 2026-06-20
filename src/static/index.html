@@ -713,8 +713,15 @@ let DATA = {};
 async function loadData() {
   showSkeletons();
   try {
-    const res = await fetch('/data.json');
-    DATA = await res.json();
+    // Prefer live content saved from the admin panel
+    const live = await fetch('/api/public/site-content', { cache: 'no-store' });
+    const liveJson = await live.json();
+    if (liveJson && liveJson.content) {
+      DATA = liveJson.content;
+    } else {
+      const res = await fetch('/data.json');
+      DATA = await res.json();
+    }
   } catch(e) {
     // fallback inline data
     DATA = {
