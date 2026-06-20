@@ -1035,9 +1035,6 @@ function toggleDark() {
 
 // ─── SCROLL BEHAVIORS ─────────────────────────────────────────────────────
 window.addEventListener('scroll', () => {
-  // scroll-to-top button
-  const btn = document.getElementById('scroll-top');
-  btn.classList.toggle('visible', window.scrollY > 400);
   // nav shadow
   document.getElementById('nav').style.boxShadow = window.scrollY > 10 ? '0 2px 20px rgba(0,0,0,0.08)' : 'none';
   // fade-up animations
