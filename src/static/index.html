@@ -724,11 +724,12 @@ let DATA = {};
 
 async function loadData() {
   showSkeletons();
+  const hasContent = (o) => o && typeof o === 'object' && Object.keys(o).length > 0 && (o.services || o.brand || o.pricing);
   try {
     // Prefer live content saved from the admin panel
     const live = await fetch('/api/public/site-content', { cache: 'no-store' });
     const liveJson = await live.json();
-    if (liveJson && liveJson.content) {
+    if (hasContent(liveJson && liveJson.content)) {
       DATA = liveJson.content;
     } else {
       const res = await fetch('/data.json');
@@ -742,6 +743,7 @@ async function loadData() {
       services: [],process:[],whyUs:[],testimonials:[],pricing:{content:[],yt:[],onetime:[]},portfolio:[],team:[],faqs:[]
     };
   }
+
   // brief delay so skeleton transition is visible
   await new Promise(r => setTimeout(r, 400));
   renderAll();
