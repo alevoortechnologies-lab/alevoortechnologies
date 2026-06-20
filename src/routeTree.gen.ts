@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ApiPublicSiteContentRouteImport } from './routes/api/public/site-content'
 import { Route as ApiPublicContactRouteImport } from './routes/api/public/contact'
 import { Route as ApiAdminLeadsRouteImport } from './routes/api/admin/leads'
 
@@ -28,6 +29,11 @@ const AdminRoute = AdminRouteImport.update({
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPublicSiteContentRoute = ApiPublicSiteContentRouteImport.update({
+  id: '/api/public/site-content',
+  path: '/api/public/site-content',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiPublicContactRoute = ApiPublicContactRouteImport.update({
@@ -47,6 +53,7 @@ export interface FileRoutesByFullPath {
   '/pricing': typeof PricingRoute
   '/api/admin/leads': typeof ApiAdminLeadsRoute
   '/api/public/contact': typeof ApiPublicContactRoute
+  '/api/public/site-content': typeof ApiPublicSiteContentRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -54,6 +61,7 @@ export interface FileRoutesByTo {
   '/pricing': typeof PricingRoute
   '/api/admin/leads': typeof ApiAdminLeadsRoute
   '/api/public/contact': typeof ApiPublicContactRoute
+  '/api/public/site-content': typeof ApiPublicSiteContentRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -62,6 +70,7 @@ export interface FileRoutesById {
   '/pricing': typeof PricingRoute
   '/api/admin/leads': typeof ApiAdminLeadsRoute
   '/api/public/contact': typeof ApiPublicContactRoute
+  '/api/public/site-content': typeof ApiPublicSiteContentRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -71,8 +80,15 @@ export interface FileRouteTypes {
     | '/pricing'
     | '/api/admin/leads'
     | '/api/public/contact'
+    | '/api/public/site-content'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/admin' | '/pricing' | '/api/admin/leads' | '/api/public/contact'
+  to:
+    | '/'
+    | '/admin'
+    | '/pricing'
+    | '/api/admin/leads'
+    | '/api/public/contact'
+    | '/api/public/site-content'
   id:
     | '__root__'
     | '/'
@@ -80,6 +96,7 @@ export interface FileRouteTypes {
     | '/pricing'
     | '/api/admin/leads'
     | '/api/public/contact'
+    | '/api/public/site-content'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -88,6 +105,7 @@ export interface RootRouteChildren {
   PricingRoute: typeof PricingRoute
   ApiAdminLeadsRoute: typeof ApiAdminLeadsRoute
   ApiPublicContactRoute: typeof ApiPublicContactRoute
+  ApiPublicSiteContentRoute: typeof ApiPublicSiteContentRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -113,6 +131,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/site-content': {
+      id: '/api/public/site-content'
+      path: '/api/public/site-content'
+      fullPath: '/api/public/site-content'
+      preLoaderRoute: typeof ApiPublicSiteContentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/public/contact': {
       id: '/api/public/contact'
       path: '/api/public/contact'
@@ -136,6 +161,7 @@ const rootRouteChildren: RootRouteChildren = {
   PricingRoute: PricingRoute,
   ApiAdminLeadsRoute: ApiAdminLeadsRoute,
   ApiPublicContactRoute: ApiPublicContactRoute,
+  ApiPublicSiteContentRoute: ApiPublicSiteContentRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
