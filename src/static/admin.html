@@ -390,21 +390,41 @@ let currentUser = null;
 let currentSection = 'dashboard';
 
 async function loadData() {
-  // Try localStorage first
+  // Always load the latest live content from the server first
+  try {
+    const res = await fetch('/api/public/site-content', { cache: 'no-store' });
+    const j = await res.json();
+    if (j && j.content) { DATA = j.content; localStorage.setItem(STORAGE_KEY, JSON.stringify(DATA)); return; }
+  } catch(e) {}
+  // Fallback to localStorage
   const saved = localStorage.getItem(STORAGE_KEY);
   if (saved) { DATA = JSON.parse(saved); return; }
-  // Try fetch
+  // Fallback to bundled defaults
   try {
     const res = await fetch('/data.json');
     DATA = await res.json();
-    saveData();
   } catch(e) { DATA = { brand:{}, stats:[], services:[], process:[], whyUs:[], testimonials:[], pricing:{content:[],yt:[],onetime:[]}, portfolio:[], team:[], faqs:[] }; }
 }
 
-function saveData() {
+async function saveData() {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(DATA));
-  showToast('Changes saved! Refresh the main site to see updates.');
+  try {
+    const res = await fetch('/api/admin/content', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ code: SIGNUP_CODE, content: DATA }),
+    });
+    const j = await res.json().catch(() => ({}));
+    if (res.ok && j.ok) {
+      showToast('Saved! Changes are now live on the website.');
+    } else {
+      showToast('Saved locally, but failed to publish: ' + (j.error || 'try again'));
+    }
+  } catch(e) {
+    showToast('Saved locally, but could not reach the server.');
+  }
 }
+
 
 // ─── AUTH ─────────────────────────────────────────────────────────────────
 function switchAuthTab(tab) {
