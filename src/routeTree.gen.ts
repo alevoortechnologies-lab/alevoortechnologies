@@ -15,6 +15,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as ApiPublicSiteContentRouteImport } from './routes/api/public/site-content'
 import { Route as ApiPublicContactRouteImport } from './routes/api/public/contact'
 import { Route as ApiAdminLeadsRouteImport } from './routes/api/admin/leads'
+import { Route as ApiAdminContentRouteImport } from './routes/api/admin/content'
 
 const PricingRoute = PricingRouteImport.update({
   id: '/pricing',
@@ -46,11 +47,17 @@ const ApiAdminLeadsRoute = ApiAdminLeadsRouteImport.update({
   path: '/api/admin/leads',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiAdminContentRoute = ApiAdminContentRouteImport.update({
+  id: '/api/admin/content',
+  path: '/api/admin/content',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
   '/pricing': typeof PricingRoute
+  '/api/admin/content': typeof ApiAdminContentRoute
   '/api/admin/leads': typeof ApiAdminLeadsRoute
   '/api/public/contact': typeof ApiPublicContactRoute
   '/api/public/site-content': typeof ApiPublicSiteContentRoute
@@ -59,6 +66,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
   '/pricing': typeof PricingRoute
+  '/api/admin/content': typeof ApiAdminContentRoute
   '/api/admin/leads': typeof ApiAdminLeadsRoute
   '/api/public/contact': typeof ApiPublicContactRoute
   '/api/public/site-content': typeof ApiPublicSiteContentRoute
@@ -68,6 +76,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
   '/pricing': typeof PricingRoute
+  '/api/admin/content': typeof ApiAdminContentRoute
   '/api/admin/leads': typeof ApiAdminLeadsRoute
   '/api/public/contact': typeof ApiPublicContactRoute
   '/api/public/site-content': typeof ApiPublicSiteContentRoute
@@ -78,6 +87,7 @@ export interface FileRouteTypes {
     | '/'
     | '/admin'
     | '/pricing'
+    | '/api/admin/content'
     | '/api/admin/leads'
     | '/api/public/contact'
     | '/api/public/site-content'
@@ -86,6 +96,7 @@ export interface FileRouteTypes {
     | '/'
     | '/admin'
     | '/pricing'
+    | '/api/admin/content'
     | '/api/admin/leads'
     | '/api/public/contact'
     | '/api/public/site-content'
@@ -94,6 +105,7 @@ export interface FileRouteTypes {
     | '/'
     | '/admin'
     | '/pricing'
+    | '/api/admin/content'
     | '/api/admin/leads'
     | '/api/public/contact'
     | '/api/public/site-content'
@@ -103,6 +115,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdminRoute: typeof AdminRoute
   PricingRoute: typeof PricingRoute
+  ApiAdminContentRoute: typeof ApiAdminContentRoute
   ApiAdminLeadsRoute: typeof ApiAdminLeadsRoute
   ApiPublicContactRoute: typeof ApiPublicContactRoute
   ApiPublicSiteContentRoute: typeof ApiPublicSiteContentRoute
@@ -152,6 +165,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiAdminLeadsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/admin/content': {
+      id: '/api/admin/content'
+      path: '/api/admin/content'
+      fullPath: '/api/admin/content'
+      preLoaderRoute: typeof ApiAdminContentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -159,6 +179,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRoute: AdminRoute,
   PricingRoute: PricingRoute,
+  ApiAdminContentRoute: ApiAdminContentRoute,
   ApiAdminLeadsRoute: ApiAdminLeadsRoute,
   ApiPublicContactRoute: ApiPublicContactRoute,
   ApiPublicSiteContentRoute: ApiPublicSiteContentRoute,

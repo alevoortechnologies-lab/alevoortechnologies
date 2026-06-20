@@ -33,7 +33,7 @@ export const Route = createFileRoute("/api/admin/content")({
           .from("site_content")
           .upsert({
             id: "main",
-            content: body.content as Record<string, unknown>,
+            content: body.content as never,
             updated_at: new Date().toISOString(),
           });
 
