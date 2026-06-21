@@ -973,17 +973,21 @@ let DATA = {};
 async function loadData() {
   showSkeletons();
   const hasContent = (o) => o && typeof o === 'object' && Object.keys(o).length > 0 && (o.services || o.brand || o.pricing);
+  let defaults = {};
+  try { defaults = await (await fetch('/data.json', { cache: 'no-store' })).json(); } catch(e) {}
   try {
-    // Prefer live content saved from the admin panel
+    // Prefer live content saved from the admin panel, but always keep data.json defaults as a base
     const live = await fetch('/api/public/site-content', { cache: 'no-store' });
     const liveJson = await live.json();
     if (hasContent(liveJson && liveJson.content)) {
-      DATA = liveJson.content;
+      DATA = Object.assign({}, defaults, liveJson.content);
     } else {
-      const res = await fetch('/data.json');
-      DATA = await res.json();
+      DATA = defaults;
     }
   } catch(e) {
+    DATA = defaults;
+  }
+  if (!DATA || !Object.keys(DATA).length) {
     // fallback inline data
     DATA = {
       brand: { name:"Alevoor Technologies", phone:"+91 9483886270", email:"alevoor@gmail.com", instagram:"@alevoor", founderName:"Rishabh Alevoor", founderTitle:"Founder & CEO, Alevoor Technologies" },
