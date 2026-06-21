@@ -49,7 +49,7 @@
     @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.5} }
 
     /* ─── NAV ─── */
-    #nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0,0,0,0.06); height: 64px; display: flex; align-items: center; }
+    #nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(255,255,255,0.55); backdrop-filter: blur(22px) saturate(180%); -webkit-backdrop-filter: blur(22px) saturate(180%); border-bottom: 1px solid rgba(255,255,255,0.35); box-shadow: 0 6px 24px rgba(13,27,42,0.06); height: 64px; display: flex; align-items: center; }
     .nav-inner { display: flex; align-items: center; justify-content: space-between; width: 100%; }
     .nav-logo { display: flex; align-items: center; gap: 10px; cursor: pointer; }
     .nav-logo-circle { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--teal), var(--purple)); display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 800; font-size: 13px; font-family: 'Sora', sans-serif; flex-shrink: 0; }
@@ -321,8 +321,8 @@
     @keyframes floatLogo { 0%,100%{ transform: translateY(0) } 50%{ transform: translateY(-12px) } }
 
     /* ─── NAV LINKS (desktop) ─── */
-    .nav-links { display: flex; align-items: center; gap: 4px; }
-    .nav-links a { font-family: 'Sora', sans-serif; font-weight: 500; font-size: 14px; color: var(--text); padding: 8px 12px; border-radius: 8px; cursor: pointer; transition: color .2s, background .2s; }
+    .nav-links { display: flex; align-items: center; gap: 14px; }
+    .nav-links a { font-family: 'Sora', sans-serif; font-weight: 500; font-size: 14px; letter-spacing: .2px; color: var(--text); padding: 8px 14px; border-radius: 10px; cursor: pointer; transition: color .2s, background .2s; }
     .nav-links a:hover { color: var(--teal); background: var(--teal-light); }
     .nav-menu-btn { display: none; }
     @media (max-width: 860px) {
@@ -393,7 +393,7 @@
     body.dark #contact,
     body.dark #pricing,
     body.dark #process { background: var(--bg) !important; }
-    body.dark .nav, body.dark #nav { background: rgba(15,23,42,0.92) !important; }
+    body.dark .nav, body.dark #nav { background: rgba(15,23,42,0.55) !important; border-bottom: 1px solid rgba(255,255,255,0.08) !important; box-shadow: 0 6px 24px rgba(0,0,0,0.3) !important; }
     body.dark .menu-link { border-bottom-color: var(--border); }
     body.dark #hero { background: linear-gradient(135deg, #0f2c27 0%, #15182e 50%, #2a1410 100%); }
     body.dark .form-input::placeholder { color: var(--light); }
@@ -454,7 +454,7 @@
         <a onclick="scrollTo('services')">Services</a>
         <a href="/pricing">Pricing</a>
         <a onclick="scrollTo('testimonials')">Reviews</a>
-        <a onclick="scrollTo('team')">Team</a>
+        
         <a onclick="scrollTo('contact')">Contact</a>
         <a href="/admin">Admin</a>
       </div>
@@ -478,7 +478,7 @@
   <a class="menu-link" onclick="scrollTo('services');closeMenu()">Services</a>
   <a class="menu-link" href="/pricing">Pricing</a>
   <a class="menu-link" onclick="scrollTo('testimonials');closeMenu()">Reviews</a>
-  <a class="menu-link" onclick="scrollTo('team');closeMenu()">Team</a>
+  
   <a class="menu-link" onclick="scrollTo('contact');closeMenu()">Contact</a>
   <a class="menu-link admin-link" href="/admin">🔐 Admin Panel</a>
   <button class="menu-cta" onclick="scrollTo('contact');closeMenu()">Get Started</button>
@@ -620,17 +620,6 @@
   </div>
 </section>
 
-<!-- TEAM -->
-<section id="team" class="section">
-  <div class="container">
-    <div class="text-center">
-      <div class="chip">Our Team</div>
-      <h2 class="section-title">Meet the <span class="accent2">Engineering Team</span></h2>
-      <p class="section-sub">Passionate developers and engineers dedicated to building products that scale</p>
-    </div>
-    <div class="team-grid fade-up stagger" id="team-grid"></div>
-  </div>
-</section>
 
 <!-- CONTACT -->
 <section id="contact" class="section" style="background:var(--bg)">
@@ -698,7 +687,7 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <p class="footer-copy">© 2024 Alevoor Technologies. All rights reserved.</p>
+      <p class="footer-copy">© 2026 Alevoor Technologies. All rights reserved.</p>
       <p class="footer-disclaimer">Disclaimer: Alevoor Technologies provides software development, web, and AI integration services. Project outcomes depend on multiple factors including requirements, scope, and external dependencies. No guaranteed results are promised.</p>
     </div>
   </div>
@@ -911,7 +900,7 @@ function renderPortfolio() {
 
 function renderTeam() {
   const el = document.getElementById('team-grid');
-  if (!DATA.team) return;
+  if (!el || !DATA.team) return;
   el.innerHTML = DATA.team.map((m,i) => `
     <div class="team-card anim-in" style="animation-delay:${i*0.08}s">
       <div class="team-avatar">${m.initials}</div>

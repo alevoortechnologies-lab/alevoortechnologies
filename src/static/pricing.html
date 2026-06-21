@@ -17,7 +17,7 @@
     img { max-width:100%; }
     .container { max-width:1100px; margin:0 auto; padding:0 1.5rem; }
     /* NAV */
-    nav { position:sticky; top:0; z-index:100; background:rgba(255,255,255,0.95); backdrop-filter:blur(12px); border-bottom:1px solid rgba(0,0,0,0.06); height:64px; display:flex; align-items:center; }
+    nav { position:sticky; top:0; z-index:100; background:rgba(255,255,255,0.55); backdrop-filter:blur(22px) saturate(180%); -webkit-backdrop-filter:blur(22px) saturate(180%); border-bottom:1px solid rgba(255,255,255,0.35); box-shadow:0 6px 24px rgba(13,27,42,0.06); height:64px; display:flex; align-items:center; }
     .nav-inner { display:flex; align-items:center; justify-content:space-between; width:100%; }
     .nav-logo-img { height:42px; width:auto; display:block; }
     .nav-back { background:var(--teal); color:#fff; border:none; padding:10px 20px; border-radius:50px; font-size:14px; font-weight:600; cursor:pointer; font-family:'DM Sans',sans-serif; transition:background .2s; }
@@ -74,28 +74,28 @@
   <div class="container">
     <div class="pricing-tabs">
       <button class="pricing-tab active" onclick="switchTab('content',this)">Content Marketing</button>
-      <button class="pricing-tab" onclick="switchTab('yt',this)">YT Management</button>
+      <button class="pricing-tab" onclick="switchTab('courses',this)">Courses</button>
       <button class="pricing-tab" onclick="switchTab('onetime',this)">One-Time Services</button>
     </div>
     <div class="pricing-panel active" id="panel-content"></div>
-    <div class="pricing-panel" id="panel-yt"></div>
+    <div class="pricing-panel" id="panel-courses"></div>
     <div class="pricing-panel" id="panel-onetime"></div>
   </div>
 
   <footer>
-    © 2024 Alevoor Technologies. All rights reserved. · <a href="/">Home</a>
+    © 2026 Alevoor Technologies. All rights reserved. · <a href="/">Home</a>
   </footer>
 
   <script>
     let DATA = {};
     async function loadData() {
       try { const res = await fetch('/data.json'); DATA = await res.json(); }
-      catch (e) { DATA = { pricing: { content: [], yt: [], onetime: [] } }; }
+      catch (e) { DATA = { pricing: { content: [], courses: [], onetime: [] } }; }
       renderPricing();
       animateIn();
     }
     function renderPricing() {
-      const p = DATA.pricing || { content: [], yt: [], onetime: [] };
+      const p = DATA.pricing || { content: [], courses: [], onetime: [] };
       document.getElementById('panel-content').innerHTML = '<div class="pricing-grid">' + (p.content || []).map(c => `
         <div class="pricing-card ${c.popular ? 'popular' : ''}">
           <div class="pricing-name">${c.name}</div>
@@ -104,13 +104,15 @@
           <ul class="pricing-features">${(c.features || []).map(f => `<li>${f}</li>`).join('')}</ul>
           <button class="btn-pricing ${c.popular ? 'btn-pricing-fill' : 'btn-pricing-out'}" onclick="window.location.href='/#contact'">Get Started</button>
         </div>`).join('') + '</div>';
-      document.getElementById('panel-yt').innerHTML = '<div class="pricing-grid">' + (p.yt || []).map(c => `
+      const courses = p.courses || [];
+      document.getElementById('panel-courses').innerHTML = courses.length ? ('<div class="pricing-grid">' + courses.map(c => `
         <div class="pricing-card ${c.best ? 'best' : ''}">
           <div class="pricing-name">${c.name}</div>
-          <div class="pricing-price" style="color:#e67e22">${c.price}<span class="pricing-period"> ${c.period || ''}</span></div>
+          <div class="pricing-sub">${c.subtitle || ''}</div>
+          <div class="pricing-price">${c.price}<span class="pricing-period"> ${c.period || ''}</span></div>
           <ul class="pricing-features">${(c.features || []).map(f => `<li>${f}</li>`).join('')}</ul>
-          <button class="btn-pricing ${c.best ? 'btn-pricing-fill' : 'btn-pricing-out'}" style="${c.best ? 'background:#e67e22;border:none' : ''}" onclick="window.location.href='/#contact'">Get Started</button>
-        </div>`).join('') + '</div>';
+          <button class="btn-pricing ${c.best ? 'btn-pricing-fill' : 'btn-pricing-out'}" onclick="window.location.href='/#contact'">Enroll Now</button>
+        </div>`).join('') + '</div>') : '<p style="text-align:center;color:var(--gray);padding:40px 0 70px">Courses coming soon — stay tuned!</p>';
       document.getElementById('panel-onetime').innerHTML = '<div class="pricing-grid">' + (p.onetime || []).map(c => `
         <div class="pricing-card ${c.best ? 'best' : ''}">
           <div class="pricing-name">${c.name}</div>
