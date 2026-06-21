@@ -90,7 +90,7 @@
     let DATA = {};
     async function loadData() {
       try { const res = await fetch('/data.json'); DATA = await res.json(); }
-      catch (e) { DATA = { pricing: { content: [], yt: [], onetime: [] } }; }
+      catch (e) { DATA = { pricing: { content: [], courses: [], onetime: [] } }; }
       renderPricing();
       animateIn();
     }
