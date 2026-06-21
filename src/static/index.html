@@ -5,6 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Alevoor Technologies | Software, Web & AI Solutions</title>
   <meta name="description" content="Alevoor Technologies builds custom software, web platforms, and AI integrations that power modern businesses. Engineering digital products for scale." />
+  <meta property="og:title" content="Alevoor Technologies | Social Media Growth & Content Management" />
+  <meta property="og:description" content="Helping creators grow on YouTube and Instagram. Courses, content strategy, editing, and digital marketing. Rooted Strong. Flowing Forward." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://alevoortechnologies.lovable.app" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%230db88a'/%3E%3Ctext y='.9em' font-size='50' x='50%25' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='bold'%3EAT%3C/text%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
@@ -24,6 +30,7 @@
       --border: #eeeeee;
       --gold: #fbbf24;
       --coral: #FF6B35;
+      --shadow: rgba(13,27,42,0.06);
     }
     html { scroll-behavior: smooth; }
     body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; }
@@ -367,7 +374,10 @@
       --light: #94a3b8;
       --border: #334155;
       --teal-light: rgba(13,184,138,0.16);
+      --shadow: rgba(0,0,0,0.35);
     }
+    body.dark .course-preview-card, body.dark .course-card, body.dark .ecosystem-card, body.dark .marquee-pill, body.dark .filter-btn { background: var(--white); color: var(--text); }
+    body.dark #courses, body.dark .marquee-section, body.dark .about-section { background: var(--bg) !important; }
     body.dark { background: #0b1220; color: var(--text); }
     body.dark .btn-outline,
     body.dark .service-card,
@@ -434,6 +444,118 @@
     .anim-in { animation: cardUp .6s cubic-bezier(.2,.7,.3,1) both; }
     .service-card, .why-card, .portfolio-card, .testi-card, .pricing-card, .team-card { transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
     .service-card:hover, .why-card:hover, .portfolio-card:hover, .testi-card:hover, .team-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(13,27,42,0.14); border-color: var(--teal); }
+
+    /* ─── HERO WAVE TEXT ─── */
+    .hero-wave-text { margin-top: 26px; font-family: 'Sora', sans-serif; font-weight: 600; font-size: 15px; background: linear-gradient(90deg, var(--teal), var(--purple)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; animation: wavePulse 3s ease-in-out infinite; }
+    @keyframes wavePulse { 0%,100%{ opacity:.7; transform: translateY(0) } 50%{ opacity:1; transform: translateY(-3px) } }
+
+    /* ─── CLIENT MARQUEE ─── */
+    .marquee-section { padding: 34px 0 50px; background: var(--bg); }
+    .marquee-label { font-size: 12px; letter-spacing: 2px; color: var(--teal); font-weight: 600; margin-bottom: 22px; }
+    .marquee-wrapper { overflow: hidden; width: 100%; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+    .marquee-track { display: flex; gap: 16px; width: max-content; animation: marquee 30s linear infinite; }
+    .marquee-track:hover { animation-play-state: paused; }
+    @keyframes marquee { 0%{ transform: translateX(-50%) } 100%{ transform: translateX(0) } }
+    .marquee-pill { display: flex; align-items: center; gap: 8px; white-space: nowrap; background: var(--white); border: 1px solid var(--border); border-radius: 50px; padding: 10px 20px; font-weight: 600; font-size: 14px; color: var(--text); box-shadow: 0 4px 16px var(--shadow, rgba(13,27,42,0.05)); }
+
+    /* ─── FILTER BAR ─── */
+    .filter-bar { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-bottom: 26px; }
+    .filter-btn { background: var(--white); border: 1px solid var(--border); color: var(--gray); border-radius: 50px; padding: 8px 18px; font-size: 13px; font-weight: 600; cursor: pointer; transition: all .2s; font-family: 'DM Sans', sans-serif; }
+    .filter-btn.active, .filter-btn:hover { background: var(--teal); color: #fff; border-color: var(--teal); }
+
+    /* ─── COURSES ─── */
+    #courses { background: var(--bg); }
+    .course-preview-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; }
+    .course-preview-card { background: var(--white); border: 1px solid var(--border); border-radius: 18px; padding: 18px; display: flex; align-items: center; gap: 14px; transition: all .25s; cursor: pointer; }
+    .course-preview-card:hover { transform: translateY(-5px); border-color: var(--teal); box-shadow: 0 14px 36px rgba(13,184,138,0.14); }
+    .course-icon { width: 46px; height: 46px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; color: #fff; flex-shrink: 0; }
+    .course-preview-name { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 14px; color: var(--text); line-height: 1.4; }
+    .course-toggle-link { color: var(--teal); font-weight: 600; font-size: 15px; cursor: pointer; }
+    .course-toggle-link:hover { text-decoration: underline; }
+    .course-detail { display: none; margin-top: 40px; }
+    .course-detail.open { display: block; animation: cardUp .5s ease both; }
+    .course-detail-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 22px; }
+    .course-card { background: var(--white); border-radius: 20px; padding: 26px; position: relative; border: 1px solid var(--border); box-shadow: 0 6px 30px var(--shadow, rgba(13,27,42,0.06)); }
+    .course-card.popular { border: 2px solid transparent; background: linear-gradient(var(--white), var(--white)) padding-box, linear-gradient(135deg, var(--teal), var(--purple)) border-box; }
+    .course-card .pop-badge { position: absolute; top: -13px; left: 50%; transform: translateX(-50%); background: var(--purple); color: #fff; font-size: 11px; font-weight: 600; padding: 4px 16px; border-radius: 50px; white-space: nowrap; }
+    .course-card-head { display: flex; gap: 14px; align-items: center; margin-bottom: 18px; }
+    .course-card-icon { width: 56px; height: 56px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 28px; color: #fff; flex-shrink: 0; }
+    .course-card-name { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 18px; color: var(--text); line-height: 1.3; }
+    .course-card-dur { font-size: 12px; color: var(--light); margin-top: 4px; }
+    .course-price-row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 18px; }
+    .course-price-box { background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 10px 16px; }
+    .course-price-label { font-size: 10px; letter-spacing: 1px; color: var(--light); font-weight: 600; }
+    .course-price-val { font-family: 'Sora', sans-serif; font-weight: 800; font-size: 20px; color: var(--teal); }
+    .course-feat { list-style: none; display: flex; flex-direction: column; gap: 9px; margin-bottom: 20px; }
+    .course-feat li { font-size: 13px; color: var(--gray); display: flex; gap: 9px; align-items: center; }
+    .course-feat li::before { content: '✓'; color: var(--teal); font-weight: 700; }
+    .course-cta { width: 100%; background: var(--teal); color: #fff; border: none; padding: 13px; border-radius: 12px; font-size: 15px; font-weight: 600; cursor: pointer; transition: all .2s; font-family: 'DM Sans', sans-serif; }
+    .course-cta:hover { background: var(--teal-dark); transform: translateY(-2px); }
+
+    /* ─── ABOUT US ─── */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .about-card { border-radius: 20px; padding: 28px; border: 1px solid var(--border); background: var(--white); transition: all .25s; }
+    .about-card:hover { transform: translateY(-5px); box-shadow: 0 16px 40px rgba(13,27,42,0.1); }
+    .about-card-icon { font-size: 32px; margin-bottom: 12px; }
+    .about-card h3 { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 19px; color: var(--text); margin-bottom: 10px; }
+    .about-card p { font-size: 14px; color: var(--gray); line-height: 1.7; }
+    .about-teal { background: linear-gradient(135deg, rgba(13,184,138,0.10), rgba(8,145,178,0.06)); }
+    .about-purple { background: linear-gradient(135deg, rgba(124,58,237,0.10), rgba(168,85,247,0.06)); }
+    .about-coral { background: linear-gradient(135deg, rgba(255,107,53,0.10), rgba(251,191,36,0.06)); }
+    .about-values-list { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+    .about-values-list li { font-size: 13px; color: var(--gray); line-height: 1.5; }
+    .about-navy { background: linear-gradient(135deg, var(--navy), #1a2e4a); color: #fff; }
+    .about-navy h3 { color: #fff; }
+    .about-impact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 6px; }
+    .about-impact-val { font-family: 'Sora', sans-serif; font-weight: 800; font-size: 26px; color: var(--teal); }
+    .about-impact-label { font-size: 12px; color: rgba(255,255,255,0.75); line-height: 1.4; }
+
+    /* ─── ECOSYSTEM ─── */
+    .ecosystem-section { background: linear-gradient(135deg, #f0ecff, #e8fdf5); }
+    body.dark .ecosystem-section { background: linear-gradient(135deg, #15182e, #0f2c27); }
+    .ecosystem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .ecosystem-card { background: var(--white); border-radius: 20px; padding: 28px; position: relative; }
+    .eco-teal { border: 2px solid var(--teal); }
+    .eco-purple { border: 2px solid var(--purple); }
+    .eco-badge { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 1px; padding: 4px 12px; border-radius: 50px; margin-bottom: 14px; }
+    .eco-badge-teal { background: var(--teal-light); color: var(--teal); }
+    .eco-badge-purple { background: rgba(124,58,237,0.12); color: var(--purple); }
+    .eco-logo { width: 54px; height: 54px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Sora', sans-serif; font-weight: 800; font-size: 18px; color: #fff; margin-bottom: 14px; }
+    .eco-logo-grad { background: linear-gradient(135deg, var(--teal), var(--purple)); }
+    .eco-logo-dark { background: var(--navy); }
+    .ecosystem-card h3 { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 17px; color: var(--text); margin-bottom: 6px; }
+    .eco-web { display: inline-block; color: var(--purple); font-weight: 600; font-size: 13px; margin-bottom: 8px; }
+    .eco-type { font-size: 13px; color: var(--teal); font-weight: 600; margin-bottom: 10px; }
+    .ecosystem-card p { font-size: 13px; color: var(--gray); line-height: 1.7; margin-bottom: 14px; }
+    .eco-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .eco-tags span { background: var(--bg); border: 1px solid var(--border); border-radius: 50px; padding: 4px 12px; font-size: 11px; color: var(--gray); }
+    .eco-visit { display: inline-block; margin-top: 16px; border-color: var(--purple) !important; color: var(--purple) !important; padding: 10px 20px; font-size: 14px; }
+    .eco-note { margin-top: 30px; font-size: 13px; color: var(--gray); max-width: 640px; margin-left: auto; margin-right: auto; }
+
+    /* ─── GALLERY ─── */
+    .gallery-grid { columns: 3 260px; column-gap: 16px; }
+    .gallery-item { break-inside: avoid; margin-bottom: 16px; position: relative; border-radius: 16px; overflow: hidden; cursor: pointer; background: var(--navy); }
+    .gallery-item img, .gallery-item .gallery-thumb { width: 100%; display: block; }
+    .gallery-item.ratio-916 .gallery-thumb { aspect-ratio: 9/16; }
+    .gallery-item.ratio-169 .gallery-thumb { aspect-ratio: 16/9; }
+    .gallery-thumb { display: flex; align-items: center; justify-content: center; font-size: 40px; color: #fff; background: linear-gradient(135deg, var(--teal), var(--purple)); }
+    .gallery-cat { position: absolute; top: 10px; left: 10px; background: rgba(13,27,42,0.7); color: #fff; font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 50px; z-index: 2; }
+    .gallery-overlay { position: absolute; inset: 0; background: rgba(13,27,42,0.45); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 28px; opacity: 0; transition: opacity .25s; }
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+    .gallery-lightbox { position: fixed; inset: 0; background: rgba(13,27,42,0.9); backdrop-filter: blur(6px); z-index: 2000; display: none; align-items: center; justify-content: center; padding: 24px; }
+    .gallery-lightbox.open { display: flex; }
+    .gallery-lightbox-inner { position: relative; max-width: 90vw; max-height: 86vh; }
+    #lightbox-content img, #lightbox-content iframe, #lightbox-content video { max-width: 90vw; max-height: 86vh; border-radius: 14px; display: block; }
+    #lightbox-content iframe { width: 80vw; aspect-ratio: 16/9; height: auto; border: 0; }
+
+    /* ─── WHATSAPP FLOAT ─── */
+    .whatsapp-float { position: fixed; bottom: 24px; left: 24px; width: 52px; height: 52px; border-radius: 50%; background: #25D366; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 26px; box-shadow: 0 4px 20px rgba(37,211,102,0.45); z-index: 100; transition: transform .2s; }
+    .whatsapp-float:hover { transform: scale(1.1); }
+
+    @media (max-width: 768px) {
+      .about-grid, .ecosystem-grid { grid-template-columns: 1fr; }
+      .gallery-grid { columns: 2 150px; }
+    }
   </style>
 </head>
 <body>
@@ -450,11 +572,11 @@
       </div>
       <div class="nav-links">
         <a onclick="scrollTo('hero')">Home</a>
-        <a onclick="scrollTo('mission')">Mission</a>
         <a onclick="scrollTo('services')">Services</a>
+        <a onclick="scrollTo('courses')">Courses</a>
+        <a onclick="scrollTo('about')">About Us</a>
+        <a onclick="scrollTo('portfolio')">Portfolio</a>
         <a href="/pricing">Pricing</a>
-        <a onclick="scrollTo('testimonials')">Reviews</a>
-        
         <a onclick="scrollTo('contact')">Contact</a>
         <a href="/admin">Admin</a>
       </div>
@@ -476,10 +598,11 @@
   </div>
   <a class="menu-link" onclick="scrollTo('hero');closeMenu()">Home</a>
   <a class="menu-link" onclick="scrollTo('services');closeMenu()">Services</a>
+  <a class="menu-link" onclick="scrollTo('courses');closeMenu()">Courses</a>
+  <a class="menu-link" onclick="scrollTo('about');closeMenu()">About Us</a>
+  <a class="menu-link" onclick="scrollTo('portfolio');closeMenu()">Portfolio</a>
   <a class="menu-link" href="/pricing">Pricing</a>
-  <a class="menu-link" onclick="scrollTo('testimonials');closeMenu()">Reviews</a>
-  
-  <a class="menu-link" onclick="scrollTo('contact');closeMenu()">Contact</a>
+  <a class="menu-link" onclick="scrollTo('contact');closeMenu()">Contact / Let's Connect</a>
   <a class="menu-link admin-link" href="/admin">🔐 Admin Panel</a>
   <button class="menu-cta" onclick="scrollTo('contact');closeMenu()">Get Started</button>
 </div>
@@ -502,17 +625,16 @@
     <button class="btn-outline" onclick="scrollTo('services')">Get Started →</button>
   </div>
   <div class="hero-stats" id="hero-stats"></div>
+  <div class="hero-wave-text">🌊 Rooted Strong. Flowing Forward.</div>
 </section>
 
-<!-- MISSION -->
-<section id="mission" class="section">
+<!-- CLIENT SLIDESHOW -->
+<section class="marquee-section">
   <div class="container text-center">
-    <div class="chip">OUR MISSION</div>
-    <h2 class="section-title">We don't just write code.<br><span class="accent">We build digital ecosystems.</span></h2>
-    <p class="section-sub">Engineering, automation, and scalable architecture — everything your business needs to thrive in the digital era.</p>
-    <div style="background:var(--teal-light);border-left:4px solid var(--teal);padding:16px 24px;border-radius:0 12px 12px 0;max-width:600px;margin:0 auto;font-style:italic;color:#555;font-size:14px;line-height:1.7">
-      🌊 <strong>Rooted Strong. Flowing Forward.</strong><br>Like the waves of coastal Karnataka — we build technology that never stops evolving.
-    </div>
+    <div class="marquee-label">TRUSTED BY GROWING CREATORS</div>
+  </div>
+  <div class="marquee-wrapper">
+    <div class="marquee-track" id="marquee-track"></div>
   </div>
 </section>
 
@@ -524,7 +646,35 @@
       <h2 class="section-title">What We <span class="accent">Build</span></h2>
       <p class="section-sub">Engineering custom software, web platforms, and AI integrations that drive growth, automation, and digital transformation.</p>
     </div>
+    <div class="filter-bar" id="service-filters">
+      <button class="filter-btn active" onclick="filterServices('All', this)">All</button>
+      <button class="filter-btn" onclick="filterServices('Content', this)">Content</button>
+      <button class="filter-btn" onclick="filterServices('Tech', this)">Tech</button>
+      <button class="filter-btn" onclick="filterServices('Marketing', this)">Marketing</button>
+      <button class="filter-btn" onclick="filterServices('Software', this)">Software</button>
+    </div>
     <div class="services-grid fade-up stagger" id="services-grid"></div>
+  </div>
+</section>
+
+<!-- OUR COURSES -->
+<section id="courses" class="section">
+  <div class="container">
+    <div class="text-center">
+      <div class="chip">Courses</div>
+      <h2 class="section-title">Our <span class="accent2">Courses</span></h2>
+      <p class="section-sub">Learn the exact systems we use to grow creators and businesses online.</p>
+    </div>
+    <div class="course-preview-grid fade-up stagger" id="course-preview"></div>
+    <div class="text-center" style="margin-top:24px">
+      <span class="course-toggle-link" onclick="toggleCourseDetail()">View course details &amp; pricing →</span>
+    </div>
+    <div id="course-detail" class="course-detail">
+      <div class="course-detail-grid" id="course-detail-grid"></div>
+      <div class="text-center" style="margin-top:28px">
+        <button class="btn-outline" onclick="toggleCourseDetail()">↑ Back to Courses</button>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -554,6 +704,50 @@
         <div class="why-quote">"We don't just manage projects — we engineer ecosystems and help businesses scale. Rooted Strong. Flowing Forward."</div>
       </div>
       <div class="why-cards fade-up" id="why-cards"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT US -->
+<section id="about" class="section about-section">
+  <div class="container">
+    <div class="text-center" style="margin-bottom:48px">
+      <div class="chip">About Us</div>
+      <h2 class="section-title">About <span class="accent">Alevoor Technologies</span></h2>
+      <p class="section-sub">From the coastal shores of Karnataka to the digital screens of the world.</p>
+    </div>
+    <div class="about-grid">
+      <div class="about-card about-teal fade-up">
+        <div class="about-card-icon">🎯</div>
+        <h3>Our Mission</h3>
+        <p>To democratize digital growth — making world-class content strategy, social media management, and technology accessible to every creator and business in India and beyond. We believe talent has no geography.</p>
+      </div>
+      <div class="about-card about-purple fade-up">
+        <div class="about-card-icon">🔭</div>
+        <h3>Our Vision</h3>
+        <p>To become India's most trusted digital growth partner — building a future where every creator has the tools, strategy, and support to build a sustainable, thriving online presence. From Karnataka to the world.</p>
+      </div>
+      <div class="about-card about-coral fade-up">
+        <div class="about-card-icon">🌊</div>
+        <h3>Our Values</h3>
+        <ul class="about-values-list">
+          <li>🌊 Wave-Driven Growth — momentum that never stops</li>
+          <li>❤️ Creator-First Always — your success is our success</li>
+          <li>📊 Data Over Guesswork — every decision backed by analytics</li>
+          <li>🤝 Radical Transparency — no surprises, just results</li>
+          <li>🔁 Consistent Execution — reliability is our superpower</li>
+        </ul>
+      </div>
+      <div class="about-card about-navy fade-up">
+        <div class="about-card-icon">📈</div>
+        <h3>Our Impact</h3>
+        <div class="about-impact-grid">
+          <div><div class="about-impact-val">50+</div><div class="about-impact-label">YouTube Channels Managed</div></div>
+          <div><div class="about-impact-val">10M+</div><div class="about-impact-label">Instagram Reach Generated</div></div>
+          <div><div class="about-impact-val">100+</div><div class="about-impact-label">Happy Creators & Brands</div></div>
+          <div><div class="about-impact-val">3x</div><div class="about-impact-label">Average Growth Delivered</div></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -589,6 +783,59 @@
         </div>
         <div class="founder-quote">With dedication, engineering excellence, and a strong innovation mindset, Alevoor Technologies aims to grow into a trusted tech partner for businesses across India and beyond.</div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ECOSYSTEM -->
+<section class="section ecosystem-section">
+  <div class="container">
+    <div class="text-center" style="margin-bottom:40px">
+      <h2 class="section-title">The Alevoor <span class="accent">Ecosystem</span></h2>
+      <p class="section-sub">One parent. Multiple brands. One mission.</p>
+    </div>
+    <div class="ecosystem-grid">
+      <div class="ecosystem-card eco-teal fade-up">
+        <div class="eco-badge eco-badge-teal">PARENT COMPANY</div>
+        <div class="eco-logo eco-logo-grad">AT</div>
+        <h3>Alevoor Technologies Private Limited</h3>
+        <div class="eco-type">Digital Agency + Technology Company</div>
+        <p>Full-service digital growth agency offering content management, software development, digital marketing, and educational courses.</p>
+        <div class="eco-tags"><span>Content</span><span>Tech</span><span>Marketing</span><span>Courses</span><span>UGC</span></div>
+      </div>
+      <div class="ecosystem-card eco-purple fade-up">
+        <div class="eco-badge eco-badge-purple">SISTER BRAND</div>
+        <div class="eco-logo eco-logo-dark">RR</div>
+        <h3>RR Creator Lab</h3>
+        <a href="https://rrcreatorlab.in" target="_blank" rel="noopener" class="eco-web">rrcreatorlab.in</a>
+        <div class="eco-type">Social Media Growth & Content Studio</div>
+        <p>Specialized brand focused exclusively on YouTube and Instagram growth for content creators. Manages editing, posting, analytics, and channel optimization.</p>
+        <div class="eco-tags"><span>YouTube</span><span>Instagram</span><span>Editing</span><span>Analytics</span></div>
+        <a href="https://rrcreatorlab.in" target="_blank" rel="noopener" class="btn-outline eco-visit">Visit Website →</a>
+      </div>
+    </div>
+    <p class="text-center eco-note">Alevoor Technologies is the parent unit of RR Creator Lab. Both brands share the same mission — helping creators and businesses grow in the digital world.</p>
+  </div>
+</section>
+
+<!-- PORTFOLIO / GALLERY -->
+<section id="portfolio" class="section">
+  <div class="container">
+    <div class="text-center">
+      <div class="chip">Our Work</div>
+      <h2 class="section-title">Portfolio &amp; <span class="accent2">Gallery</span></h2>
+      <p class="section-sub">Real work. Real results. See what we've built and created.</p>
+    </div>
+    <div class="filter-bar" style="margin-bottom:32px">
+      <button class="filter-btn active" id="ptab-case" onclick="switchPortfolio('case')">Case Studies</button>
+      <button class="filter-btn" id="ptab-gallery" onclick="switchPortfolio('gallery')">Gallery</button>
+    </div>
+    <div id="portfolio-case">
+      <div class="portfolio-grid fade-up stagger" id="portfolio-grid"></div>
+    </div>
+    <div id="portfolio-gallery" style="display:none">
+      <div class="gallery-grid" id="gallery-grid"></div>
+      <p class="text-center" id="gallery-empty" style="color:var(--light);font-size:14px;display:none">Gallery items will appear here soon.</p>
     </div>
   </div>
 </section>
@@ -678,11 +925,12 @@
       <div>
         <h4>Quick Links</h4>
         <span class="footer-link" onclick="scrollTo('services')">Services</span>
-        <span class="footer-link" onclick="scrollTo('process')">How It Works</span>
-        <span class="footer-link" onclick="scrollTo('whyus')">Why Choose Us</span>
+        <span class="footer-link" onclick="scrollTo('courses')">Our Courses</span>
+        <span class="footer-link" onclick="scrollTo('about')">About Us</span>
+        <span class="footer-link" onclick="switchPortfolio('gallery');scrollTo('portfolio')">Gallery</span>
         <a class="footer-link" href="/pricing">Pricing</a>
-        <span class="footer-link" onclick="scrollTo('testimonials')">Reviews</span>
         <span class="footer-link" onclick="scrollTo('contact')">Contact</span>
+        <a class="footer-link" href="https://rrcreatorlab.in" target="_blank" rel="noopener" style="color:var(--teal)">🔗 RR Creator Lab — rrcreatorlab.in</a>
         <a class="footer-link" href="/admin" style="color:var(--teal)">🔐 Admin Panel</a>
       </div>
     </div>
@@ -704,6 +952,17 @@
   </div>
 </div>
 
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/919483886270" target="_blank" rel="noopener" class="whatsapp-float" aria-label="Chat on WhatsApp">💬</a>
+
+<!-- GALLERY LIGHTBOX -->
+<div id="gallery-lightbox" class="gallery-lightbox" onclick="closeLightbox()">
+  <div class="gallery-lightbox-inner" onclick="event.stopPropagation()">
+    <button class="video-close" onclick="closeLightbox()" aria-label="Close">✕</button>
+    <div id="lightbox-content"></div>
+  </div>
+</div>
+
 <!-- TOAST -->
 <div id="toast">✅ Message sent! We'll get back to you within 24 hours.</div>
 
@@ -714,17 +973,21 @@ let DATA = {};
 async function loadData() {
   showSkeletons();
   const hasContent = (o) => o && typeof o === 'object' && Object.keys(o).length > 0 && (o.services || o.brand || o.pricing);
+  let defaults = {};
+  try { defaults = await (await fetch('/data.json', { cache: 'no-store' })).json(); } catch(e) {}
   try {
-    // Prefer live content saved from the admin panel
+    // Prefer live content saved from the admin panel, but always keep data.json defaults as a base
     const live = await fetch('/api/public/site-content', { cache: 'no-store' });
     const liveJson = await live.json();
     if (hasContent(liveJson && liveJson.content)) {
-      DATA = liveJson.content;
+      DATA = Object.assign({}, defaults, liveJson.content);
     } else {
-      const res = await fetch('/data.json');
-      DATA = await res.json();
+      DATA = defaults;
     }
   } catch(e) {
+    DATA = defaults;
+  }
+  if (!DATA || !Object.keys(DATA).length) {
     // fallback inline data
     DATA = {
       brand: { name:"Alevoor Technologies", phone:"+91 9483886270", email:"alevoor@gmail.com", instagram:"@alevoor", founderName:"Rishabh Alevoor", founderTitle:"Founder & CEO, Alevoor Technologies" },
@@ -763,9 +1026,13 @@ function hideLoading() {
 
 function renderAll() {
   renderStats();
+  renderMarquee();
   renderServices();
+  renderCourses();
   renderProcess();
   renderWhyUs();
+  renderPortfolio();
+  renderGallery();
   renderTestimonials();
   renderTeam();
   renderFAQs();
@@ -782,17 +1049,127 @@ function renderStats() {
     </div>`).join('');
 }
 
+function renderMarquee() {
+  const el = document.getElementById('marquee-track');
+  if (!el || !DATA.trustedClients) return;
+  const icon = (p) => p === 'Instagram' ? '📸' : (p === 'Both' ? '🌐' : '▶');
+  const pill = (c) => `<div class="marquee-pill">${icon(c.platform)} ${c.name}</div>`;
+  const list = DATA.trustedClients.map(pill).join('');
+  el.innerHTML = list + list;
+}
+
+const SERVICE_CAT = {
+  'Content Marketing':'Content','Editing Support':'Content','Content Creation':'Content','UGC':'Content',
+  'Hosting Services':'Tech','Inventory Software':'Software','Website Development':'Software','App Development':'Software','Software':'Software',
+  'SEO Optimisation':'Marketing','Digital Marketing':'Marketing','Social Media':'Marketing','Ads':'Marketing','AI':'Tech','Cloud':'Tech','Analytics':'Tech'
+};
+function catFor(name){
+  for (const k in SERVICE_CAT){ if (name.toLowerCase().includes(k.toLowerCase())) return SERVICE_CAT[k]; }
+  return 'Tech';
+}
 function renderServices() {
   const el = document.getElementById('services-grid');
   if (!DATA.services) return;
   el.innerHTML = DATA.services.map((s,i) => `
-    <div class="service-card anim-in" style="animation-delay:${i*0.07}s">
+    <div class="service-card anim-in" data-cat="${catFor(s.name)}" style="animation-delay:${i*0.07}s">
       <div class="service-icon">${s.icon}</div>
       <div>
         <div class="service-name">${s.name}</div>
         <div class="service-desc">${s.desc}</div>
       </div>
     </div>`).join('');
+}
+function filterServices(cat, btn) {
+  document.querySelectorAll('#service-filters .filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('#services-grid .service-card').forEach(c => {
+    c.style.display = (cat === 'All' || c.dataset.cat === cat) ? '' : 'none';
+  });
+}
+
+function courseCardHTML(c){
+  const prices = c.pricing.map(p => `<div class="course-price-box"><div class="course-price-label">${p.label}</div><div class="course-price-val">${p.price}</div></div>`).join('');
+  const feats = c.features.map(f => `<li>${f}</li>`).join('');
+  return `<div class="course-card ${c.popular?'popular':''}">
+    ${c.popular?'<div class="pop-badge">Most Popular</div>':''}
+    <div class="course-card-head">
+      <div class="course-card-icon" style="background:${c.iconBg}">${c.icon}</div>
+      <div><div class="course-card-name">${c.name}</div><div class="course-card-dur">Duration: ${c.duration}</div></div>
+    </div>
+    <div class="course-price-row">${prices}</div>
+    <ul class="course-feat">${feats}</ul>
+    <button class="course-cta" onclick="scrollTo('contact')">${c.cta}</button>
+  </div>`;
+}
+function renderCourses() {
+  if (!DATA.courses) return;
+  const prev = document.getElementById('course-preview');
+  if (prev) prev.innerHTML = DATA.courses.map(c => `
+    <div class="course-preview-card" onclick="openCourseDetail()">
+      <div class="course-icon" style="background:${c.iconBg}">${c.icon}</div>
+      <div class="course-preview-name">${c.name}</div>
+    </div>`).join('');
+  const grid = document.getElementById('course-detail-grid');
+  if (grid) grid.innerHTML = DATA.courses.map(courseCardHTML).join('');
+}
+function toggleCourseDetail(){
+  const d = document.getElementById('course-detail');
+  d.classList.toggle('open');
+  if (d.classList.contains('open')) d.scrollIntoView({behavior:'smooth', block:'start'});
+}
+function openCourseDetail(){
+  const d = document.getElementById('course-detail');
+  if (!d.classList.contains('open')) d.classList.add('open');
+  d.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function switchPortfolio(tab){
+  const isCase = tab === 'case';
+  document.getElementById('portfolio-case').style.display = isCase ? '' : 'none';
+  document.getElementById('portfolio-gallery').style.display = isCase ? 'none' : '';
+  document.getElementById('ptab-case').classList.toggle('active', isCase);
+  document.getElementById('ptab-gallery').classList.toggle('active', !isCase);
+}
+function renderGallery(){
+  const el = document.getElementById('gallery-grid');
+  const empty = document.getElementById('gallery-empty');
+  if (!el) return;
+  const items = (DATA.gallery || []).slice().reverse();
+  if (!items.length){ el.innerHTML=''; if(empty) empty.style.display='block'; return; }
+  if (empty) empty.style.display='none';
+  el.innerHTML = items.map((g,i) => {
+    const ratio = g.ratio === '16:9' ? 'ratio-169' : 'ratio-916';
+    const thumb = g.type === 'photo' && g.src
+      ? `<img class="gallery-thumb" src="${g.src}" alt="${g.title||'Gallery'}" />`
+      : `<div class="gallery-thumb">${g.type==='video'?'▶':'🖼️'}</div>`;
+    return `<div class="gallery-item ${ratio}" onclick='openLightbox(${i})'>
+      ${g.category?`<div class="gallery-cat">${g.category}</div>`:''}
+      ${thumb}
+      <div class="gallery-overlay">${g.type==='video'?'▶':'🔍'}</div>
+    </div>`;
+  }).join('');
+  window.__GALLERY = items;
+}
+function openLightbox(i){
+  const g = (window.__GALLERY||[])[i]; if(!g) return;
+  const c = document.getElementById('lightbox-content');
+  if (g.type==='video' && g.src){
+    let embed = g.src;
+    const yt = g.src.match(/(?:youtu\.be\/|v=)([\w-]+)/);
+    if (yt) embed = `https://www.youtube.com/embed/${yt[1]}`;
+    c.innerHTML = (embed.includes('youtube.com/embed')||embed.includes('player'))
+      ? `<iframe src="${embed}" allowfullscreen></iframe>`
+      : `<video src="${g.src}" controls autoplay></video>`;
+  } else {
+    c.innerHTML = `<img src="${g.src||''}" alt="${g.title||''}" />`;
+  }
+  document.getElementById('gallery-lightbox').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeLightbox(){
+  document.getElementById('gallery-lightbox').classList.remove('open');
+  document.getElementById('lightbox-content').innerHTML='';
+  document.body.style.overflow='';
 }
 
 function renderProcess() {

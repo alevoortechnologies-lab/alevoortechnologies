@@ -520,5 +520,61 @@
       "q": "Do you offer refunds?",
       "a": "We offer a satisfaction guarantee on our strategy work. If you're not satisfied after the first month, we'll work with you to make it right."
     }
-  ]
+  ],
+  "courses": [
+    {
+      "icon": "🎓",
+      "iconBg": "linear-gradient(135deg, #0db88a, #0891b2)",
+      "name": "Entrepreneurship & Digital Growth Masterclass",
+      "duration": "3-9 days",
+      "popular": true,
+      "pricing": [
+        { "label": "STUDENT BATCH", "price": "₹7,999" },
+        { "label": "PROFESSIONAL BATCH", "price": "₹14,999" }
+      ],
+      "features": ["Business Foundations", "Sales & Marketing", "Website Development", "Digital Marketing", "Social Media Management", "YouTube Growth", "Content Creation & UGC", "AI Tools & Automation", "Finance & Business Planning"],
+      "cta": "Enroll Now"
+    },
+    {
+      "icon": "▶",
+      "iconBg": "linear-gradient(135deg, #ef4444, #f97316)",
+      "name": "YouTube Management & Growth Mastery",
+      "duration": "4 Hours",
+      "popular": false,
+      "pricing": [{ "label": "PRICE", "price": "₹4,999" }],
+      "features": ["Channel Setup", "YouTube SEO", "Thumbnail Design", "Analytics", "Content Planning", "Monetization"],
+      "cta": "Join Course"
+    },
+    {
+      "icon": "✨",
+      "iconBg": "linear-gradient(135deg, #7c3aed, #a855f7)",
+      "name": "Content Marketing & Personal Branding",
+      "duration": "5 Hours",
+      "popular": false,
+      "pricing": [{ "label": "PRICE", "price": "₹5,999" }],
+      "features": ["Instagram Growth", "Personal Branding", "UGC Marketing", "Content Strategy", "Reels Growth", "Lead Generation"],
+      "cta": "Join Course"
+    },
+    {
+      "icon": "🤖",
+      "iconBg": "linear-gradient(135deg, #22c55e, #16a34a)",
+      "name": "AI Tools For Business & Creators",
+      "duration": "3 Hours",
+      "popular": false,
+      "pricing": [{ "label": "PRICE", "price": "₹4,999" }],
+      "features": ["ChatGPT", "AI Automation", "AI Content Creation", "AI Video Tools", "Productivity Systems"],
+      "cta": "Join Course"
+    }
+  ],
+  "trustedClients": [
+    { "name": "The Currency India", "platform": "YouTube" },
+    { "name": "Sambodhi Coaching", "platform": "YouTube" },
+    { "name": "Shilpa Art House", "platform": "YouTube" },
+    { "name": "V Filmy Steps", "platform": "YouTube" },
+    { "name": "Startup Stories", "platform": "YouTube" },
+    { "name": "Homzyee Property", "platform": "Instagram" },
+    { "name": "Rahul Sharma", "platform": "YouTube" },
+    { "name": "Sneha Reddy", "platform": "Instagram" }
+  ],
+  "gallery": []
 }
