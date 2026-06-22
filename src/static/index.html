@@ -1323,9 +1323,12 @@ function renderContact() {
 }
 
 // ─── UI FUNCTIONS ─────────────────────────────────────────────────────────
-function scrollTo(id) {
+function navScroll(id) {
   const el = document.getElementById(id);
-  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  if (!el) return;
+  const navHeight = 64;
+  const top = el.getBoundingClientRect().top + window.pageYOffset - navHeight;
+  window.scrollTo({ top: top, behavior: 'smooth' });
 }
 function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
 function openMenu() { document.getElementById('menu-overlay').classList.add('open'); }
