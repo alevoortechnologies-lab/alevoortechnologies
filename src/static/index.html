@@ -571,13 +571,13 @@
         <img class="nav-logo-img" src="/assets/logo.png" alt="Alevoor Technologies" />
       </div>
       <div class="nav-links">
-        <a onclick="scrollTo('hero')">Home</a>
-        <a onclick="scrollTo('services')">Services</a>
-        <a onclick="scrollTo('courses')">Courses</a>
-        <a onclick="scrollTo('about')">About Us</a>
-        <a onclick="scrollTo('portfolio')">Portfolio</a>
+        <a onclick="navScroll('hero')">Home</a>
+        <a onclick="navScroll('services')">Services</a>
+        <a onclick="navScroll('courses')">Courses</a>
+        <a onclick="navScroll('about')">About Us</a>
+        <a onclick="navScroll('portfolio')">Portfolio</a>
         <a href="/pricing">Pricing</a>
-        <a onclick="scrollTo('contact')">Contact</a>
+        <a onclick="navScroll('contact')">Contact</a>
         <a href="/admin">Admin</a>
       </div>
       <div class="nav-actions">
@@ -596,15 +596,15 @@
     </div>
     <button class="nav-icon-btn" onclick="closeMenu()">✕</button>
   </div>
-  <a class="menu-link" onclick="scrollTo('hero');closeMenu()">Home</a>
-  <a class="menu-link" onclick="scrollTo('services');closeMenu()">Services</a>
-  <a class="menu-link" onclick="scrollTo('courses');closeMenu()">Courses</a>
-  <a class="menu-link" onclick="scrollTo('about');closeMenu()">About Us</a>
-  <a class="menu-link" onclick="scrollTo('portfolio');closeMenu()">Portfolio</a>
+  <a class="menu-link" onclick="navScroll('hero');closeMenu()">Home</a>
+  <a class="menu-link" onclick="navScroll('services');closeMenu()">Services</a>
+  <a class="menu-link" onclick="navScroll('courses');closeMenu()">Courses</a>
+  <a class="menu-link" onclick="navScroll('about');closeMenu()">About Us</a>
+  <a class="menu-link" onclick="navScroll('portfolio');closeMenu()">Portfolio</a>
   <a class="menu-link" href="/pricing">Pricing</a>
-  <a class="menu-link" onclick="scrollTo('contact');closeMenu()">Contact / Let's Connect</a>
+  <a class="menu-link" onclick="navScroll('contact');closeMenu()">Contact / Let's Connect</a>
   <a class="menu-link admin-link" href="/admin">🔐 Admin Panel</a>
-  <button class="menu-cta" onclick="scrollTo('contact');closeMenu()">Get Started</button>
+  <button class="menu-cta" onclick="navScroll('contact');closeMenu()">Get Started</button>
 </div>
 
 <!-- HERO -->
@@ -621,8 +621,8 @@
   <h1 class="hero-h1" id="hero-headline">Focus On Innovation.<span class="hero-h1-accent" id="hero-accent">We Build The Tech.</span></h1>
   <p class="hero-sub" id="hero-subtitle">End-to-end software, web, and digital solutions engineered for scale.</p>
   <div class="hero-btns">
-    <button class="btn-primary" onclick="scrollTo('contact')">📅 Book Free Consultation</button>
-    <button class="btn-outline" onclick="scrollTo('services')">Get Started →</button>
+    <button class="btn-primary" onclick="navScroll('contact')">📅 Book Free Consultation</button>
+    <button class="btn-outline" onclick="navScroll('services')">Get Started →</button>
   </div>
   <div class="hero-stats" id="hero-stats"></div>
   <div class="hero-wave-text">🌊 Rooted Strong. Flowing Forward.</div>
@@ -688,7 +688,7 @@
     </div>
     <div class="process-list fade-up" id="process-list"></div>
     <div class="text-center" style="margin-top:32px">
-      <button class="btn-primary" onclick="scrollTo('contact')">Get Started</button>
+      <button class="btn-primary" onclick="navScroll('contact')">Get Started</button>
     </div>
   </div>
 </section>
@@ -924,12 +924,12 @@
       </div>
       <div>
         <h4>Quick Links</h4>
-        <span class="footer-link" onclick="scrollTo('services')">Services</span>
-        <span class="footer-link" onclick="scrollTo('courses')">Our Courses</span>
-        <span class="footer-link" onclick="scrollTo('about')">About Us</span>
-        <span class="footer-link" onclick="switchPortfolio('gallery');scrollTo('portfolio')">Gallery</span>
+        <span class="footer-link" onclick="navScroll('services')">Services</span>
+        <span class="footer-link" onclick="navScroll('courses')">Our Courses</span>
+        <span class="footer-link" onclick="navScroll('about')">About Us</span>
+        <span class="footer-link" onclick="switchPortfolio('gallery');navScroll('portfolio')">Gallery</span>
         <a class="footer-link" href="/pricing">Pricing</a>
-        <span class="footer-link" onclick="scrollTo('contact')">Contact</span>
+        <span class="footer-link" onclick="navScroll('contact')">Contact</span>
         <a class="footer-link" href="https://rrcreatorlab.in" target="_blank" rel="noopener" style="color:var(--teal)">🔗 RR Creator Lab — rrcreatorlab.in</a>
         <a class="footer-link" href="/admin" style="color:var(--teal)">🔐 Admin Panel</a>
       </div>
@@ -1098,7 +1098,7 @@ function courseCardHTML(c){
     </div>
     <div class="course-price-row">${prices}</div>
     <ul class="course-feat">${feats}</ul>
-    <button class="course-cta" onclick="scrollTo('contact')">${c.cta}</button>
+    <button class="course-cta" onclick="navScroll('contact')">${c.cta}</button>
   </div>`;
 }
 function renderCourses() {
@@ -1236,7 +1236,7 @@ function renderPricing() {
       <div class="pricing-sub">${p.subtitle}</div>
       <div class="pricing-price">${p.price}<span class="pricing-period">${p.period}</span></div>
       <ul class="pricing-features">${p.features.map(f=>`<li>${f}</li>`).join('')}</ul>
-      <button class="btn-pricing ${p.popular?'btn-pricing-fill':'btn-pricing-out'}" onclick="scrollTo('contact')">Get Started</button>
+      <button class="btn-pricing ${p.popular?'btn-pricing-fill':'btn-pricing-out'}" onclick="navScroll('contact')">Get Started</button>
     </div>`).join('')}</div>`;
   // YT
   document.getElementById('panel-yt').innerHTML = `<div class="pricing-grid">${DATA.pricing.yt.map(p => `
@@ -1244,7 +1244,7 @@ function renderPricing() {
       <div class="pricing-name">${p.name}</div>
       <div class="pricing-price" style="color:#e67e22">${p.price}<span class="pricing-period" style="font-size:13px;color:#aaa"> ${p.period}</span></div>
       <ul class="pricing-features">${p.features.map(f=>`<li>${f}</li>`).join('')}</ul>
-      <button class="btn-pricing ${p.best?'btn-pricing-fill':'btn-pricing-out'}" style="${p.best?'background:#e67e22;border:none':''}" onclick="scrollTo('contact')">Get Started</button>
+      <button class="btn-pricing ${p.best?'btn-pricing-fill':'btn-pricing-out'}" style="${p.best?'background:#e67e22;border:none':''}" onclick="navScroll('contact')">Get Started</button>
     </div>`).join('')}</div>`;
   // One Time
   document.getElementById('panel-onetime').innerHTML = `<div class="pricing-grid">${DATA.pricing.onetime.map(p => `
@@ -1253,7 +1253,7 @@ function renderPricing() {
       <div class="pricing-price">${p.price}<span class="pricing-period"> one-time</span></div>
       <p style="font-size:12px;color:#888;margin:10px 0 14px;line-height:1.6">${p.desc}</p>
       <ul class="pricing-features"><li>One-time setup</li><li>No monthly charges</li></ul>
-      <button class="btn-pricing ${p.best?'btn-pricing-fill':'btn-pricing-out'}" onclick="scrollTo('contact')">Get Started</button>
+      <button class="btn-pricing ${p.best?'btn-pricing-fill':'btn-pricing-out'}" onclick="navScroll('contact')">Get Started</button>
     </div>`).join('')}</div>`;
 }
 
