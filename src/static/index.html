@@ -855,8 +855,43 @@
 
 
 
+<!-- FREE CONSULTATION -->
+<section id="consultation" class="section">
+  <div class="container">
+    <div class="consult-grid">
+      <div class="consult-left fade-up">
+        <div class="chip">Free Strategy Call</div>
+        <h2>Ready to <span>Level Up?</span></h2>
+        <p class="section-sub" style="text-align:left;margin:0 0 8px">Book a free, no-pressure strategy session and get a clear roadmap for your growth.</p>
+        <ul class="consult-features">
+          <li>30-minute free strategy call</li>
+          <li>Personalized growth roadmap</li>
+          <li>Content audit &amp; recommendations</li>
+          <li>No commitment required</li>
+        </ul>
+        <button class="btn-primary" onclick="navScroll('contact')">Book Your Free Call →</button>
+      </div>
+      <div class="consult-card fade-up">
+        <div class="consult-header">
+          <div class="consult-avatar">RA</div>
+          <div>
+            <div class="consult-name">Rishabh Alevoor</div>
+            <div class="consult-title">Founder &amp; CEO</div>
+          </div>
+        </div>
+        <div class="consult-detail"><div class="consult-detail-icon">📅</div><div><div class="consult-detail-title">Flexible Scheduling</div><div class="consult-detail-sub">Pick a time that works for you</div></div></div>
+        <div class="consult-detail"><div class="consult-detail-icon">⏱</div><div><div class="consult-detail-title">30 Minutes</div><div class="consult-detail-sub">Focused session</div></div></div>
+        <div class="consult-detail"><div class="consult-detail-icon">📹</div><div><div class="consult-detail-title">Video Call</div><div class="consult-detail-sub">Google Meet or Zoom</div></div></div>
+        <div class="consult-available">Available this week</div>
+        <button class="btn-schedule" onclick="navScroll('contact')">Schedule Now →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
 
 <!-- FAQ -->
+
 <section id="faq" class="section" style="background:#fff">
   <div class="container">
     <div class="text-center">
@@ -868,7 +903,21 @@
 </section>
 
 
+<!-- TEAM -->
+<section id="team" class="section">
+  <div class="container">
+    <div class="text-center">
+      <div class="chip">Our Team</div>
+      <h2 class="section-title">Meet the <span class="accent2">Creative Minds</span></h2>
+      <p class="section-sub">The people behind the momentum — editors, strategists and builders.</p>
+    </div>
+    <div class="team-grid fade-up stagger" id="team-grid"></div>
+  </div>
+</section>
+
+
 <!-- CONTACT -->
+
 <section id="contact" class="section" style="background:var(--bg)">
   <div class="container">
     <div class="text-center">
@@ -980,10 +1029,18 @@ async function loadData() {
     const live = await fetch('/api/public/site-content', { cache: 'no-store' });
     const liveJson = await live.json();
     if (hasContent(liveJson && liveJson.content)) {
-      DATA = Object.assign({}, defaults, liveJson.content);
+      DATA = Object.assign({}, defaults);
+      const lc = liveJson.content;
+      Object.keys(lc).forEach(k => {
+        const v = lc[k];
+        // keep data.json default when live value is empty/missing (e.g. team: [])
+        const isEmpty = v == null || (Array.isArray(v) && v.length === 0);
+        if (!isEmpty) DATA[k] = v;
+      });
     } else {
       DATA = defaults;
     }
+
   } catch(e) {
     DATA = defaults;
   }
