@@ -1029,10 +1029,18 @@ async function loadData() {
     const live = await fetch('/api/public/site-content', { cache: 'no-store' });
     const liveJson = await live.json();
     if (hasContent(liveJson && liveJson.content)) {
-      DATA = Object.assign({}, defaults, liveJson.content);
+      DATA = Object.assign({}, defaults);
+      const lc = liveJson.content;
+      Object.keys(lc).forEach(k => {
+        const v = lc[k];
+        // keep data.json default when live value is empty/missing (e.g. team: [])
+        const isEmpty = v == null || (Array.isArray(v) && v.length === 0);
+        if (!isEmpty) DATA[k] = v;
+      });
     } else {
       DATA = defaults;
     }
+
   } catch(e) {
     DATA = defaults;
   }
