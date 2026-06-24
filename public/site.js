@@ -91,6 +91,8 @@ function renderAll() {
   renderTeam();
   renderFAQs();
   renderContact();
+  renderPricing();
+  renderTestimonialSlider();
 }
 
 function renderStats() {
