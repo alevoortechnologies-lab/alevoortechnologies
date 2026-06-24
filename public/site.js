@@ -97,7 +97,7 @@ function renderAll() {
 
 function renderStats() {
   const el = document.getElementById('hero-stats');
-  if (!DATA.stats) return;
+  if (!el || !DATA.stats) return;
   el.innerHTML = DATA.stats.map(s => `
     <div class="hero-stat text-center">
       <div class="hero-stat-val">${s.value}</div>
@@ -125,7 +125,7 @@ function catFor(name){
 }
 function renderServices() {
   const el = document.getElementById('services-grid');
-  if (!DATA.services) return;
+  if (!el || !DATA.services) return;
   el.innerHTML = DATA.services.map((s,i) => `
     <div class="service-card anim-in" data-cat="${catFor(s.name)}" style="animation-delay:${i*0.07}s">
       <div class="service-icon">${s.icon}</div>
@@ -230,7 +230,7 @@ function closeLightbox(){
 
 function renderProcess() {
   const el = document.getElementById('process-list');
-  if (!DATA.process) return;
+  if (!el || !DATA.process) return;
   const icons = ['💬','📊','🚀','📄'];
   el.innerHTML = DATA.process.map((s,i) => `
     <div class="process-item">
@@ -252,7 +252,7 @@ function renderProcess() {
 
 function renderWhyUs() {
   const el = document.getElementById('why-cards');
-  if (!DATA.whyUs) return;
+  if (!el || !DATA.whyUs) return;
   el.innerHTML = DATA.whyUs.map(w => `
     <div class="why-card">
       <div class="why-card-icon">${w.icon}</div>
@@ -265,7 +265,7 @@ function renderWhyUs() {
 
 function renderTestimonials() {
   const el = document.getElementById('testi-grid');
-  if (!DATA.testimonials) return;
+  if (!el || !DATA.testimonials) return;
   el.innerHTML = DATA.testimonials.map((t,i) => `
     <div class="testi-card anim-in" style="animation-delay:${i*0.08}s">
       <div class="testi-text">"${t.text}"</div>
@@ -327,7 +327,7 @@ function renderPricing() {
 
 function renderPortfolio() {
   const el = document.getElementById('portfolio-grid');
-  if (!DATA.portfolio) return;
+  if (!el || !DATA.portfolio) return;
   el.innerHTML = DATA.portfolio.map(p => `
     <div class="portfolio-card">
       <div class="portfolio-banner">${p.icon}</div>
@@ -356,7 +356,7 @@ function renderTeam() {
 
 function renderFAQs() {
   const el = document.getElementById('faq-list');
-  if (!DATA.faqs) return;
+  if (!el || !DATA.faqs) return;
   el.innerHTML = DATA.faqs.map((f,i) => `
     <div class="faq-item" id="faq-${i}">
       <button class="faq-q" onclick="toggleFAQ(${i})">
