@@ -550,3 +550,38 @@
 .page-header p { color: rgba(255,255,255,0.7); font-size: 15px; max-width: 600px; margin: 0 auto; line-height: 1.6; }
 .page-header .crumb { font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 14px; }
 .page-header .crumb a { color: var(--teal); }
+
+/* ─── TESTIMONIAL SLIDESHOW ─── */
+.ts-head { display:flex; align-items:flex-start; justify-content:space-between; gap:20px; flex-wrap:wrap; margin-bottom:34px; }
+.ts-head .ts-titles { text-align:left; }
+.ts-rating-card { background:var(--white); border:1px solid var(--border); border-radius:16px; padding:14px 20px; text-align:center; box-shadow:0 6px 24px var(--shadow,rgba(13,27,42,0.06)); }
+.ts-rating-stars { color:var(--gold); font-size:16px; }
+.ts-rating-num { font-family:'Sora',sans-serif; font-weight:800; font-size:26px; color:var(--text); }
+.ts-rating-sub { font-size:12px; color:var(--light); }
+.ts-viewport { overflow:hidden; }
+.ts-track { display:flex; gap:20px; transition:transform .45s ease; }
+.ts-card { flex:0 0 calc(33.333% - 14px); background:var(--white); border:1px solid var(--border); border-radius:20px; padding:26px; position:relative; }
+.ts-quote-mark { position:absolute; top:10px; right:20px; font-family:'Sora',sans-serif; font-size:60px; line-height:1; color:rgba(13,184,138,0.12); }
+.ts-text { font-size:14px; color:var(--gray); line-height:1.7; font-style:italic; margin:12px 0 18px; }
+.ts-author { display:flex; align-items:center; gap:12px; }
+.ts-nav { display:flex; justify-content:center; gap:14px; margin-top:28px; }
+.ts-nav button { width:46px; height:46px; border-radius:50%; border:2px solid var(--teal); background:var(--white); color:var(--teal); font-size:18px; cursor:pointer; transition:all .2s; }
+.ts-nav button:hover { background:var(--teal); color:#fff; }
+@media (max-width:980px){ .ts-card { flex:0 0 calc(50% - 10px); } }
+@media (max-width:640px){ .ts-card { flex:0 0 100%; } }
+
+/* ─── HOMEPAGE QUICK CTA ─── */
+.home-cta { background:linear-gradient(135deg, var(--teal), var(--purple)); color:#fff; text-align:center; padding:70px 1.5rem; }
+.home-cta h2 { font-family:'Sora',sans-serif; font-weight:800; font-size:clamp(1.6rem,3.5vw,2.4rem); margin-bottom:12px; }
+.home-cta p { color:rgba(255,255,255,0.85); max-width:560px; margin:0 auto 26px; line-height:1.6; }
+.home-cta .btn-outline { background:transparent; color:#fff; border-color:rgba(255,255,255,0.6); }
+.home-cta .btn-outline:hover { background:rgba(255,255,255,0.12); color:#fff; border-color:#fff; }
+.home-cta .btn-primary { background:#fff; color:var(--teal); }
+.home-cta .btn-primary:hover { background:#f1f1f1; }
+
+/* ─── FOUNDER QUOTE (home) ─── */
+.fq-grid { display:grid; grid-template-columns:1.4fr 1fr; gap:40px; align-items:center; }
+.fq-mark { font-family:'Sora',sans-serif; font-size:80px; line-height:.6; color:var(--teal); }
+.fq-text { font-family:'Sora',sans-serif; font-style:italic; font-size:clamp(1.1rem,2.2vw,1.5rem); line-height:1.5; color:var(--text); margin:10px 0 18px; }
+.fq-by { color:var(--teal); font-weight:600; }
+@media (max-width:768px){ .fq-grid { grid-template-columns:1fr; } }
