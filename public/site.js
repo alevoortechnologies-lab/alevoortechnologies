@@ -40,6 +40,9 @@ async function loadData() {
   renderAll();
   hideLoading();
   highlightNav();
+  revealFadeUp();
+  setTimeout(revealFadeUp, 100);
+  setTimeout(revealFadeUp, 600);
   // if arriving with a hash (e.g. /about#team), scroll to it after render
   if (window.location.hash) {
     const id = window.location.hash.slice(1);
