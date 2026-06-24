@@ -506,14 +506,15 @@ function toggleDark() {
 })();
 
 // ─── SCROLL BEHAVIORS ─────────────────────────────────────────────────────
-window.addEventListener('scroll', () => {
-  // nav shadow
-  document.getElementById('nav').style.boxShadow = window.scrollY > 10 ? '0 2px 20px rgba(0,0,0,0.08)' : 'none';
-  // fade-up animations
+function revealFadeUp() {
   document.querySelectorAll('.fade-up').forEach(el => {
-    const rect = el.getBoundingClientRect();
-    if (rect.top < window.innerHeight - 80) el.classList.add('visible');
+    if (el.getBoundingClientRect().top < window.innerHeight - 40) el.classList.add('visible');
   });
+}
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('nav');
+  if (nav) nav.style.boxShadow = window.scrollY > 10 ? '0 2px 20px rgba(0,0,0,0.08)' : 'none';
+  revealFadeUp();
 });
 
 // ─── INIT ─────────────────────────────────────────────────────────────────
