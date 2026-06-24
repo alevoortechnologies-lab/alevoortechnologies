@@ -362,13 +362,27 @@ function renderContact() {
 }
 
 // ─── UI FUNCTIONS ─────────────────────────────────────────────────────────
+const SECTION_PAGE = {
+  hero: '/', home: '/',
+  services: '/services', courses: '/services',
+  about: '/about', founder: '/about', team: '/about', process: '/about', whyus: '/about', ecosystem: '/about',
+  portfolio: '/portfolio', gallery: '/portfolio',
+  pricing: '/pricing',
+  contact: '/contact', consultation: '/contact', faq: '/contact'
+};
 function navScroll(id) {
   const el = document.getElementById(id);
-  if (!el) return;
+  if (!el) {
+    // section lives on another page — navigate there with a hash so it can scroll
+    const page = SECTION_PAGE[id] || '/';
+    window.location.href = page === '/' ? '/' : page + '#' + id;
+    return;
+  }
   const navHeight = 64;
   const top = el.getBoundingClientRect().top + window.pageYOffset - navHeight;
   window.scrollTo({ top: top, behavior: 'smooth' });
 }
+
 function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
 function openMenu() { document.getElementById('menu-overlay').classList.add('open'); }
 function closeMenu() { document.getElementById('menu-overlay').classList.remove('open'); }
