@@ -515,3 +515,46 @@ window.addEventListener('scroll', () => {
 
 // ─── INIT ─────────────────────────────────────────────────────────────────
 loadData();
+// ─── TESTIMONIAL SLIDESHOW (homepage) ──────────────────────────────────────
+function renderTestimonialSlider() {
+  const track = document.getElementById('testi-slider-track');
+  if (!track || !DATA.testimonials || !DATA.testimonials.length) return;
+  const items = DATA.testimonials;
+  track.innerHTML = items.map(t => `
+    <div class="ts-card">
+      <div class="ts-quote-mark">"</div>
+      <div class="testi-stars">${'★'.repeat(t.stars||5)}</div>
+      <div class="ts-text">"${t.text}"</div>
+      <div class="ts-author">
+        <div class="testi-avatar">${t.initials}</div>
+        <div>
+          <div class="testi-name">${t.name}</div>
+          <div class="testi-role">${t.role}</div>
+        </div>
+      </div>
+    </div>`).join('');
+
+  let idx = 0, timer;
+  function perView() {
+    const w = window.innerWidth;
+    return w < 640 ? 1 : (w < 980 ? 2 : 3);
+  }
+  function maxIdx() { return Math.max(0, items.length - perView()); }
+  function update() {
+    idx = Math.min(idx, maxIdx());
+    const card = track.querySelector('.ts-card');
+    if (!card) return;
+    const style = getComputedStyle(track);
+    const gap = parseFloat(style.gap) || 16;
+    const step = card.getBoundingClientRect().width + gap;
+    track.style.transform = `translateX(${-idx * step}px)`;
+  }
+  function go(n) { idx = (n < 0) ? maxIdx() : (n > maxIdx() ? 0 : n); update(); }
+  function reset() { clearInterval(timer); timer = setInterval(() => go(idx + 1), 4000); }
+  window.__tsNext = () => { go(idx + 1); reset(); };
+  window.__tsPrev = () => { go(idx - 1); reset(); };
+  window.addEventListener('resize', update);
+  const wrap = document.getElementById('testi-slider');
+  if (wrap) { wrap.addEventListener('mouseenter', () => clearInterval(timer)); wrap.addEventListener('mouseleave', reset); }
+  update(); reset();
+}
