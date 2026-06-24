@@ -39,7 +39,22 @@ async function loadData() {
   await new Promise(r => setTimeout(r, 400));
   renderAll();
   hideLoading();
+  highlightNav();
+  // if arriving with a hash (e.g. /about#team), scroll to it after render
+  if (window.location.hash) {
+    const id = window.location.hash.slice(1);
+    setTimeout(() => navScroll(id), 200);
+  }
 }
+
+function highlightNav() {
+  const path = window.location.pathname.replace(/\/$/, '') || '/';
+  document.querySelectorAll('#nav .nav-links a[data-path], #menu-overlay a[data-path]').forEach(a => {
+    if (a.getAttribute('data-path') === path) a.classList.add('nav-active');
+    else a.classList.remove('nav-active');
+  });
+}
+
 
 function skelCards(n) {
   let s = '';
