@@ -3,137 +3,137 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pricing — Alevoor Technologies | Software & Development Packages</title>
-  <meta name="description" content="Explore Alevoor Technologies pricing — software development, web platforms, AI integration, and digital solutions for businesses." />
+  <title>Pricing — Alevoor Technologies</title>
+  <meta name="description" content="Transparent pricing for content management, courses, YouTube packages, and one-time services from Alevoor Technologies." />
+  <link rel="canonical" href="https://alevoortechnologies.lovable.app" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root { --teal:#0db88a; --teal-dark:#0a9e76; --teal-light:rgba(13,184,138,0.08); --purple:#7c3aed; --navy:#0d1b2a; --bg:#f8fafb; --text:#1a1a2e; --gray:#666; --light:#888; --border:#eee; }
-    html { scroll-behavior: smooth; }
-    body { font-family:'DM Sans',sans-serif; background:var(--bg); color:var(--text); }
-    h1,h2,h3,h4 { font-family:'Sora',sans-serif; }
-    a { text-decoration:none; color:inherit; }
-    img { max-width:100%; }
-    .container { max-width:1100px; margin:0 auto; padding:0 1.5rem; }
-    /* NAV */
-    nav { position:sticky; top:0; z-index:100; background:rgba(255,255,255,0.55); backdrop-filter:blur(22px) saturate(180%); -webkit-backdrop-filter:blur(22px) saturate(180%); border-bottom:1px solid rgba(255,255,255,0.35); box-shadow:0 6px 24px rgba(13,27,42,0.06); height:64px; display:flex; align-items:center; }
-    .nav-inner { display:flex; align-items:center; justify-content:space-between; width:100%; }
-    .nav-logo-img { height:42px; width:auto; display:block; }
-    .nav-back { background:var(--teal); color:#fff; border:none; padding:10px 20px; border-radius:50px; font-size:14px; font-weight:600; cursor:pointer; font-family:'DM Sans',sans-serif; transition:background .2s; }
-    .nav-back:hover { background:var(--teal-dark); }
-    /* HEADER */
-    .head { text-align:center; padding:70px 1.5rem 30px; background:linear-gradient(135deg,#e8fdf5,#f0ecff); }
-    .chip { display:inline-block; background:var(--teal-light); color:var(--teal); border:1px solid rgba(13,184,138,0.25); border-radius:100px; padding:5px 14px; font-size:12px; font-weight:500; margin-bottom:14px; }
-    .head h1 { font-size:clamp(2rem,4vw,2.8rem); font-weight:800; margin-bottom:10px; }
-    .head h1 span { color:var(--teal); }
-    .head p { color:var(--gray); font-size:15px; max-width:560px; margin:0 auto; }
-    /* TABS */
-    .pricing-tabs { display:flex; gap:8px; justify-content:center; flex-wrap:wrap; margin:40px 0; }
-    .pricing-tab { background:#fff; border:1px solid var(--border); border-radius:50px; padding:9px 20px; font-size:13px; font-weight:500; cursor:pointer; transition:all .2s; color:var(--gray); font-family:'DM Sans',sans-serif; }
-    .pricing-tab.active { background:var(--teal); color:#fff; border-color:var(--teal); }
-    .pricing-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:20px; padding-bottom:70px; }
-    .pricing-card { background:#fff; border:2px solid var(--border); border-radius:20px; padding:28px; position:relative; transition:all .25s; opacity:0; transform:translateY(20px); }
-    .pricing-card.in { opacity:1; transform:translateY(0); }
-    .pricing-card:hover { transform:translateY(-5px); box-shadow:0 14px 44px rgba(0,0,0,0.08); }
-    .pricing-card.popular { border-color:var(--teal); box-shadow:0 8px 40px rgba(13,184,138,0.15); }
-    .pricing-card.popular::before { content:'★ Most Popular'; position:absolute; top:-14px; left:50%; transform:translateX(-50%); background:var(--teal); color:#fff; font-size:12px; font-weight:600; padding:4px 16px; border-radius:50px; white-space:nowrap; }
-    .pricing-card.best::before { content:'★ Best Value'; position:absolute; top:-14px; left:50%; transform:translateX(-50%); background:var(--purple); color:#fff; font-size:12px; font-weight:600; padding:4px 16px; border-radius:50px; white-space:nowrap; }
-    .pricing-name { font-family:'Sora',sans-serif; font-weight:700; font-size:18px; margin-bottom:4px; }
-    .pricing-sub { font-size:12px; color:var(--light); margin-bottom:16px; }
-    .pricing-price { font-family:'Sora',sans-serif; font-weight:800; font-size:24px; color:var(--teal); margin-bottom:4px; }
-    .pricing-period { font-size:13px; font-weight:400; color:var(--light); }
-    .pricing-features { list-style:none; margin:16px 0; display:flex; flex-direction:column; gap:8px; }
-    .pricing-features li { font-size:13px; color:#555; display:flex; align-items:flex-start; gap:8px; }
-    .pricing-features li::before { content:'✓'; color:var(--teal); font-weight:700; flex-shrink:0; }
-    .btn-pricing { width:100%; padding:12px; border-radius:10px; font-size:14px; font-weight:600; cursor:pointer; transition:all .2s; margin-top:8px; font-family:'DM Sans',sans-serif; }
-    .btn-pricing-fill { background:var(--teal); color:#fff; border:none; }
-    .btn-pricing-fill:hover { background:var(--teal-dark); }
-    .btn-pricing-out { background:#fff; color:var(--text); border:2px solid var(--border); }
-    .btn-pricing-out:hover { border-color:var(--teal); color:var(--teal); }
-    .pricing-panel { display:none; }
-    .pricing-panel.active { display:block; }
-    footer { background:var(--navy); color:#aaa; text-align:center; padding:30px 1.5rem; font-size:13px; }
-    footer a { color:var(--teal); }
-  </style>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%230db88a'/%3E%3Ctext y='.9em' font-size='50' x='50%25' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='bold'%3EAT%3C/text%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="/site.css" />
 </head>
 <body>
-  <nav>
-    <div class="container nav-inner">
-      <a href="/"><img class="nav-logo-img" src="/assets/logo.png" alt="Alevoor Technologies" /></a>
-      <button class="nav-back" onclick="window.location.href='/'">← Back to Home</button>
+
+<div id="loading"><img class="loading-logo" src="/assets/logo.png" alt="Alevoor Technologies" /></div>
+
+<nav id="nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a class="nav-logo" href="/">
+        <img class="nav-logo-img" src="/assets/logo.png" alt="Alevoor Technologies" />
+      </a>
+      <div class="nav-links">
+        <a href="/" data-path="/">Home</a>
+        <a href="/about" data-path="/about">About Us</a>
+        <a href="/services" data-path="/services">Services</a>
+        <a href="/portfolio" data-path="/portfolio">Portfolio</a>
+        <a href="/pricing" data-path="/pricing">Pricing</a>
+        <a href="/contact" data-path="/contact">Contact</a>
+      </div>
+      <div class="nav-actions">
+        <a href="/contact" class="btn-primary" style="padding:9px 18px;font-size:14px">Get Started</a>
+        <button class="nav-icon-btn" onclick="toggleDark()" title="Toggle theme">☽</button>
+        <button class="nav-icon-btn nav-menu-btn" onclick="openMenu()" title="Menu">☰</button>
+      </div>
     </div>
-  </nav>
-
-  <div class="head">
-    <div class="chip">Development Packages</div>
-    <h1>Our <span>Pricing</span></h1>
-    <p>Choose the perfect package for your tech journey. Transparent pricing, no hidden fees.</p>
   </div>
+</nav>
 
+<div id="menu-overlay">
+  <div class="menu-nav">
+    <a class="nav-logo" href="/"><img class="nav-logo-img" src="/assets/logo.png" alt="Alevoor Technologies" /></a>
+    <button class="nav-icon-btn" onclick="closeMenu()">✕</button>
+  </div>
+  <a class="menu-link" href="/" data-path="/">Home</a>
+  <a class="menu-link" href="/about" data-path="/about">About Us</a>
+  <a class="menu-link" href="/services" data-path="/services">Services</a>
+  <a class="menu-link" href="/portfolio" data-path="/portfolio">Portfolio</a>
+  <a class="menu-link" href="/pricing" data-path="/pricing">Pricing</a>
+  <a class="menu-link" href="/contact" data-path="/contact">Contact</a>
+  <a class="menu-link admin-link" href="/admin">🔐 Admin Panel</a>
+  <a class="menu-cta" href="/contact" style="text-align:center;text-decoration:none;display:block">Book Free Consultation</a>
+</div>
+<div class="page-header"><div class="hero-blob hero-blob-1"></div><h1>Simple, Transparent <span class="accent">Pricing</span></h1><p>No hidden fees. No long-term contracts. Just results.</p><div class="crumb"><a href="/">Home</a> &rsaquo; Pricing</div></div>
+
+<section class="section">
   <div class="container">
     <div class="pricing-tabs">
-      <button class="pricing-tab active" onclick="switchTab('content',this)">Content Marketing</button>
-      <button class="pricing-tab" onclick="switchTab('courses',this)">Courses</button>
-      <button class="pricing-tab" onclick="switchTab('onetime',this)">One-Time Services</button>
+      <button class="pricing-tab active" onclick="switchTab('content',this)">📱 Content Management</button>
+      <button class="pricing-tab" onclick="switchTab('courses',this)">🎓 Courses</button>
+      <button class="pricing-tab" onclick="switchTab('yt',this)">▶ YouTube Packages</button>
+      <button class="pricing-tab" onclick="switchTab('onetime',this)">⚡ One-Time Services</button>
     </div>
     <div class="pricing-panel active" id="panel-content"></div>
     <div class="pricing-panel" id="panel-courses"></div>
+    <div class="pricing-panel" id="panel-yt"></div>
     <div class="pricing-panel" id="panel-onetime"></div>
   </div>
+</section>
 
-  <footer>
-    © 2026 Alevoor Technologies. All rights reserved. · <a href="/">Home</a>
-  </footer>
+<section id="faq" class="section" style="background:var(--white)">
+  <div class="container">
+    <div class="text-center">
+      <h2 class="section-title">Pricing <span class="accent">FAQs</span></h2>
+    </div>
+    <div class="faq-wrap" id="faq-list"></div>
+  </div>
+</section>
 
-  <script>
-    let DATA = {};
-    async function loadData() {
-      try { const res = await fetch('/data.json'); DATA = await res.json(); }
-      catch (e) { DATA = { pricing: { content: [], courses: [], onetime: [] } }; }
-      renderPricing();
-      animateIn();
-    }
-    function renderPricing() {
-      const p = DATA.pricing || { content: [], courses: [], onetime: [] };
-      document.getElementById('panel-content').innerHTML = '<div class="pricing-grid">' + (p.content || []).map(c => `
-        <div class="pricing-card ${c.popular ? 'popular' : ''}">
-          <div class="pricing-name">${c.name}</div>
-          <div class="pricing-sub">${c.subtitle || ''}</div>
-          <div class="pricing-price">${c.price}<span class="pricing-period">${c.period || ''}</span></div>
-          <ul class="pricing-features">${(c.features || []).map(f => `<li>${f}</li>`).join('')}</ul>
-          <button class="btn-pricing ${c.popular ? 'btn-pricing-fill' : 'btn-pricing-out'}" onclick="window.location.href='/#contact'">Get Started</button>
-        </div>`).join('') + '</div>';
-      const courses = p.courses || [];
-      document.getElementById('panel-courses').innerHTML = courses.length ? ('<div class="pricing-grid">' + courses.map(c => `
-        <div class="pricing-card ${c.best ? 'best' : ''}">
-          <div class="pricing-name">${c.name}</div>
-          <div class="pricing-sub">${c.subtitle || ''}</div>
-          <div class="pricing-price">${c.price}<span class="pricing-period"> ${c.period || ''}</span></div>
-          <ul class="pricing-features">${(c.features || []).map(f => `<li>${f}</li>`).join('')}</ul>
-          <button class="btn-pricing ${c.best ? 'btn-pricing-fill' : 'btn-pricing-out'}" onclick="window.location.href='/#contact'">Enroll Now</button>
-        </div>`).join('') + '</div>') : '<p style="text-align:center;color:var(--gray);padding:40px 0 70px">Courses coming soon — stay tuned!</p>';
-      document.getElementById('panel-onetime').innerHTML = '<div class="pricing-grid">' + (p.onetime || []).map(c => `
-        <div class="pricing-card ${c.best ? 'best' : ''}">
-          <div class="pricing-name">${c.name}</div>
-          <div class="pricing-price">${c.price}<span class="pricing-period"> one-time</span></div>
-          <p style="font-size:12px;color:#888;margin:10px 0 14px;line-height:1.6">${c.desc || ''}</p>
-          <ul class="pricing-features"><li>One-time setup</li><li>No monthly charges</li></ul>
-          <button class="btn-pricing ${c.best ? 'btn-pricing-fill' : 'btn-pricing-out'}" onclick="window.location.href='/#contact'">Get Started</button>
-        </div>`).join('') + '</div>';
-    }
-    function switchTab(tab, btn) {
-      document.querySelectorAll('.pricing-tab').forEach(t => t.classList.remove('active'));
-      document.querySelectorAll('.pricing-panel').forEach(p => p.classList.remove('active'));
-      btn.classList.add('active');
-      document.getElementById('panel-' + tab).classList.add('active');
-      animateIn();
-    }
-    function animateIn() {
-      const cards = document.querySelectorAll('.pricing-panel.active .pricing-card');
-      cards.forEach((c, i) => setTimeout(() => c.classList.add('in'), i * 70));
-    }
-    loadData();
-  </script>
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">Alevoor <span>Technologies</span></div>
+        <p class="footer-desc">A software company and digital growth agency from Karnataka, India. We build software, scale creators, and power businesses. 🌊 Rooted Strong. Flowing Forward.</p>
+        <div class="footer-contact">📞 <span id="footer-phone">+91 9483886270</span></div>
+        <div class="footer-contact">✉️ <span id="footer-email">alevoor@gmail.com</span></div>
+        <div class="footer-contact">📸 <span id="footer-insta">@alevoor</span></div>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <a class="footer-link" href="/">Home</a>
+        <a class="footer-link" href="/about">About Us</a>
+        <a class="footer-link" href="/services">Services</a>
+        <a class="footer-link" href="/portfolio">Portfolio</a>
+        <a class="footer-link" href="/pricing">Pricing</a>
+        <a class="footer-link" href="/contact">Contact</a>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <a class="footer-link" href="/services">Custom Software</a>
+        <a class="footer-link" href="/services">YouTube Management</a>
+        <a class="footer-link" href="/services">Instagram Growth</a>
+        <a class="footer-link" href="/services">Website Development</a>
+        <a class="footer-link" href="/services">Courses</a>
+      </div>
+      <div>
+        <h4>Ecosystem</h4>
+        <a class="footer-link" href="https://rrcreatorlab.in" target="_blank" rel="noopener" style="color:var(--teal)">🔗 RR Creator Lab — rrcreatorlab.in</a>
+        <span class="footer-link" style="cursor:default">Alevoor Technologies is the parent company of RR Creator Lab.</span>
+        <a class="footer-link" href="/admin" style="color:var(--teal)">🔐 Admin Panel</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 Alevoor Technologies Private Limited. All rights reserved.</p>
+      <p class="footer-disclaimer">Disclaimer: Alevoor Technologies provides software development, web, and AI integration services. Project outcomes depend on multiple factors including requirements, scope, and external dependencies. No guaranteed results are promised.</p>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/919483886270" target="_blank" rel="noopener" class="whatsapp-float" aria-label="Chat on WhatsApp">💬</a>
+<div id="video-modal" class="video-modal" onclick="closeVideo()">
+  <div class="video-modal-inner" onclick="event.stopPropagation()">
+    <button class="video-close" onclick="closeVideo()" aria-label="Close">✕</button>
+    <div class="video-frame" id="video-frame"><div class="video-soon">🎬<br>Founder introduction video<br>coming soon!</div></div>
+  </div>
+</div>
+<div id="gallery-lightbox" class="gallery-lightbox" onclick="closeLightbox()">
+  <div class="gallery-lightbox-inner" onclick="event.stopPropagation()">
+    <button class="video-close" onclick="closeLightbox()" aria-label="Close">✕</button>
+    <div id="lightbox-content"></div>
+  </div>
+</div>
+<div id="toast">✅ Message sent! We'll get back to you within 24 hours.</div>
+
+<script src="/site.js"></script>
 </body>
 </html>

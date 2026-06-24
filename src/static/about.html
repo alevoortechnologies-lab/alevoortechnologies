@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us — Alevoor Technologies</title>
+  <meta name="description" content="Learn about Alevoor Technologies — our mission, vision, values, founder Rishabh Alevoor, team, and the RR Creator Lab ecosystem." />
+  <link rel="canonical" href="https://alevoortechnologies.lovable.app" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%230db88a'/%3E%3Ctext y='.9em' font-size='50' x='50%25' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='bold'%3EAT%3C/text%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="/site.css" />
+</head>
+<body>
+
+<div id="loading"><img class="loading-logo" src="/assets/logo.png" alt="Alevoor Technologies" /></div>
+
+<nav id="nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a class="nav-logo" href="/">
+        <img class="nav-logo-img" src="/assets/logo.png" alt="Alevoor Technologies" />
+      </a>
+      <div class="nav-links">
+        <a href="/" data-path="/">Home</a>
+        <a href="/about" data-path="/about">About Us</a>
+        <a href="/services" data-path="/services">Services</a>
+        <a href="/portfolio" data-path="/portfolio">Portfolio</a>
+        <a href="/pricing" data-path="/pricing">Pricing</a>
+        <a href="/contact" data-path="/contact">Contact</a>
+      </div>
+      <div class="nav-actions">
+        <a href="/contact" class="btn-primary" style="padding:9px 18px;font-size:14px">Get Started</a>
+        <button class="nav-icon-btn" onclick="toggleDark()" title="Toggle theme">☽</button>
+        <button class="nav-icon-btn nav-menu-btn" onclick="openMenu()" title="Menu">☰</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div id="menu-overlay">
+  <div class="menu-nav">
+    <a class="nav-logo" href="/"><img class="nav-logo-img" src="/assets/logo.png" alt="Alevoor Technologies" /></a>
+    <button class="nav-icon-btn" onclick="closeMenu()">✕</button>
+  </div>
+  <a class="menu-link" href="/" data-path="/">Home</a>
+  <a class="menu-link" href="/about" data-path="/about">About Us</a>
+  <a class="menu-link" href="/services" data-path="/services">Services</a>
+  <a class="menu-link" href="/portfolio" data-path="/portfolio">Portfolio</a>
+  <a class="menu-link" href="/pricing" data-path="/pricing">Pricing</a>
+  <a class="menu-link" href="/contact" data-path="/contact">Contact</a>
+  <a class="menu-link admin-link" href="/admin">🔐 Admin Panel</a>
+  <a class="menu-cta" href="/contact" style="text-align:center;text-decoration:none;display:block">Book Free Consultation</a>
+</div>
+<div class="page-header"><div class="hero-blob hero-blob-1"></div><h1>About <span class="accent">Alevoor Technologies</span></h1><p>From coastal Karnataka to the digital world — here's our story.</p><div class="crumb"><a href="/">Home</a> &rsaquo; About Us</div></div>
+
+<section id="about" class="section about-section">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-card about-teal fade-up">
+        <div class="about-card-icon">🎯</div>
+        <h3>Our Mission</h3>
+        <p>To democratize digital growth — making world-class software and content strategy accessible to every creator and business in India.</p>
+      </div>
+      <div class="about-card about-purple fade-up">
+        <div class="about-card-icon">🔭</div>
+        <h3>Our Vision</h3>
+        <p>To become India's most trusted technology + digital growth company — from Karnataka to the world.</p>
+      </div>
+      <div class="about-card about-coral fade-up">
+        <div class="about-card-icon">🌊</div>
+        <h3>Our Values</h3>
+        <ul class="about-values-list">
+          <li>🌊 Wave-Driven Growth</li>
+          <li>❤️ Creator-First Always</li>
+          <li>📊 Data Over Guesswork</li>
+          <li>🤝 Radical Transparency</li>
+          <li>🔁 Consistent Execution</li>
+        </ul>
+      </div>
+      <div class="about-card about-navy fade-up">
+        <div class="about-card-icon">📈</div>
+        <h3>Our Impact</h3>
+        <div class="about-impact-grid">
+          <div><div class="about-impact-val">50+</div><div class="about-impact-label">YouTube Channels</div></div>
+          <div><div class="about-impact-val">10M+</div><div class="about-impact-label">Reach Generated</div></div>
+          <div><div class="about-impact-val">100+</div><div class="about-impact-label">Happy Clients</div></div>
+          <div><div class="about-impact-val">3x</div><div class="about-impact-label">Average Growth</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="founder" class="section" style="background:linear-gradient(135deg,#f0ecff,#e8fdf5)">
+  <div class="container">
+    <div class="text-center" style="margin-bottom:40px">
+      <div class="chip">Meet the Founder</div>
+      <h2 class="section-title">Rishabh <span class="accent">Alevoor</span></h2>
+    </div>
+    <div class="founder-grid">
+      <div class="fade-up">
+        <div class="founder-frame">
+          <img class="founder-photo" src="/assets/founder.jpg" alt="Rishabh Alevoor, Founder & CEO of Alevoor Technologies" />
+          <div class="founder-watch-badge" onclick="openVideo()">▶ Watch Introduction</div>
+          <div class="founder-play-ring"></div>
+          <button class="founder-play" onclick="openVideo()" aria-label="Play founder introduction video"></button>
+        </div>
+        <div class="founder-name-card">
+          <div class="founder-name" id="founder-name">Rishabh Alevoor</div>
+          <div class="founder-role" id="founder-role">Founder &amp; CEO, Alevoor Technologies</div>
+        </div>
+      </div>
+      <div class="fade-up">
+        <p style="font-size:14px;color:var(--gray);line-height:1.8;margin-bottom:16px">Born and raised with roots in Alevoor, coastal Karnataka — a place where the ocean waves never stop moving — Rishabh built a vision around momentum that builds on itself.</p>
+        <p style="font-size:14px;color:var(--gray);line-height:1.8;margin-bottom:16px">He built Alevoor Technologies to bridge the gap between world-class technology and accessible digital growth — delivering software, content, and marketing that helps creators and businesses scale.</p>
+        <div class="founder-values">
+          <div class="founder-value"><div class="founder-value-icon">🏆</div><div><div class="founder-value-title">100+ Clients</div></div></div>
+          <div class="founder-value"><div class="founder-value-icon">📱</div><div><div class="founder-value-title">50+ YouTube Channels</div></div></div>
+          <div class="founder-value"><div class="founder-value-icon">🌍</div><div><div class="founder-value-title">Pan-India</div></div></div>
+        </div>
+        <div class="founder-quote">"The name Alevoor means waves. And just like waves — we create momentum that builds on itself, carries creators forward, and never truly stops."</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section ecosystem-section">
+  <div class="container">
+    <div class="text-center" style="margin-bottom:40px">
+      <h2 class="section-title">The Alevoor <span class="accent">Ecosystem</span></h2>
+      <p class="section-sub">One parent company. Multiple brands. One mission.</p>
+    </div>
+    <div class="ecosystem-grid">
+      <div class="ecosystem-card eco-teal fade-up">
+        <div class="eco-badge eco-badge-teal">PARENT COMPANY</div>
+        <div class="eco-logo eco-logo-grad">AT</div>
+        <h3>Alevoor Technologies</h3>
+        <div class="eco-type">Software + Digital Growth Company</div>
+        <p>Full-service technology and digital growth company offering software development, content management, digital marketing, and educational courses.</p>
+        <div class="eco-tags"><span>Software</span><span>Content</span><span>Marketing</span><span>Courses</span></div>
+      </div>
+      <div class="ecosystem-card eco-purple fade-up">
+        <div class="eco-badge eco-badge-purple">SISTER BRAND</div>
+        <div class="eco-logo eco-logo-dark">RR</div>
+        <h3>RR Creator Lab</h3>
+        <a href="https://rrcreatorlab.in" target="_blank" rel="noopener" class="eco-web">rrcreatorlab.in</a>
+        <div class="eco-type">YouTube &amp; Instagram Growth Studio</div>
+        <p>Specialized brand focused exclusively on YouTube and Instagram growth for content creators — editing, posting, analytics, and channel optimization.</p>
+        <div class="eco-tags"><span>YouTube</span><span>Instagram</span><span>Editing</span><span>Analytics</span></div>
+        <a href="https://rrcreatorlab.in" target="_blank" rel="noopener" class="btn-outline eco-visit">Visit RR Creator Lab →</a>
+      </div>
+    </div>
+    <p class="text-center eco-note">Alevoor Technologies is the parent unit of RR Creator Lab. Both share the same team, values, and mission.</p>
+  </div>
+</section>
+
+<section id="process" class="section">
+  <div class="container">
+    <div class="text-center">
+      <div class="chip">How We Work</div>
+      <h2 class="section-title">Our <span class="accent">Process</span></h2>
+      <p class="section-sub">A simple, transparent process designed to deliver consistent results.</p>
+    </div>
+    <div class="process-list fade-up" id="process-list"></div>
+  </div>
+</section>
+
+<section id="whyus" class="section">
+  <div class="container">
+    <div class="why-grid">
+      <div class="why-left fade-up">
+        <div class="chip">Why Choose Us</div>
+        <h2>Why <span>Alevoor Technologies?</span></h2>
+        <p>We architect scalable digital solutions through clean code and smart engineering. Like waves from our coastal Karnataka roots — we build technology that never stops evolving.</p>
+        <div class="why-quote">"We don't just manage projects — we engineer ecosystems and help businesses scale. Rooted Strong. Flowing Forward."</div>
+      </div>
+      <div class="why-cards fade-up" id="why-cards"></div>
+    </div>
+  </div>
+</section>
+
+<section id="team" class="section">
+  <div class="container">
+    <div class="text-center">
+      <div class="chip">Our Team</div>
+      <h2 class="section-title">Meet the <span class="accent2">Creative Minds</span></h2>
+      <p class="section-sub">The people behind the momentum — editors, strategists and builders.</p>
+    </div>
+    <div class="team-grid fade-up stagger" id="team-grid"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">Alevoor <span>Technologies</span></div>
+        <p class="footer-desc">A software company and digital growth agency from Karnataka, India. We build software, scale creators, and power businesses. 🌊 Rooted Strong. Flowing Forward.</p>
+        <div class="footer-contact">📞 <span id="footer-phone">+91 9483886270</span></div>
+        <div class="footer-contact">✉️ <span id="footer-email">alevoor@gmail.com</span></div>
+        <div class="footer-contact">📸 <span id="footer-insta">@alevoor</span></div>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <a class="footer-link" href="/">Home</a>
+        <a class="footer-link" href="/about">About Us</a>
+        <a class="footer-link" href="/services">Services</a>
+        <a class="footer-link" href="/portfolio">Portfolio</a>
+        <a class="footer-link" href="/pricing">Pricing</a>
+        <a class="footer-link" href="/contact">Contact</a>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <a class="footer-link" href="/services">Custom Software</a>
+        <a class="footer-link" href="/services">YouTube Management</a>
+        <a class="footer-link" href="/services">Instagram Growth</a>
+        <a class="footer-link" href="/services">Website Development</a>
+        <a class="footer-link" href="/services">Courses</a>
+      </div>
+      <div>
+        <h4>Ecosystem</h4>
+        <a class="footer-link" href="https://rrcreatorlab.in" target="_blank" rel="noopener" style="color:var(--teal)">🔗 RR Creator Lab — rrcreatorlab.in</a>
+        <span class="footer-link" style="cursor:default">Alevoor Technologies is the parent company of RR Creator Lab.</span>
+        <a class="footer-link" href="/admin" style="color:var(--teal)">🔐 Admin Panel</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 Alevoor Technologies Private Limited. All rights reserved.</p>
+      <p class="footer-disclaimer">Disclaimer: Alevoor Technologies provides software development, web, and AI integration services. Project outcomes depend on multiple factors including requirements, scope, and external dependencies. No guaranteed results are promised.</p>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/919483886270" target="_blank" rel="noopener" class="whatsapp-float" aria-label="Chat on WhatsApp">💬</a>
+<div id="video-modal" class="video-modal" onclick="closeVideo()">
+  <div class="video-modal-inner" onclick="event.stopPropagation()">
+    <button class="video-close" onclick="closeVideo()" aria-label="Close">✕</button>
+    <div class="video-frame" id="video-frame"><div class="video-soon">🎬<br>Founder introduction video<br>coming soon!</div></div>
+  </div>
+</div>
+<div id="gallery-lightbox" class="gallery-lightbox" onclick="closeLightbox()">
+  <div class="gallery-lightbox-inner" onclick="event.stopPropagation()">
+    <button class="video-close" onclick="closeLightbox()" aria-label="Close">✕</button>
+    <div id="lightbox-content"></div>
+  </div>
+</div>
+<div id="toast">✅ Message sent! We'll get back to you within 24 hours.</div>
+
+<script src="/site.js"></script>
+</body>
+</html>
