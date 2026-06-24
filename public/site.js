@@ -283,33 +283,45 @@ function renderTestimonials() {
 
 function renderPricing() {
   if (!DATA.pricing) return;
+  const P = DATA.pricing;
+  const setHTML = (id, html) => { const el = document.getElementById(id); if (el) el.innerHTML = html; };
   // Content Marketing
-  document.getElementById('panel-content').innerHTML = `<div class="pricing-grid">${DATA.pricing.content.map(p => `
+  setHTML('panel-content', `<div class="pricing-grid">${(P.content||[]).map(p => `
     <div class="pricing-card ${p.popular?'popular':''}">
       <div class="pricing-name">${p.name}</div>
-      <div class="pricing-sub">${p.subtitle}</div>
-      <div class="pricing-price">${p.price}<span class="pricing-period">${p.period}</span></div>
-      <ul class="pricing-features">${p.features.map(f=>`<li>${f}</li>`).join('')}</ul>
+      <div class="pricing-sub">${p.subtitle||''}</div>
+      <div class="pricing-price">${p.price}<span class="pricing-period">${p.period||''}</span></div>
+      <ul class="pricing-features">${(p.features||[]).map(f=>`<li>${f}</li>`).join('')}</ul>
       <button class="btn-pricing ${p.popular?'btn-pricing-fill':'btn-pricing-out'}" onclick="navScroll('contact')">Get Started</button>
-    </div>`).join('')}</div>`;
-  // YT
-  document.getElementById('panel-yt').innerHTML = `<div class="pricing-grid">${DATA.pricing.yt.map(p => `
+    </div>`).join('')}</div>`);
+  // Courses
+  setHTML('panel-courses', `<div class="pricing-grid">${(P.courses||[]).map(p => `
     <div class="pricing-card ${p.best?'best':''}">
       <div class="pricing-name">${p.name}</div>
-      <div class="pricing-price" style="color:#e67e22">${p.price}<span class="pricing-period" style="font-size:13px;color:#aaa"> ${p.period}</span></div>
-      <ul class="pricing-features">${p.features.map(f=>`<li>${f}</li>`).join('')}</ul>
+      <div class="pricing-sub">${p.subtitle||''}</div>
+      <div class="pricing-price">${p.price}<span class="pricing-period"> ${p.period||''}</span></div>
+      <ul class="pricing-features">${(p.features||[]).map(f=>`<li>${f}</li>`).join('')}</ul>
+      <button class="btn-pricing ${p.best?'btn-pricing-fill':'btn-pricing-out'}" onclick="navScroll('contact')">Enroll Now</button>
+    </div>`).join('')}</div>`);
+  // YT
+  setHTML('panel-yt', `<div class="pricing-grid">${(P.yt||[]).map(p => `
+    <div class="pricing-card ${p.best?'best':''}">
+      <div class="pricing-name">${p.name}</div>
+      <div class="pricing-price" style="color:#e67e22">${p.price}<span class="pricing-period" style="font-size:13px;color:#aaa"> ${p.period||''}</span></div>
+      <ul class="pricing-features">${(p.features||[]).map(f=>`<li>${f}</li>`).join('')}</ul>
       <button class="btn-pricing ${p.best?'btn-pricing-fill':'btn-pricing-out'}" style="${p.best?'background:#e67e22;border:none':''}" onclick="navScroll('contact')">Get Started</button>
-    </div>`).join('')}</div>`;
+    </div>`).join('')}</div>`);
   // One Time
-  document.getElementById('panel-onetime').innerHTML = `<div class="pricing-grid">${DATA.pricing.onetime.map(p => `
+  setHTML('panel-onetime', `<div class="pricing-grid">${(P.onetime||[]).map(p => `
     <div class="pricing-card ${p.best?'best':''}">
       <div class="pricing-name">${p.name}</div>
       <div class="pricing-price">${p.price}<span class="pricing-period"> one-time</span></div>
-      <p style="font-size:12px;color:#888;margin:10px 0 14px;line-height:1.6">${p.desc}</p>
+      <p style="font-size:12px;color:#888;margin:10px 0 14px;line-height:1.6">${p.desc||''}</p>
       <ul class="pricing-features"><li>One-time setup</li><li>No monthly charges</li></ul>
       <button class="btn-pricing ${p.best?'btn-pricing-fill':'btn-pricing-out'}" onclick="navScroll('contact')">Get Started</button>
-    </div>`).join('')}</div>`;
+    </div>`).join('')}</div>`);
 }
+
 
 function renderPortfolio() {
   const el = document.getElementById('portfolio-grid');
