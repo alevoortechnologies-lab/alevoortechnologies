@@ -384,10 +384,13 @@ function renderContact() {
     const el = document.getElementById(id);
     if (el) el.textContent = val;
   });
-  // WhatsApp link
-  document.getElementById('c-whatsapp').onclick = () => window.open(`https://wa.me/${b.phone.replace(/\D/g,'')}`, '_blank');
-  document.getElementById('c-email').onclick = () => window.open(`mailto:${b.email}`, '_blank');
-  document.getElementById('c-insta').onclick = () => window.open(`https://instagram.com/${b.instagram.replace('@','')}`, '_blank');
+  // WhatsApp / email / instagram links (only present on contact page)
+  const cw = document.getElementById('c-whatsapp');
+  if (cw) cw.onclick = () => window.open(`https://wa.me/${b.phone.replace(/\D/g,'')}`, '_blank');
+  const ce = document.getElementById('c-email');
+  if (ce) ce.onclick = () => window.open(`mailto:${b.email}`, '_blank');
+  const ci = document.getElementById('c-insta');
+  if (ci) ci.onclick = () => window.open(`https://instagram.com/${b.instagram.replace('@','')}`, '_blank');
 }
 
 // ─── UI FUNCTIONS ─────────────────────────────────────────────────────────
