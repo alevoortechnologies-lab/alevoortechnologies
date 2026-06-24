@@ -585,3 +585,5 @@
 .fq-text { font-family:'Sora',sans-serif; font-style:italic; font-size:clamp(1.1rem,2.2vw,1.5rem); line-height:1.5; color:var(--text); margin:10px 0 18px; }
 .fq-by { color:var(--teal); font-weight:600; }
 @media (max-width:768px){ .fq-grid { grid-template-columns:1fr; } }
+.services-grid.teaser .service-card:nth-child(n+7){ display:none; }
+.section-title.left{ text-align:left; }
