@@ -85,7 +85,7 @@ function renderAll() {
   renderStats();
   renderMarquee();
   renderServices();
-  renderCourses();
+  
   renderProcess();
   renderWhyUs();
   renderPortfolio();
