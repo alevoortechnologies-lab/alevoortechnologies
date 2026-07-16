@@ -273,23 +273,6 @@ function renderPricing() {
       <ul class="pricing-features">${(p.features||[]).map(f=>`<li>${f}</li>`).join('')}</ul>
       <button class="btn-pricing ${p.popular?'btn-pricing-fill':'btn-pricing-out'}" onclick="navScroll('contact')">Get Started</button>
     </div>`).join('')}</div>`);
-  // Courses
-  setHTML('panel-courses', `<div class="pricing-grid">${(P.courses||[]).map(p => `
-    <div class="pricing-card ${p.best?'best':''}">
-      <div class="pricing-name">${p.name}</div>
-      <div class="pricing-sub">${p.subtitle||''}</div>
-      <div class="pricing-price">${p.price}<span class="pricing-period"> ${p.period||''}</span></div>
-      <ul class="pricing-features">${(p.features||[]).map(f=>`<li>${f}</li>`).join('')}</ul>
-      <button class="btn-pricing ${p.best?'btn-pricing-fill':'btn-pricing-out'}" onclick="navScroll('contact')">Enroll Now</button>
-    </div>`).join('')}</div>`);
-  // YT
-  setHTML('panel-yt', `<div class="pricing-grid">${(P.yt||[]).map(p => `
-    <div class="pricing-card ${p.best?'best':''}">
-      <div class="pricing-name">${p.name}</div>
-      <div class="pricing-price" style="color:#e67e22">${p.price}<span class="pricing-period" style="font-size:13px;color:#aaa"> ${p.period||''}</span></div>
-      <ul class="pricing-features">${(p.features||[]).map(f=>`<li>${f}</li>`).join('')}</ul>
-      <button class="btn-pricing ${p.best?'btn-pricing-fill':'btn-pricing-out'}" style="${p.best?'background:#e67e22;border:none':''}" onclick="navScroll('contact')">Get Started</button>
-    </div>`).join('')}</div>`);
   // One Time
   setHTML('panel-onetime', `<div class="pricing-grid">${(P.onetime||[]).map(p => `
     <div class="pricing-card ${p.best?'best':''}">
