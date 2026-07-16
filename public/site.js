@@ -299,6 +299,15 @@ function renderPricing() {
       <ul class="pricing-features">${(p.features||[]).map(f=>`<li>${f}</li>`).join('')}</ul>
       <button class="btn-pricing ${p.popular?'btn-pricing-fill':'btn-pricing-out'}" onclick="navScroll('contact')">Get Started</button>
     </div>`).join('')}</div>`);
+  // App Development
+  setHTML('panel-app', `<div class="pricing-grid">${(P.app||[]).map(p => `
+    <div class="pricing-card ${p.popular?'popular':''}">
+      <div class="pricing-name">${p.name}</div>
+      <div class="pricing-sub">${p.subtitle||''}</div>
+      <div class="pricing-price">${p.price}<span class="pricing-period"> ${p.period||''}</span></div>
+      <ul class="pricing-features">${(p.features||[]).map(f=>`<li>${f}</li>`).join('')}</ul>
+      <button class="btn-pricing ${p.popular?'btn-pricing-fill':'btn-pricing-out'}" onclick="navScroll('contact')">Get Started</button>
+    </div>`).join('')}</div>`);
   // Courses
   setHTML('panel-courses', `<div class="pricing-grid">${(P.courses||[]).map(p => `
     <div class="pricing-card ${p.best?'best':''}">
