@@ -146,41 +146,6 @@ function filterServices(cat, btn) {
   });
 }
 
-function courseCardHTML(c){
-  const prices = c.pricing.map(p => `<div class="course-price-box"><div class="course-price-label">${p.label}</div><div class="course-price-val">${p.price}</div></div>`).join('');
-  const feats = c.features.map(f => `<li>${f}</li>`).join('');
-  return `<div class="course-card ${c.popular?'popular':''}">
-    ${c.popular?'<div class="pop-badge">Most Popular</div>':''}
-    <div class="course-card-head">
-      <div class="course-card-icon" style="background:${c.iconBg}">${c.icon}</div>
-      <div><div class="course-card-name">${c.name}</div><div class="course-card-dur">Duration: ${c.duration}</div></div>
-    </div>
-    <div class="course-price-row">${prices}</div>
-    <ul class="course-feat">${feats}</ul>
-    <button class="course-cta" onclick="navScroll('contact')">${c.cta}</button>
-  </div>`;
-}
-function renderCourses() {
-  if (!DATA.courses) return;
-  const prev = document.getElementById('course-preview');
-  if (prev) prev.innerHTML = DATA.courses.map(c => `
-    <div class="course-preview-card" onclick="openCourseDetail()">
-      <div class="course-icon" style="background:${c.iconBg}">${c.icon}</div>
-      <div class="course-preview-name">${c.name}</div>
-    </div>`).join('');
-  const grid = document.getElementById('course-detail-grid');
-  if (grid) grid.innerHTML = DATA.courses.map(courseCardHTML).join('');
-}
-function toggleCourseDetail(){
-  const d = document.getElementById('course-detail');
-  d.classList.toggle('open');
-  if (d.classList.contains('open')) d.scrollIntoView({behavior:'smooth', block:'start'});
-}
-function openCourseDetail(){
-  const d = document.getElementById('course-detail');
-  if (!d.classList.contains('open')) d.classList.add('open');
-  d.scrollIntoView({behavior:'smooth', block:'start'});
-}
 
 function switchPortfolio(tab){
   const isCase = tab === 'case';
