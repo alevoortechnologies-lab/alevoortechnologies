@@ -56,6 +56,11 @@
       "desc": "Modern, responsive websites built for performance and conversions."
     },
     {
+      "icon": "📲",
+      "name": "App Development",
+      "desc": "Android & iOS apps — from template-based MVPs to fully custom business platforms."
+    },
+    {
       "icon": "🔍",
       "name": "SEO Optimisation",
       "desc": "Data-driven SEO to rank higher and attract organic traffic."
@@ -399,7 +404,57 @@
         "desc": "Professional account management."
       }
     ],
-    "courses": []
+    "courses": [],
+    "app": [
+      {
+        "name": "Starter / Template Range",
+        "subtitle": "Pre-built templates (CodeCanyon clones)",
+        "price": "₹35,000 – ₹75,000",
+        "period": "one-time",
+        "popular": false,
+        "features": [
+          "Development: Pre-built templates (CodeCanyon clones)",
+          "Design & UI/UX: Template skinning (change logos, colors, text)",
+          "Platforms: Mostly Android-focused (iOS costs extra setup)",
+          "User Management: Standard email login or simple template login",
+          "Payments: Standard single gateway (UPI or basic Razorpay)",
+          "Screens: 3–5 pre-fixed structural screens",
+          "Future Modifications: Very hard; changing code breaks the template"
+        ]
+      },
+      {
+        "name": "Semi-Custom MVP Range",
+        "subtitle": "Light custom code + ready-made backend blocks",
+        "price": "₹75,000 – ₹20,00,000",
+        "period": "one-time",
+        "popular": true,
+        "features": [
+          "Development: Light custom code + ready-made backend blocks",
+          "Design & UI/UX: Semi-custom branding with clean, modern layout",
+          "Platforms: Both Android and iOS (Hybrid via Flutter/React Native)",
+          "User Management: Secure Mobile OTP (Firebase) or Google Login",
+          "Payments: Smooth localized gateway integration with refunds",
+          "Screens: 5–8 custom screens",
+          "Future Modifications: Moderate; structured modular code allows expansion"
+        ]
+      },
+      {
+        "name": "Fully Custom Business Range",
+        "subtitle": "Built from scratch by pro freelancers or small agencies",
+        "price": "₹20,00,000 – ₹50,00,000",
+        "period": "one-time",
+        "popular": false,
+        "features": [
+          "Development: Built from scratch by pro freelancers or small agencies",
+          "Design & UI/UX: 100% custom UI/UX designed specifically for your brand",
+          "Platforms: Highly optimized Android and iOS + Web Admin Panel",
+          "User Management: Multi-role logins (Customer, Delivery, Admin)",
+          "Payments: Multi-vendor payouts, wallets, or automated invoicing",
+          "Screens: 8–15+ complex screens and deep workflows",
+          "Future Modifications: Highly scalable; easy to add complex features later"
+        ]
+      }
+    ]
   },
   "portfolio": [
     {
