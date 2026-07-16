@@ -356,7 +356,7 @@ function renderContact() {
 // ─── UI FUNCTIONS ─────────────────────────────────────────────────────────
 const SECTION_PAGE = {
   hero: '/', home: '/',
-  services: '/services', courses: '/services',
+  services: '/services',
   about: '/about', founder: '/about', team: '/about', process: '/about', whyus: '/about', ecosystem: '/about',
   portfolio: '/portfolio', gallery: '/portfolio',
   pricing: '/pricing',
