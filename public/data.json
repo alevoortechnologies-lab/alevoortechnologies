@@ -283,41 +283,6 @@
         ]
       }
     ],
-    "yt": [
-      {
-        "name": "YT Complete Teaching",
-        "price": "₹2,999",
-        "period": "one-time",
-        "best": false,
-        "features": [
-          "2-hour comprehensive webinar",
-          "1-on-1 strategy call (30 mins)",
-          "Lifetime access to recordings"
-        ]
-      },
-      {
-        "name": "Toolkit (6 Months)",
-        "price": "₹2,499",
-        "period": "for 6 months",
-        "best": false,
-        "features": [
-          "Content calendar templates",
-          "Script writing frameworks",
-          "6 months of updates"
-        ]
-      },
-      {
-        "name": "Toolkit (Yearly)",
-        "price": "₹3,999",
-        "period": "per year",
-        "best": true,
-        "features": [
-          "Everything in 6-month plan",
-          "Full year of updates",
-          "Priority support"
-        ]
-      }
-    ],
     "onetime": [
       {
         "name": "Website Creation",
