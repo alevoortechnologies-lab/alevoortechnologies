@@ -31,7 +31,7 @@ async function loadData() {
     DATA = {
       brand: { name:"Alevoor Technologies", phone:"+91 9483886270", email:"alevoor@gmail.com", instagram:"@alevoor", founderName:"Rishabh Alevoor", founderTitle:"Founder & CEO, Alevoor Technologies" },
       stats: [{value:"50+",label:"YouTube Managed"},{value:"10M+",label:"Insta Growth"},{value:"100+",label:"Happy Creators"},{value:"3x",label:"Avg. Growth"}],
-      services: [],process:[],whyUs:[],testimonials:[],pricing:{content:[],yt:[],onetime:[]},portfolio:[],team:[],faqs:[]
+      services: [],process:[],whyUs:[],testimonials:[],pricing:{content:[],app:[],onetime:[]},portfolio:[],team:[],faqs:[]
     };
   }
 
@@ -85,7 +85,7 @@ function renderAll() {
   renderStats();
   renderMarquee();
   renderServices();
-  renderCourses();
+  
   renderProcess();
   renderWhyUs();
   renderPortfolio();
@@ -146,41 +146,6 @@ function filterServices(cat, btn) {
   });
 }
 
-function courseCardHTML(c){
-  const prices = c.pricing.map(p => `<div class="course-price-box"><div class="course-price-label">${p.label}</div><div class="course-price-val">${p.price}</div></div>`).join('');
-  const feats = c.features.map(f => `<li>${f}</li>`).join('');
-  return `<div class="course-card ${c.popular?'popular':''}">
-    ${c.popular?'<div class="pop-badge">Most Popular</div>':''}
-    <div class="course-card-head">
-      <div class="course-card-icon" style="background:${c.iconBg}">${c.icon}</div>
-      <div><div class="course-card-name">${c.name}</div><div class="course-card-dur">Duration: ${c.duration}</div></div>
-    </div>
-    <div class="course-price-row">${prices}</div>
-    <ul class="course-feat">${feats}</ul>
-    <button class="course-cta" onclick="navScroll('contact')">${c.cta}</button>
-  </div>`;
-}
-function renderCourses() {
-  if (!DATA.courses) return;
-  const prev = document.getElementById('course-preview');
-  if (prev) prev.innerHTML = DATA.courses.map(c => `
-    <div class="course-preview-card" onclick="openCourseDetail()">
-      <div class="course-icon" style="background:${c.iconBg}">${c.icon}</div>
-      <div class="course-preview-name">${c.name}</div>
-    </div>`).join('');
-  const grid = document.getElementById('course-detail-grid');
-  if (grid) grid.innerHTML = DATA.courses.map(courseCardHTML).join('');
-}
-function toggleCourseDetail(){
-  const d = document.getElementById('course-detail');
-  d.classList.toggle('open');
-  if (d.classList.contains('open')) d.scrollIntoView({behavior:'smooth', block:'start'});
-}
-function openCourseDetail(){
-  const d = document.getElementById('course-detail');
-  if (!d.classList.contains('open')) d.classList.add('open');
-  d.scrollIntoView({behavior:'smooth', block:'start'});
-}
 
 function switchPortfolio(tab){
   const isCase = tab === 'case';
@@ -308,23 +273,6 @@ function renderPricing() {
       <ul class="pricing-features">${(p.features||[]).map(f=>`<li>${f}</li>`).join('')}</ul>
       <button class="btn-pricing ${p.popular?'btn-pricing-fill':'btn-pricing-out'}" onclick="navScroll('contact')">Get Started</button>
     </div>`).join('')}</div>`);
-  // Courses
-  setHTML('panel-courses', `<div class="pricing-grid">${(P.courses||[]).map(p => `
-    <div class="pricing-card ${p.best?'best':''}">
-      <div class="pricing-name">${p.name}</div>
-      <div class="pricing-sub">${p.subtitle||''}</div>
-      <div class="pricing-price">${p.price}<span class="pricing-period"> ${p.period||''}</span></div>
-      <ul class="pricing-features">${(p.features||[]).map(f=>`<li>${f}</li>`).join('')}</ul>
-      <button class="btn-pricing ${p.best?'btn-pricing-fill':'btn-pricing-out'}" onclick="navScroll('contact')">Enroll Now</button>
-    </div>`).join('')}</div>`);
-  // YT
-  setHTML('panel-yt', `<div class="pricing-grid">${(P.yt||[]).map(p => `
-    <div class="pricing-card ${p.best?'best':''}">
-      <div class="pricing-name">${p.name}</div>
-      <div class="pricing-price" style="color:#e67e22">${p.price}<span class="pricing-period" style="font-size:13px;color:#aaa"> ${p.period||''}</span></div>
-      <ul class="pricing-features">${(p.features||[]).map(f=>`<li>${f}</li>`).join('')}</ul>
-      <button class="btn-pricing ${p.best?'btn-pricing-fill':'btn-pricing-out'}" style="${p.best?'background:#e67e22;border:none':''}" onclick="navScroll('contact')">Get Started</button>
-    </div>`).join('')}</div>`);
   // One Time
   setHTML('panel-onetime', `<div class="pricing-grid">${(P.onetime||[]).map(p => `
     <div class="pricing-card ${p.best?'best':''}">
@@ -408,7 +356,7 @@ function renderContact() {
 // ─── UI FUNCTIONS ─────────────────────────────────────────────────────────
 const SECTION_PAGE = {
   hero: '/', home: '/',
-  services: '/services', courses: '/services',
+  services: '/services',
   about: '/about', founder: '/about', team: '/about', process: '/about', whyus: '/about', ecosystem: '/about',
   portfolio: '/portfolio', gallery: '/portfolio',
   pricing: '/pricing',
