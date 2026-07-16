@@ -31,7 +31,7 @@ async function loadData() {
     DATA = {
       brand: { name:"Alevoor Technologies", phone:"+91 9483886270", email:"alevoor@gmail.com", instagram:"@alevoor", founderName:"Rishabh Alevoor", founderTitle:"Founder & CEO, Alevoor Technologies" },
       stats: [{value:"50+",label:"YouTube Managed"},{value:"10M+",label:"Insta Growth"},{value:"100+",label:"Happy Creators"},{value:"3x",label:"Avg. Growth"}],
-      services: [],process:[],whyUs:[],testimonials:[],pricing:{content:[],yt:[],onetime:[]},portfolio:[],team:[],faqs:[]
+      services: [],process:[],whyUs:[],testimonials:[],pricing:{content:[],app:[],onetime:[]},portfolio:[],team:[],faqs:[]
     };
   }
 
