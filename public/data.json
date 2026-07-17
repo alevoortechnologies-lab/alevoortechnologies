@@ -418,7 +418,20 @@
           "Future Modifications: Highly scalable; easy to add complex features later"
         ]
       }
-    ]
+    ],
+    "appCompare": {
+      "tiers": ["Starter / Template Range", "Semi-Custom MVP Range", "Fully Custom Business Range"],
+      "rows": [
+        { "feature": "Price Bracket", "values": ["₹35,000 – ₹75,000", "₹75,000 – ₹20,00,000", "₹20,00,000 – ₹50,00,000"] },
+        { "feature": "Development Method", "values": ["Pre-built templates (CodeCanyon clones)", "Light custom code + ready-made backend blocks", "Built from scratch by pro freelancers or small agencies"] },
+        { "feature": "Design & UI/UX", "values": ["Template skinning (change logos, colors, text)", "Semi-custom branding with clean, modern layout", "100% custom UI/UX designed specifically for your brand"] },
+        { "feature": "Supported Platforms", "values": ["Mostly Android-focused (iOS costs extra setup)", "Both Android and iOS (Hybrid via Flutter/React Native)", "Highly optimized Android and iOS + Web Admin Panel"] },
+        { "feature": "User Management", "values": ["Standard email login or simple template login", "Secure Mobile OTP (Firebase) or Google Login", "Multi-role logins (e.g., Customer, Delivery, Admin)"] },
+        { "feature": "Payment Integration", "values": ["Standard single gateway (UPI or basic Razorpay)", "Smooth localized gateway integration with refunds", "Multi-vendor payouts, wallets, or automated invoicing"] },
+        { "feature": "Screen Count & Limits", "values": ["3 – 5 pre-fixed structural screens", "5 – 8 custom screens", "8 – 15+ complex screens and deep workflows"] },
+        { "feature": "Future Modifications", "values": ["Very hard; changing code breaks the template", "Moderate; structured modular code allows expansion", "Highly scalable; easy to add complex features later"] }
+      ]
+    }
   },
   "portfolio": [
     {

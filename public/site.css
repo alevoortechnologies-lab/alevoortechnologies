@@ -587,3 +587,20 @@
 @media (max-width:768px){ .fq-grid { grid-template-columns:1fr; } }
 .services-grid.teaser .service-card:nth-child(n+7){ display:none; }
 .section-title.left{ text-align:left; }
+
+/* App comparison table */
+.app-compare-wrap{margin-top:48px}
+.app-compare-title{font-family:'Sora',sans-serif;font-size:24px;font-weight:700;text-align:center;margin-bottom:20px;color:var(--dark)}
+.app-compare-scroll{overflow-x:auto;border-radius:14px;box-shadow:0 4px 24px rgba(0,0,0,.06);background:var(--white)}
+.app-compare{width:100%;border-collapse:collapse;min-width:760px;font-family:'DM Sans',sans-serif;font-size:14px}
+.app-compare th,.app-compare td{padding:14px 16px;text-align:left;border-bottom:1px solid rgba(0,0,0,.06);vertical-align:top;line-height:1.55}
+.app-compare thead th{background:linear-gradient(135deg,var(--teal),#0aa377);color:#fff;font-weight:600;font-family:'Sora',sans-serif;font-size:13px}
+.app-compare thead th:first-child{border-top-left-radius:14px}
+.app-compare thead th:last-child{border-top-right-radius:14px}
+.app-compare tbody tr:hover{background:rgba(13,184,138,.04)}
+.app-compare-feat{font-weight:600;color:var(--dark);background:rgba(13,184,138,.06);width:200px}
+.app-compare tbody tr:last-child td{border-bottom:none}
+body.dark .app-compare-scroll{background:#1a1a1a}
+body.dark .app-compare th,body.dark .app-compare td{border-bottom-color:rgba(255,255,255,.08);color:#e0e0e0}
+body.dark .app-compare-feat{background:rgba(13,184,138,.12);color:#fff}
+body.dark .app-compare-title{color:#fff}
