@@ -272,7 +272,29 @@ function renderPricing() {
       <div class="pricing-price">${p.price}<span class="pricing-period"> ${p.period||''}</span></div>
       <ul class="pricing-features">${(p.features||[]).map(f=>`<li>${f}</li>`).join('')}</ul>
       <button class="btn-pricing ${p.popular?'btn-pricing-fill':'btn-pricing-out'}" onclick="navScroll('contact')">Get Started</button>
-    </div>`).join('')}</div>`);
+    </div>`).join('')}</div>
+    ${P.appCompare ? `
+    <div class="app-compare-wrap">
+      <h3 class="app-compare-title">Feature-by-Feature Comparison</h3>
+      <div class="app-compare-scroll">
+        <table class="app-compare">
+          <thead>
+            <tr>
+              <th>Feature / Differentiation</th>
+              ${P.appCompare.tiers.map((t,i)=>`<th>${i+1}. ${t}</th>`).join('')}
+            </tr>
+          </thead>
+          <tbody>
+            ${P.appCompare.rows.map(r=>`
+              <tr>
+                <td class="app-compare-feat">${r.feature}</td>
+                ${r.values.map(v=>`<td>${v}</td>`).join('')}
+              </tr>`).join('')}
+          </tbody>
+        </table>
+      </div>
+    </div>` : ''}
+  `);
   // One Time
   setHTML('panel-onetime', `<div class="pricing-grid">${(P.onetime||[]).map(p => `
     <div class="pricing-card ${p.best?'best':''}">
