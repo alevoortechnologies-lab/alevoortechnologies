@@ -17,7 +17,20 @@ async function loadData() {
         const v = lc[k];
         // keep data.json default when live value is empty/missing (e.g. team: [])
         const isEmpty = v == null || (Array.isArray(v) && v.length === 0);
-        if (!isEmpty) DATA[k] = v;
+        if (isEmpty) return;
+        // For nested object maps like `pricing`, merge sub-keys so missing
+        // sub-fields (e.g. app, appCompare) fall back to data.json defaults.
+        if (v && typeof v === 'object' && !Array.isArray(v) && defaults[k] && typeof defaults[k] === 'object' && !Array.isArray(defaults[k])) {
+          const merged = Object.assign({}, defaults[k]);
+          Object.keys(v).forEach(sk => {
+            const sv = v[sk];
+            const svEmpty = sv == null || (Array.isArray(sv) && sv.length === 0);
+            if (!svEmpty) merged[sk] = sv;
+          });
+          DATA[k] = merged;
+        } else {
+          DATA[k] = v;
+        }
       });
     } else {
       DATA = defaults;
