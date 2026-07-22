@@ -97,9 +97,10 @@ function hideLoading() {
 function renderAll() {
   renderStats();
   renderMarquee();
+  renderTechStack();
   renderServices();
-  
   renderProcess();
+  renderTimelineHome();
   renderWhyUs();
   renderPortfolio();
   renderGallery();
@@ -109,6 +110,7 @@ function renderAll() {
   renderContact();
   renderPricing();
   renderTestimonialSlider();
+  animateCounters();
 }
 
 function renderStats() {
