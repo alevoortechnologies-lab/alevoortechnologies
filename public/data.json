@@ -563,5 +563,21 @@
     { "name": "Rahul Sharma", "platform": "YouTube" },
     { "name": "Sneha Reddy", "platform": "Instagram" }
   ],
-  "gallery": []
+  "gallery": [],
+  "techStack": [
+    { "name": "React", "icon": "⚛️" },
+    { "name": "Next.js", "icon": "▲" },
+    { "name": "TypeScript", "icon": "🟦" },
+    { "name": "Node.js", "icon": "🟩" },
+    { "name": "Flutter", "icon": "💙" },
+    { "name": "React Native", "icon": "📱" },
+    { "name": "Supabase", "icon": "⚡" },
+    { "name": "Firebase", "icon": "🔥" },
+    { "name": "Tailwind CSS", "icon": "🎨" },
+    { "name": "AWS", "icon": "☁️" },
+    { "name": "OpenAI", "icon": "🤖" },
+    { "name": "Figma", "icon": "🎯" },
+    { "name": "PostgreSQL", "icon": "🐘" },
+    { "name": "Stripe", "icon": "💳" }
+  ]
 }
