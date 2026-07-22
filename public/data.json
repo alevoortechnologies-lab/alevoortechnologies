@@ -12,22 +12,10 @@
     "founderTitle": "Founder & CEO, Alevoor Technologies"
   },
   "stats": [
-    {
-      "value": "50+",
-      "label": "Projects Delivered"
-    },
-    {
-      "value": "10M+",
-      "label": "Users Impacted"
-    },
-    {
-      "value": "100+",
-      "label": "Happy Clients"
-    },
-    {
-      "value": "3x",
-      "label": "Tech Solutions"
-    }
+    { "value": "50+", "label": "Projects Delivered" },
+    { "value": "100+", "label": "Happy Clients" },
+    { "value": "10M+", "label": "Users Impacted" },
+    { "value": "4.9★", "label": "Avg. Rating" }
   ],
   "services": [
     {
