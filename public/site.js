@@ -379,8 +379,8 @@ function renderPricing() {
 function renderPortfolio() {
   const el = document.getElementById('portfolio-grid');
   if (!el || !DATA.portfolio) return;
-  el.innerHTML = DATA.portfolio.map(p => `
-    <div class="portfolio-card">
+  el.innerHTML = DATA.portfolio.map((p, i) => `
+    <div class="portfolio-card" onclick="openCaseStudy(${i})">
       <div class="portfolio-banner">${p.icon}</div>
       <div class="portfolio-body">
         <div class="portfolio-cat">${p.category}</div>
@@ -388,10 +388,48 @@ function renderPortfolio() {
         <div class="portfolio-desc">${p.desc}</div>
         <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px">
           <span class="portfolio-result">📈 ${p.result}</span>
-          <span class="portfolio-link">View →</span>
+          <span class="portfolio-link">Read case →</span>
         </div>
       </div>
     </div>`).join('');
+}
+
+function openCaseStudy(i) {
+  const p = (DATA.portfolio || [])[i]; if (!p) return;
+  let modal = document.getElementById('cs-modal');
+  if (!modal) {
+    modal = document.createElement('div');
+    modal.id = 'cs-modal';
+    modal.className = 'cs-modal';
+    modal.onclick = closeCaseStudy;
+    modal.innerHTML = `<div class="cs-inner" onclick="event.stopPropagation()">
+      <button class="cs-close" onclick="closeCaseStudy()" aria-label="Close">✕</button>
+      <div class="cs-hero" id="cs-hero"></div>
+      <div class="cs-body" id="cs-body"></div>
+    </div>`;
+    document.body.appendChild(modal);
+  }
+  document.getElementById('cs-hero').textContent = p.icon;
+  const resultNum = (p.result.match(/[\d,.]+/g) || ['—'])[0];
+  document.getElementById('cs-body').innerHTML = `
+    <div class="cs-cat">${p.category}</div>
+    <div class="cs-title">${p.title}</div>
+    <div class="cs-result-badge">📈 ${p.result}</div>
+    <div class="cs-metrics">
+      <div class="cs-metric"><div class="cs-metric-val">${resultNum}</div><div class="cs-metric-label">Outcome</div></div>
+      <div class="cs-metric"><div class="cs-metric-val">3–6 mo</div><div class="cs-metric-label">Timeline</div></div>
+      <div class="cs-metric"><div class="cs-metric-val">5★</div><div class="cs-metric-label">Client rating</div></div>
+    </div>
+    <div class="cs-desc">${p.desc}</div>
+    <div class="cs-desc"><strong>What we did:</strong> Strategy, content production, analytics-driven iteration, and platform-specific optimization to compound growth week over week.</div>
+    <a class="btn-primary" href="/contact" style="margin-top:6px">Start a similar project →</a>`;
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeCaseStudy() {
+  const m = document.getElementById('cs-modal');
+  if (m) m.classList.remove('open');
+  document.body.style.overflow = '';
 }
 
 function renderTeam() {
