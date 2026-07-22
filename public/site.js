@@ -116,11 +116,44 @@ function renderAll() {
 function renderStats() {
   const el = document.getElementById('hero-stats');
   if (!el || !DATA.stats) return;
-  el.innerHTML = DATA.stats.map(s => `
-    <div class="hero-stat text-center">
-      <div class="hero-stat-val">${s.value}</div>
+  el.innerHTML = DATA.stats.map(s => {
+    const m = String(s.value).match(/^([^\d]*)([\d.]+)(.*)$/);
+    const num = m ? parseFloat(m[2]) : null;
+    const prefix = m ? m[1] : '';
+    const suffix = m ? m[3] : '';
+    return `<div class="hero-stat text-center">
+      <div class="hero-stat-val" ${num!=null?`data-count="${num}" data-prefix="${prefix}" data-suffix="${suffix}"`:''}>${s.value}</div>
       <div class="hero-stat-label">${s.label}</div>
-    </div>`).join('');
+    </div>`;
+  }).join('');
+}
+
+function animateCounters() {
+  const els = document.querySelectorAll('[data-count]');
+  if (!els.length) return;
+  const done = new WeakSet();
+  const run = (el) => {
+    if (done.has(el)) return;
+    done.add(el);
+    const target = parseFloat(el.dataset.count);
+    const prefix = el.dataset.prefix || '';
+    const suffix = el.dataset.suffix || '';
+    const isInt = Number.isInteger(target);
+    const dur = 1400;
+    const start = performance.now();
+    const tick = (now) => {
+      const p = Math.min(1, (now - start) / dur);
+      const eased = 1 - Math.pow(1 - p, 3);
+      const val = target * eased;
+      el.textContent = prefix + (isInt ? Math.round(val) : val.toFixed(1)) + suffix;
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  };
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) run(e.target); });
+  }, { threshold: 0.3 });
+  els.forEach(el => io.observe(el));
 }
 
 function renderMarquee() {
@@ -130,6 +163,27 @@ function renderMarquee() {
   const pill = (c) => `<div class="marquee-pill">${icon(c.platform)} ${c.name}</div>`;
   const list = DATA.trustedClients.map(pill).join('');
   el.innerHTML = list + list;
+}
+
+function renderTechStack() {
+  const el = document.getElementById('tech-track');
+  if (!el || !DATA.techStack) return;
+  const chip = (t) => `<div class="tech-chip"><span class="tc-ico">${t.icon}</span>${t.name}</div>`;
+  const list = DATA.techStack.map(chip).join('');
+  el.innerHTML = list + list;
+}
+
+function renderTimelineHome() {
+  const el = document.getElementById('timeline-home');
+  if (!el || !DATA.process) return;
+  el.innerHTML = DATA.process.map(s => `
+    <div class="tl-item">
+      <div class="tl-dot" data-num="${s.num}">${s.icon || '⚡'}</div>
+      <div class="tl-body">
+        <h3>${s.title}</h3>
+        <p>${s.desc}</p>
+      </div>
+    </div>`).join('');
 }
 
 const SERVICE_CAT = {
