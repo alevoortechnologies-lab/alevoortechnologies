@@ -97,7 +97,9 @@ function hideLoading() {
 function renderAll() {
   renderStats();
   renderMarquee();
+  renderReels();
   renderTechStack();
+
   renderServices();
   renderProcess();
   renderTimelineHome();
