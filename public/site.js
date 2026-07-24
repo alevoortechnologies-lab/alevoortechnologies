@@ -167,6 +167,43 @@ function renderMarquee() {
   el.innerHTML = list + list;
 }
 
+function renderReels() {
+  const el = document.getElementById('reels-grid');
+  if (!el || !DATA.reels || !DATA.reels.length) { if (el) el.closest('.reels-section').style.display = 'none'; return; }
+  el.innerHTML = DATA.reels.map((r, i) => `
+    <div class="reel-card">
+      <div class="reel-frame">
+        <video class="reel-video" data-reel-index="${i}" muted loop playsinline preload="metadata" ${r.poster ? `poster="${r.poster}"` : ''}>
+          <source src="${r.src}" type="video/mp4" />
+        </video>
+        <button class="reel-mute" aria-label="Toggle sound" onclick="toggleReelMute(this)">🔇</button>
+      </div>
+      ${r.title ? `<div class="reel-title">${r.title}</div>` : ''}
+    </div>
+  `).join('');
+  const vids = el.querySelectorAll('.reel-video');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      const v = e.target;
+      if (e.isIntersecting && e.intersectionRatio >= 0.5) {
+        v.play().catch(() => {});
+      } else {
+        v.pause();
+      }
+    });
+  }, { threshold: [0, 0.5, 1] });
+  vids.forEach(v => io.observe(v));
+}
+
+function toggleReelMute(btn) {
+  const v = btn.parentElement.querySelector('video');
+  if (!v) return;
+  v.muted = !v.muted;
+  btn.textContent = v.muted ? '🔇' : '🔊';
+  if (!v.muted) v.play().catch(() => {});
+}
+
+
 function renderTechStack() {
   const el = document.getElementById('tech-track');
   if (!el || !DATA.techStack) return;
