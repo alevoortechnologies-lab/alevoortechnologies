@@ -148,6 +148,7 @@
       <div class="nav-item" onclick="showSection('team')"><span class="nav-icon">👥</span>Team</div>
       <div class="nav-item" onclick="showSection('testimonials')"><span class="nav-icon">💬</span>Testimonials</div>
       <div class="nav-item" onclick="showSection('portfolio')"><span class="nav-icon">🖼</span>Portfolio</div>
+      <div class="nav-item" onclick="showSection('reels')"><span class="nav-icon">🎬</span>Reels</div>
       <div class="nav-item" onclick="showSection('faqs')"><span class="nav-icon">❓</span>FAQs</div>
       <div class="nav-item" onclick="showSection('leads')"><span class="nav-icon">📥</span>Get in Touch</div>
       <div class="nav-item" onclick="showSection('contact')"><span class="nav-icon">📞</span>Contact Info</div>
@@ -334,7 +335,31 @@
           <div class="form-group"><label class="form-label">Description</label><textarea class="form-input" id="np2-desc" placeholder="What we did..."></textarea></div>
           <button class="btn-add" onclick="addPortfolio()">+ Add Item</button>
         </div>
+    </div>
+
+    <!-- REELS -->
+    <div class="section-panel" id="panel-reels">
+      <div class="card">
+        <div class="section-title">Reels (<span id="reel-count">0</span>)</div>
+        <p style="color:#888;font-size:13px;margin:-8px 0 14px">Vertical 9:16 videos shown on the homepage. Autoplay muted on scroll.</p>
+        <div class="table-wrap"><table><thead><tr><th>#</th><th>Title</th><th>Video URL</th><th>Actions</th></tr></thead><tbody id="reel-table"></tbody></table></div>
+        <div class="add-form">
+          <h4>Add Reel</h4>
+          <div class="form-group">
+            <label class="form-label">Upload video file (MP4, ≤ 50MB)</label>
+            <input class="form-input" type="file" id="nr-file" accept="video/mp4,video/webm,video/quicktime" />
+            <p style="color:#888;font-size:12px;margin-top:6px">Or paste a hosted MP4 URL below (YouTube/Instagram links won't autoplay — upload the MP4 file).</p>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">Title</label><input class="form-input" id="nr-title" placeholder="Brand Campaign — Product Launch"/></div>
+            <div class="form-group"><label class="form-label">Video URL (if not uploading)</label><input class="form-input" id="nr-src" placeholder="https://... .mp4"/></div>
+          </div>
+          <div class="form-group"><label class="form-label">Poster image URL (optional)</label><input class="form-input" id="nr-poster" placeholder="https://... .jpg"/></div>
+          <button class="btn-add" onclick="addReel()">+ Add Reel</button>
+          <p id="nr-status" style="color:#0db88a;font-size:13px;margin-top:10px;display:none"></p>
+        </div>
       </div>
+    </div>
     </div>
 
     <!-- FAQs -->
@@ -404,7 +429,7 @@ async function loadData() {
   } catch(e) {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved) { DATA = JSON.parse(saved); return; }
-    DATA = { brand:{}, stats:[], services:[], process:[], whyUs:[], testimonials:[], pricing:{content:[],yt:[],onetime:[]}, portfolio:[], team:[], faqs:[] };
+    DATA = { brand:{}, stats:[], services:[], process:[], whyUs:[], testimonials:[], pricing:{content:[],yt:[],onetime:[]}, portfolio:[], reels:[], team:[], faqs:[] };
   }
 }
 
@@ -507,7 +532,7 @@ function showSection(id) {
   navItems.forEach(n=>{ if(n.textContent.toLowerCase().includes(id.replace('-',' ').split('panel-').pop())) n.classList.add('active'); });
   // Set active on clicked item
   event && event.currentTarget && event.currentTarget.classList.add('active');
-  const titles = {dashboard:'Dashboard',hero:'Hero Section',services:'Services',pricing:'Pricing Plans',onetime:'One-Time Services',stats:'Impact Stats',process:'Process Steps',team:'Team',testimonials:'Testimonials',portfolio:'Portfolio',faqs:'FAQs',contact:'Contact Info',leads:'Get in Touch'};
+  const titles = {dashboard:'Dashboard',hero:'Hero Section',services:'Services',pricing:'Pricing Plans',onetime:'One-Time Services',stats:'Impact Stats',process:'Process Steps',team:'Team',testimonials:'Testimonials',portfolio:'Portfolio',reels:'Reels',faqs:'FAQs',contact:'Contact Info',leads:'Get in Touch'};
   document.getElementById('breadcrumb').textContent = `Admin / ${titles[id]||id}`;
   document.getElementById('page-title').textContent = titles[id]||id;
   renderSection(id);
@@ -532,6 +557,7 @@ function renderSection(id) {
     case 'team': renderTeamTable(); break;
     case 'testimonials': renderTestiTable(); break;
     case 'portfolio': renderPortTable(); break;
+    case 'reels': renderReelTable(); break;
     case 'faqs': renderFAQTable(); break;
     case 'contact': loadContactForm(); break;
     case 'leads': renderLeads(); break;
@@ -700,6 +726,57 @@ function addPortfolio() {
   if(!title) return;
   DATA.portfolio.push({title,category,result,icon,desc});
   saveData(); renderPortTable();
+}
+
+function renderReelTable() {
+  const arr = DATA.reels || (DATA.reels = []);
+  document.getElementById('reel-count').textContent = arr.length;
+  document.getElementById('reel-table').innerHTML = arr.map((r,i)=>`
+    <tr><td>${i+1}</td><td><strong>${r.title||'(untitled)'}</strong></td>
+    <td style="color:#888;font-size:12px;max-width:340px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap"><a href="${r.src}" target="_blank" style="color:#0db88a">${r.src}</a></td>
+    <td><button class="action-btn del" onclick="removeItem('reels',${i})">Remove</button></td></tr>`).join('') ||
+    '<tr><td colspan="4" style="color:#888;text-align:center;padding:20px">No reels yet. Upload one below.</td></tr>';
+}
+
+async function addReel() {
+  const fileInput = document.getElementById('nr-file');
+  const title = document.getElementById('nr-title').value.trim();
+  const poster = document.getElementById('nr-poster').value.trim();
+  let src = document.getElementById('nr-src').value.trim();
+  const status = document.getElementById('nr-status');
+  const file = fileInput.files && fileInput.files[0];
+
+  if (!file && !src) { alert('Upload a video file or paste a video URL.'); return; }
+
+  if (file) {
+    if (file.size > 50 * 1024 * 1024) { alert('File too large (max 50MB).'); return; }
+    status.style.display = 'block'; status.style.color = '#888';
+    status.textContent = 'Uploading… please wait.';
+    try {
+      const fd = new FormData();
+      fd.append('code', SIGNUP_CODE);
+      fd.append('file', file);
+      const res = await fetch('/api/admin/upload-reel', { method: 'POST', body: fd });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Upload failed');
+      src = data.url;
+      status.style.color = '#0db88a';
+      status.textContent = '✅ Upload complete.';
+    } catch (e) {
+      status.style.color = '#e74c3c';
+      status.textContent = '❌ ' + (e.message || 'Upload failed');
+      return;
+    }
+  }
+
+  DATA.reels = DATA.reels || [];
+  DATA.reels.push({ src, poster, title: title || 'Reel' });
+  await saveData(); renderReelTable();
+  fileInput.value = '';
+  document.getElementById('nr-title').value = '';
+  document.getElementById('nr-src').value = '';
+  document.getElementById('nr-poster').value = '';
+  setTimeout(()=>{ status.style.display = 'none'; }, 2500);
 }
 
 function renderFAQTable() {

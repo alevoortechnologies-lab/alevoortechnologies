@@ -1,0 +1,1 @@
+CREATE POLICY "Public can read reels bucket" ON storage.objects FOR SELECT USING (bucket_id = 'reels');

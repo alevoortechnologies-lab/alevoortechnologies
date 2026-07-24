@@ -421,50 +421,7 @@
       ]
     }
   },
-  "portfolio": [
-    {
-      "icon": "💰",
-      "title": "The Currency India Official",
-      "category": "Finance YouTube",
-      "desc": "Grew channel from 8 to 4.17K subscribers in 3 months through strategic content planning and SEO optimization.",
-      "result": "8 → 4,170 subscribers"
-    },
-    {
-      "icon": "🎓",
-      "title": "Sambodhi Mechanical Engineering",
-      "category": "Educational YouTube",
-      "desc": "Helped an educational channel grow from 28 to 473 subscribers with quality editing and consistent uploads.",
-      "result": "28 → 473 subscribers"
-    },
-    {
-      "icon": "🎨",
-      "title": "Shilpa Art House",
-      "category": "Art & Craft YouTube",
-      "desc": "Enhanced art content quality and reach for a creative channel using professional editing and thumbnails.",
-      "result": "3x engagement increase"
-    },
-    {
-      "icon": "🎬",
-      "title": "V Filmy Steps",
-      "category": "Entertainment YouTube",
-      "desc": "Delivered cinematic-quality editing for an entertainment channel, helping them compete with top creators.",
-      "result": "5x view growth"
-    },
-    {
-      "icon": "🏠",
-      "title": "Homzyee Property Management",
-      "category": "Real Estate Brand",
-      "desc": "Created professional property showcase videos and managed social media for a real estate brand.",
-      "result": "2x lead generation"
-    },
-    {
-      "icon": "🚀",
-      "title": "Startup Stories",
-      "category": "Business Content",
-      "desc": "Elevated content quality for a startup-focused creator with strategic editing and platform management.",
-      "result": "4x content output"
-    }
-  ],
+  "portfolio": [],
   "team": [
     {
       "name": "Rishabh Alevoor",
