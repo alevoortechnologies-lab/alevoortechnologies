@@ -532,7 +532,7 @@ function showSection(id) {
   navItems.forEach(n=>{ if(n.textContent.toLowerCase().includes(id.replace('-',' ').split('panel-').pop())) n.classList.add('active'); });
   // Set active on clicked item
   event && event.currentTarget && event.currentTarget.classList.add('active');
-  const titles = {dashboard:'Dashboard',hero:'Hero Section',services:'Services',pricing:'Pricing Plans',onetime:'One-Time Services',stats:'Impact Stats',process:'Process Steps',team:'Team',testimonials:'Testimonials',portfolio:'Portfolio',faqs:'FAQs',contact:'Contact Info',leads:'Get in Touch'};
+  const titles = {dashboard:'Dashboard',hero:'Hero Section',services:'Services',pricing:'Pricing Plans',onetime:'One-Time Services',stats:'Impact Stats',process:'Process Steps',team:'Team',testimonials:'Testimonials',portfolio:'Portfolio',reels:'Reels',faqs:'FAQs',contact:'Contact Info',leads:'Get in Touch'};
   document.getElementById('breadcrumb').textContent = `Admin / ${titles[id]||id}`;
   document.getElementById('page-title').textContent = titles[id]||id;
   renderSection(id);
