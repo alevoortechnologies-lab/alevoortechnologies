@@ -429,7 +429,7 @@ async function loadData() {
   } catch(e) {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved) { DATA = JSON.parse(saved); return; }
-    DATA = { brand:{}, stats:[], services:[], process:[], whyUs:[], testimonials:[], pricing:{content:[],yt:[],onetime:[]}, portfolio:[], team:[], faqs:[] };
+    DATA = { brand:{}, stats:[], services:[], process:[], whyUs:[], testimonials:[], pricing:{content:[],yt:[],onetime:[]}, portfolio:[], reels:[], team:[], faqs:[] };
   }
 }
 
