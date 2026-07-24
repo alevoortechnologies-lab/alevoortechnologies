@@ -18,6 +18,7 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ApiPublicSiteContentRouteImport } from './routes/api/public/site-content'
 import { Route as ApiPublicContactRouteImport } from './routes/api/public/contact'
+import { Route as ApiAdminUploadReelRouteImport } from './routes/api/admin/upload-reel'
 import { Route as ApiAdminLeadsRouteImport } from './routes/api/admin/leads'
 import { Route as ApiAdminContentRouteImport } from './routes/api/admin/content'
 
@@ -66,6 +67,11 @@ const ApiPublicContactRoute = ApiPublicContactRouteImport.update({
   path: '/api/public/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiAdminUploadReelRoute = ApiAdminUploadReelRouteImport.update({
+  id: '/api/admin/upload-reel',
+  path: '/api/admin/upload-reel',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiAdminLeadsRoute = ApiAdminLeadsRouteImport.update({
   id: '/api/admin/leads',
   path: '/api/admin/leads',
@@ -87,6 +93,7 @@ export interface FileRoutesByFullPath {
   '/services': typeof ServicesRoute
   '/api/admin/content': typeof ApiAdminContentRoute
   '/api/admin/leads': typeof ApiAdminLeadsRoute
+  '/api/admin/upload-reel': typeof ApiAdminUploadReelRoute
   '/api/public/contact': typeof ApiPublicContactRoute
   '/api/public/site-content': typeof ApiPublicSiteContentRoute
 }
@@ -100,6 +107,7 @@ export interface FileRoutesByTo {
   '/services': typeof ServicesRoute
   '/api/admin/content': typeof ApiAdminContentRoute
   '/api/admin/leads': typeof ApiAdminLeadsRoute
+  '/api/admin/upload-reel': typeof ApiAdminUploadReelRoute
   '/api/public/contact': typeof ApiPublicContactRoute
   '/api/public/site-content': typeof ApiPublicSiteContentRoute
 }
@@ -114,6 +122,7 @@ export interface FileRoutesById {
   '/services': typeof ServicesRoute
   '/api/admin/content': typeof ApiAdminContentRoute
   '/api/admin/leads': typeof ApiAdminLeadsRoute
+  '/api/admin/upload-reel': typeof ApiAdminUploadReelRoute
   '/api/public/contact': typeof ApiPublicContactRoute
   '/api/public/site-content': typeof ApiPublicSiteContentRoute
 }
@@ -129,6 +138,7 @@ export interface FileRouteTypes {
     | '/services'
     | '/api/admin/content'
     | '/api/admin/leads'
+    | '/api/admin/upload-reel'
     | '/api/public/contact'
     | '/api/public/site-content'
   fileRoutesByTo: FileRoutesByTo
@@ -142,6 +152,7 @@ export interface FileRouteTypes {
     | '/services'
     | '/api/admin/content'
     | '/api/admin/leads'
+    | '/api/admin/upload-reel'
     | '/api/public/contact'
     | '/api/public/site-content'
   id:
@@ -155,6 +166,7 @@ export interface FileRouteTypes {
     | '/services'
     | '/api/admin/content'
     | '/api/admin/leads'
+    | '/api/admin/upload-reel'
     | '/api/public/contact'
     | '/api/public/site-content'
   fileRoutesById: FileRoutesById
@@ -169,6 +181,7 @@ export interface RootRouteChildren {
   ServicesRoute: typeof ServicesRoute
   ApiAdminContentRoute: typeof ApiAdminContentRoute
   ApiAdminLeadsRoute: typeof ApiAdminLeadsRoute
+  ApiAdminUploadReelRoute: typeof ApiAdminUploadReelRoute
   ApiPublicContactRoute: typeof ApiPublicContactRoute
   ApiPublicSiteContentRoute: typeof ApiPublicSiteContentRoute
 }
@@ -238,6 +251,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiPublicContactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/admin/upload-reel': {
+      id: '/api/admin/upload-reel'
+      path: '/api/admin/upload-reel'
+      fullPath: '/api/admin/upload-reel'
+      preLoaderRoute: typeof ApiAdminUploadReelRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/admin/leads': {
       id: '/api/admin/leads'
       path: '/api/admin/leads'
@@ -265,6 +285,7 @@ const rootRouteChildren: RootRouteChildren = {
   ServicesRoute: ServicesRoute,
   ApiAdminContentRoute: ApiAdminContentRoute,
   ApiAdminLeadsRoute: ApiAdminLeadsRoute,
+  ApiAdminUploadReelRoute: ApiAdminUploadReelRoute,
   ApiPublicContactRoute: ApiPublicContactRoute,
   ApiPublicSiteContentRoute: ApiPublicSiteContentRoute,
 }

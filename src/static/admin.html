@@ -728,6 +728,57 @@ function addPortfolio() {
   saveData(); renderPortTable();
 }
 
+function renderReelTable() {
+  const arr = DATA.reels || (DATA.reels = []);
+  document.getElementById('reel-count').textContent = arr.length;
+  document.getElementById('reel-table').innerHTML = arr.map((r,i)=>`
+    <tr><td>${i+1}</td><td><strong>${r.title||'(untitled)'}</strong></td>
+    <td style="color:#888;font-size:12px;max-width:340px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap"><a href="${r.src}" target="_blank" style="color:#0db88a">${r.src}</a></td>
+    <td><button class="action-btn del" onclick="removeItem('reels',${i})">Remove</button></td></tr>`).join('') ||
+    '<tr><td colspan="4" style="color:#888;text-align:center;padding:20px">No reels yet. Upload one below.</td></tr>';
+}
+
+async function addReel() {
+  const fileInput = document.getElementById('nr-file');
+  const title = document.getElementById('nr-title').value.trim();
+  const poster = document.getElementById('nr-poster').value.trim();
+  let src = document.getElementById('nr-src').value.trim();
+  const status = document.getElementById('nr-status');
+  const file = fileInput.files && fileInput.files[0];
+
+  if (!file && !src) { alert('Upload a video file or paste a video URL.'); return; }
+
+  if (file) {
+    if (file.size > 50 * 1024 * 1024) { alert('File too large (max 50MB).'); return; }
+    status.style.display = 'block'; status.style.color = '#888';
+    status.textContent = 'Uploading… please wait.';
+    try {
+      const fd = new FormData();
+      fd.append('code', ACCESS_CODE);
+      fd.append('file', file);
+      const res = await fetch('/api/admin/upload-reel', { method: 'POST', body: fd });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Upload failed');
+      src = data.url;
+      status.style.color = '#0db88a';
+      status.textContent = '✅ Upload complete.';
+    } catch (e) {
+      status.style.color = '#e74c3c';
+      status.textContent = '❌ ' + (e.message || 'Upload failed');
+      return;
+    }
+  }
+
+  DATA.reels = DATA.reels || [];
+  DATA.reels.push({ src, poster, title: title || 'Reel' });
+  await saveData(); renderReelTable();
+  fileInput.value = '';
+  document.getElementById('nr-title').value = '';
+  document.getElementById('nr-src').value = '';
+  document.getElementById('nr-poster').value = '';
+  setTimeout(()=>{ status.style.display = 'none'; }, 2500);
+}
+
 function renderFAQTable() {
   const arr = DATA.faqs||[];
   document.getElementById('faq-count').textContent = arr.length;
