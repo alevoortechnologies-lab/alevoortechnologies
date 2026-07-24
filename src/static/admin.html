@@ -335,7 +335,31 @@
           <div class="form-group"><label class="form-label">Description</label><textarea class="form-input" id="np2-desc" placeholder="What we did..."></textarea></div>
           <button class="btn-add" onclick="addPortfolio()">+ Add Item</button>
         </div>
+    </div>
+
+    <!-- REELS -->
+    <div class="section-panel" id="panel-reels">
+      <div class="card">
+        <div class="section-title">Reels (<span id="reel-count">0</span>)</div>
+        <p style="color:#888;font-size:13px;margin:-8px 0 14px">Vertical 9:16 videos shown on the homepage. Autoplay muted on scroll.</p>
+        <div class="table-wrap"><table><thead><tr><th>#</th><th>Title</th><th>Video URL</th><th>Actions</th></tr></thead><tbody id="reel-table"></tbody></table></div>
+        <div class="add-form">
+          <h4>Add Reel</h4>
+          <div class="form-group">
+            <label class="form-label">Upload video file (MP4, ≤ 50MB)</label>
+            <input class="form-input" type="file" id="nr-file" accept="video/mp4,video/webm,video/quicktime" />
+            <p style="color:#888;font-size:12px;margin-top:6px">Or paste a hosted MP4 URL below (YouTube/Instagram links won't autoplay — upload the MP4 file).</p>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">Title</label><input class="form-input" id="nr-title" placeholder="Brand Campaign — Product Launch"/></div>
+            <div class="form-group"><label class="form-label">Video URL (if not uploading)</label><input class="form-input" id="nr-src" placeholder="https://... .mp4"/></div>
+          </div>
+          <div class="form-group"><label class="form-label">Poster image URL (optional)</label><input class="form-input" id="nr-poster" placeholder="https://... .jpg"/></div>
+          <button class="btn-add" onclick="addReel()">+ Add Reel</button>
+          <p id="nr-status" style="color:#0db88a;font-size:13px;margin-top:10px;display:none"></p>
+        </div>
       </div>
+    </div>
     </div>
 
     <!-- FAQs -->
