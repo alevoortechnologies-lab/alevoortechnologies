@@ -321,7 +321,7 @@
     <div class="section-panel" id="panel-portfolio">
       <div class="card">
         <div class="section-title">Portfolio Items (<span id="port-count">0</span>)</div>
-        <div class="table-wrap"><table><thead><tr><th>Icon</th><th>Title</th><th>Category</th><th>Result</th><th>Actions</th></tr></thead><tbody id="port-table"></tbody></table></div>
+        <div class="table-wrap"><table><thead><tr><th>Icon</th><th>Title</th><th>Category</th><th>Result</th><th>Status</th><th>Actions</th></tr></thead><tbody id="port-table"></tbody></table></div>
         <div class="add-form">
           <h4>Add Portfolio Item</h4>
           <div class="form-row">
@@ -342,7 +342,7 @@
       <div class="card">
         <div class="section-title">Reels (<span id="reel-count">0</span>)</div>
         <p style="color:#888;font-size:13px;margin:-8px 0 14px">Vertical 9:16 videos shown on the homepage. Autoplay muted on scroll.</p>
-        <div class="table-wrap"><table><thead><tr><th>#</th><th>Title</th><th>Video URL</th><th>Actions</th></tr></thead><tbody id="reel-table"></tbody></table></div>
+        <div class="table-wrap"><table><thead><tr><th>#</th><th>Title</th><th>Video URL</th><th>Status</th><th>Actions</th></tr></thead><tbody id="reel-table"></tbody></table></div>
         <div class="add-form">
           <h4>Add Reel</h4>
           <div class="form-group">
@@ -698,6 +698,13 @@ function renderTestiTable() {
       <button class="action-btn del" onclick="removeItem('testimonials',${i})">Remove</button>
     </td></tr>`).join('');
 }
+function togglePublish(key, i) {
+  const arr = DATA[key] || [];
+  if (!arr[i]) return;
+  arr[i].published = arr[i].published === false;
+  saveData();
+  if (key === 'reels') renderReelTable(); else renderPortTable();
+}
 function toggleApproval(i) { DATA.testimonials[i].approved = !DATA.testimonials[i].approved; saveData(); renderTestiTable(); }
 function addTestimonial() {
   const name=document.getElementById('ntes-name').value.trim();
@@ -715,7 +722,9 @@ function renderPortTable() {
   document.getElementById('port-count').textContent = arr.length;
   document.getElementById('port-table').innerHTML = arr.map((p,i)=>`
     <tr><td>${p.icon}</td><td><strong>${p.title}</strong></td><td style="color:#888">${p.category}</td><td style="color:#0db88a;font-size:12px">${p.result}</td>
-    <td><button class="action-btn del" onclick="removeItem('portfolio',${i})">Remove</button></td></tr>`).join('');
+    <td>${p.published===false?'<span class="badge-pending">Hidden</span>':'<span class="badge-approved">Live</span>'}</td>
+    <td><button class="action-btn" onclick="togglePublish('portfolio',${i})">${p.published===false?'Publish':'Unpublish'}</button>
+    <button class="action-btn del" onclick="removeItem('portfolio',${i})">Remove</button></td></tr>`).join('');
 }
 function addPortfolio() {
   const title=document.getElementById('np2-title').value.trim();
@@ -724,7 +733,7 @@ function addPortfolio() {
   const icon=document.getElementById('np2-icon').value.trim()||'🚀';
   const desc=document.getElementById('np2-desc').value.trim();
   if(!title) return;
-  DATA.portfolio.push({title,category,result,icon,desc});
+  DATA.portfolio.push({title,category,result,icon,desc,published:true});
   saveData(); renderPortTable();
 }
 
@@ -734,8 +743,10 @@ function renderReelTable() {
   document.getElementById('reel-table').innerHTML = arr.map((r,i)=>`
     <tr><td>${i+1}</td><td><strong>${r.title||'(untitled)'}</strong></td>
     <td style="color:#888;font-size:12px;max-width:340px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap"><a href="${r.src}" target="_blank" style="color:#0db88a">${r.src}</a></td>
-    <td><button class="action-btn del" onclick="removeItem('reels',${i})">Remove</button></td></tr>`).join('') ||
-    '<tr><td colspan="4" style="color:#888;text-align:center;padding:20px">No reels yet. Upload one below.</td></tr>';
+    <td>${r.published===false?'<span class="badge-pending">Hidden</span>':'<span class="badge-approved">Live</span>'}</td>
+    <td><button class="action-btn" onclick="togglePublish('reels',${i})">${r.published===false?'Publish':'Unpublish'}</button>
+    <button class="action-btn del" onclick="removeItem('reels',${i})">Remove</button></td></tr>`).join('') ||
+    '<tr><td colspan="5" style="color:#888;text-align:center;padding:20px">No reels yet. Upload one below.</td></tr>';
 }
 
 async function addReel() {
@@ -770,7 +781,7 @@ async function addReel() {
   }
 
   DATA.reels = DATA.reels || [];
-  DATA.reels.push({ src, poster, title: title || 'Reel' });
+  DATA.reels.push({ src, poster, title: title || 'Reel', published: true });
   await saveData(); renderReelTable();
   fileInput.value = '';
   document.getElementById('nr-title').value = '';

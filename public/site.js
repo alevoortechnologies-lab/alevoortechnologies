@@ -169,8 +169,9 @@ function renderMarquee() {
 
 function renderReels() {
   const el = document.getElementById('reels-grid');
-  if (!el || !DATA.reels || !DATA.reels.length) { if (el) el.closest('.reels-section').style.display = 'none'; return; }
-  el.innerHTML = DATA.reels.map((r, i) => `
+  const reels = (DATA.reels || []).filter(r => r.published !== false);
+  if (!el || !reels.length) { if (el) el.closest('.reels-section').style.display = 'none'; return; }
+  el.innerHTML = reels.map((r, i) => `
     <div class="reel-card">
       <div class="reel-frame">
         <video class="reel-video" data-reel-index="${i}" muted loop playsinline preload="metadata" ${r.poster ? `poster="${r.poster}"` : ''}>
@@ -418,7 +419,9 @@ function renderPricing() {
 function renderPortfolio() {
   const el = document.getElementById('portfolio-grid');
   if (!el || !DATA.portfolio) return;
-  el.innerHTML = DATA.portfolio.map((p, i) => `
+  const items = DATA.portfolio.filter(p => p.published !== false);
+  window.__visiblePortfolio = items;
+  el.innerHTML = items.map((p, i) => `
     <div class="portfolio-card" onclick="openCaseStudy(${i})">
       <div class="portfolio-banner">${p.icon}</div>
       <div class="portfolio-body">
@@ -434,7 +437,7 @@ function renderPortfolio() {
 }
 
 function openCaseStudy(i) {
-  const p = (DATA.portfolio || [])[i]; if (!p) return;
+  const p = (window.__visiblePortfolio || DATA.portfolio || [])[i]; if (!p) return;
   let modal = document.getElementById('cs-modal');
   if (!modal) {
     modal = document.createElement('div');
