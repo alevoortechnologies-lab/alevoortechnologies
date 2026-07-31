@@ -7,15 +7,27 @@
     "description": "Building Software. Scaling Businesses. We engineer digital products — from custom platforms to AI integrations — that power modern brands.",
     "phone": "+91 9483886270",
     "email": "alevoor@gmail.com",
-    "instagram": "@alevoor",
+    "instagram": "@alevoortechnologies",
     "founderName": "Rishabh Alevoor",
     "founderTitle": "Founder & CEO, Alevoor Technologies"
   },
   "stats": [
-    { "value": "50+", "label": "Projects Delivered" },
-    { "value": "100+", "label": "Happy Clients" },
-    { "value": "10M+", "label": "Users Impacted" },
-    { "value": "4.9★", "label": "Avg. Rating" }
+    {
+      "value": "50+",
+      "label": "Projects Delivered"
+    },
+    {
+      "value": "100+",
+      "label": "Happy Clients"
+    },
+    {
+      "value": "10M+",
+      "label": "Users Impacted"
+    },
+    {
+      "value": "4.9★",
+      "label": "Avg. Rating"
+    }
   ],
   "services": [
     {
@@ -408,16 +420,76 @@
       }
     ],
     "appCompare": {
-      "tiers": ["Starter / Template Range", "Semi-Custom MVP Range", "Fully Custom Business Range"],
+      "tiers": [
+        "Starter / Template Range",
+        "Semi-Custom MVP Range",
+        "Fully Custom Business Range"
+      ],
       "rows": [
-        { "feature": "Price Bracket", "values": ["₹35,000 – ₹75,000", "₹75,000 – ₹20,00,000", "₹20,00,000 – ₹50,00,000"] },
-        { "feature": "Development Method", "values": ["Pre-built templates (CodeCanyon clones)", "Light custom code + ready-made backend blocks", "Built from scratch by pro freelancers or small agencies"] },
-        { "feature": "Design & UI/UX", "values": ["Template skinning (change logos, colors, text)", "Semi-custom branding with clean, modern layout", "100% custom UI/UX designed specifically for your brand"] },
-        { "feature": "Supported Platforms", "values": ["Mostly Android-focused (iOS costs extra setup)", "Both Android and iOS (Hybrid via Flutter/React Native)", "Highly optimized Android and iOS + Web Admin Panel"] },
-        { "feature": "User Management", "values": ["Standard email login or simple template login", "Secure Mobile OTP (Firebase) or Google Login", "Multi-role logins (e.g., Customer, Delivery, Admin)"] },
-        { "feature": "Payment Integration", "values": ["Standard single gateway (UPI or basic Razorpay)", "Smooth localized gateway integration with refunds", "Multi-vendor payouts, wallets, or automated invoicing"] },
-        { "feature": "Screen Count & Limits", "values": ["3 – 5 pre-fixed structural screens", "5 – 8 custom screens", "8 – 15+ complex screens and deep workflows"] },
-        { "feature": "Future Modifications", "values": ["Very hard; changing code breaks the template", "Moderate; structured modular code allows expansion", "Highly scalable; easy to add complex features later"] }
+        {
+          "feature": "Price Bracket",
+          "values": [
+            "₹35,000 – ₹75,000",
+            "₹75,000 – ₹20,00,000",
+            "₹20,00,000 – ₹50,00,000"
+          ]
+        },
+        {
+          "feature": "Development Method",
+          "values": [
+            "Pre-built templates (CodeCanyon clones)",
+            "Light custom code + ready-made backend blocks",
+            "Built from scratch by pro freelancers or small agencies"
+          ]
+        },
+        {
+          "feature": "Design & UI/UX",
+          "values": [
+            "Template skinning (change logos, colors, text)",
+            "Semi-custom branding with clean, modern layout",
+            "100% custom UI/UX designed specifically for your brand"
+          ]
+        },
+        {
+          "feature": "Supported Platforms",
+          "values": [
+            "Mostly Android-focused (iOS costs extra setup)",
+            "Both Android and iOS (Hybrid via Flutter/React Native)",
+            "Highly optimized Android and iOS + Web Admin Panel"
+          ]
+        },
+        {
+          "feature": "User Management",
+          "values": [
+            "Standard email login or simple template login",
+            "Secure Mobile OTP (Firebase) or Google Login",
+            "Multi-role logins (e.g., Customer, Delivery, Admin)"
+          ]
+        },
+        {
+          "feature": "Payment Integration",
+          "values": [
+            "Standard single gateway (UPI or basic Razorpay)",
+            "Smooth localized gateway integration with refunds",
+            "Multi-vendor payouts, wallets, or automated invoicing"
+          ]
+        },
+        {
+          "feature": "Screen Count & Limits",
+          "values": [
+            "3 – 5 pre-fixed structural screens",
+            "5 – 8 custom screens",
+            "8 – 15+ complex screens and deep workflows"
+          ]
+        },
+        {
+          "feature": "Future Modifications",
+          "values": [
+            "Very hard; changing code breaks the template",
+            "Moderate; structured modular code allows expansion",
+            "Highly scalable; easy to add complex features later"
+          ]
+        }
       ]
     }
   },
@@ -499,36 +571,110 @@
     }
   ],
   "trustedClients": [
-    { "name": "The Currency India", "platform": "YouTube" },
-    { "name": "Sambodhi Coaching", "platform": "YouTube" },
-    { "name": "Shilpa Art House", "platform": "YouTube" },
-    { "name": "V Filmy Steps", "platform": "YouTube" },
-    { "name": "Startup Stories", "platform": "YouTube" },
-    { "name": "Homzyee Property", "platform": "Instagram" },
-    { "name": "Rahul Sharma", "platform": "YouTube" },
-    { "name": "Sneha Reddy", "platform": "Instagram" }
+    {
+      "name": "The Currency India",
+      "platform": "YouTube"
+    },
+    {
+      "name": "Sambodhi Coaching",
+      "platform": "YouTube"
+    },
+    {
+      "name": "Shilpa Art House",
+      "platform": "YouTube"
+    },
+    {
+      "name": "V Filmy Steps",
+      "platform": "YouTube"
+    },
+    {
+      "name": "Startup Stories",
+      "platform": "YouTube"
+    },
+    {
+      "name": "Homzyee Property",
+      "platform": "Instagram"
+    },
+    {
+      "name": "Rahul Sharma",
+      "platform": "YouTube"
+    },
+    {
+      "name": "Sneha Reddy",
+      "platform": "Instagram"
+    }
   ],
   "gallery": [],
   "techStack": [
-    { "name": "React", "icon": "⚛️" },
-    { "name": "Next.js", "icon": "▲" },
-    { "name": "TypeScript", "icon": "🟦" },
-    { "name": "Node.js", "icon": "🟩" },
-    { "name": "Flutter", "icon": "💙" },
-    { "name": "React Native", "icon": "📱" },
-    { "name": "Supabase", "icon": "⚡" },
-    { "name": "Firebase", "icon": "🔥" },
-    { "name": "Tailwind CSS", "icon": "🎨" },
-    { "name": "AWS", "icon": "☁️" },
-    { "name": "OpenAI", "icon": "🤖" },
-    { "name": "Figma", "icon": "🎯" },
-    { "name": "PostgreSQL", "icon": "🐘" },
-    { "name": "Stripe", "icon": "💳" }
+    {
+      "name": "React",
+      "icon": "⚛️"
+    },
+    {
+      "name": "Next.js",
+      "icon": "▲"
+    },
+    {
+      "name": "TypeScript",
+      "icon": "🟦"
+    },
+    {
+      "name": "Node.js",
+      "icon": "🟩"
+    },
+    {
+      "name": "Flutter",
+      "icon": "💙"
+    },
+    {
+      "name": "React Native",
+      "icon": "📱"
+    },
+    {
+      "name": "Supabase",
+      "icon": "⚡"
+    },
+    {
+      "name": "Firebase",
+      "icon": "🔥"
+    },
+    {
+      "name": "Tailwind CSS",
+      "icon": "🎨"
+    },
+    {
+      "name": "AWS",
+      "icon": "☁️"
+    },
+    {
+      "name": "OpenAI",
+      "icon": "🤖"
+    },
+    {
+      "name": "Figma",
+      "icon": "🎯"
+    },
+    {
+      "name": "PostgreSQL",
+      "icon": "🐘"
+    },
+    {
+      "name": "Stripe",
+      "icon": "💳"
+    }
   ],
   "reels": [
-    { "src": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4", "poster": "", "title": "Brand Campaign — Product Launch" },
-    { "src": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4", "poster": "", "title": "Startup Story — Founder Spotlight" },
-    { "src": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4", "poster": "", "title": "Creator Growth Reel" },
-    { "src": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4", "poster": "", "title": "App Showcase — UX Walkthrough" }
+    {
+      "src": "/__l5e/assets-v1/bac04b41-83e0-4190-af5c-6f5a862d8d93/studio-reel.mp4",
+      "poster": "",
+      "title": "From Our Studio",
+      "published": true
+    },
+    {
+      "src": "/__l5e/assets-v1/ff410160-932e-43ad-95b0-d25edd521e95/ai-agent-reel.mp4",
+      "poster": "",
+      "title": "AI Agent for Your Business",
+      "published": true
+    }
   ]
 }
