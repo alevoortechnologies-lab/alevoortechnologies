@@ -60,7 +60,7 @@
     .menu-cta:hover { background: var(--teal-dark); }
 
     /* ─── HERO ─── */
-    #hero { min-height: 100vh; position: relative; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 100px 1.5rem 60px; overflow: hidden; background: linear-gradient(135deg, #e8fdf5 0%, #f0ecff 50%, #fff5f0 100%); }
+    #hero { min-height: auto; padding: 90px 1.5rem 40px; position: relative; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; overflow: hidden; background: linear-gradient(135deg, #e8fdf5 0%, #f0ecff 50%, #fff5f0 100%); }
     .hero-blob { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.25; pointer-events: none; }
     .hero-blob-1 { width: 500px; height: 500px; background: var(--teal); top: -150px; left: -100px; }
     .hero-blob-2 { width: 400px; height: 400px; background: var(--purple); bottom: -100px; right: -50px; }
