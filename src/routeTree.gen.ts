@@ -9,42 +9,22 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as IndexRouteImport } from './routes/index'
-import { Route as AboutRouteImport } from './routes/about'
-import { Route as AdminRouteImport } from './routes/admin'
-import { Route as ContactRouteImport } from './routes/contact'
-import { Route as PortfolioRouteImport } from './routes/portfolio'
-import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as ServicesRouteImport } from './routes/services'
-import { Route as ApiAdminContentRouteImport } from './routes/api/admin/content'
-import { Route as ApiAdminLeadsRouteImport } from './routes/api/admin/leads'
-import { Route as ApiAdminUploadReelRouteImport } from './routes/api/admin/upload-reel'
-import { Route as ApiPublicContactRouteImport } from './routes/api/public/contact'
+import { Route as PricingRouteImport } from './routes/pricing'
+import { Route as PortfolioRouteImport } from './routes/portfolio'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as AdminRouteImport } from './routes/admin'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as IndexRouteImport } from './routes/index'
 import { Route as ApiPublicSiteContentRouteImport } from './routes/api/public/site-content'
+import { Route as ApiPublicContactRouteImport } from './routes/api/public/contact'
+import { Route as ApiAdminUploadReelRouteImport } from './routes/api/admin/upload-reel'
+import { Route as ApiAdminLeadsRouteImport } from './routes/api/admin/leads'
+import { Route as ApiAdminContentRouteImport } from './routes/api/admin/content'
 
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AboutRoute = AboutRouteImport.update({
-  id: '/about',
-  path: '/about',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminRoute = AdminRouteImport.update({
-  id: '/admin',
-  path: '/admin',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ContactRoute = ContactRouteImport.update({
-  id: '/contact',
-  path: '/contact',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PortfolioRoute = PortfolioRouteImport.update({
-  id: '/portfolio',
-  path: '/portfolio',
+const ServicesRoute = ServicesRouteImport.update({
+  id: '/services',
+  path: '/services',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PricingRoute = PricingRouteImport.update({
@@ -52,24 +32,34 @@ const PricingRoute = PricingRouteImport.update({
   path: '/pricing',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ServicesRoute = ServicesRouteImport.update({
-  id: '/services',
-  path: '/services',
+const PortfolioRoute = PortfolioRouteImport.update({
+  id: '/portfolio',
+  path: '/portfolio',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ApiAdminContentRoute = ApiAdminContentRouteImport.update({
-  id: '/api/admin/content',
-  path: '/api/admin/content',
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ApiAdminLeadsRoute = ApiAdminLeadsRouteImport.update({
-  id: '/api/admin/leads',
-  path: '/api/admin/leads',
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ApiAdminUploadReelRoute = ApiAdminUploadReelRouteImport.update({
-  id: '/api/admin/upload-reel',
-  path: '/api/admin/upload-reel',
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPublicSiteContentRoute = ApiPublicSiteContentRouteImport.update({
+  id: '/api/public/site-content',
+  path: '/api/public/site-content',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiPublicContactRoute = ApiPublicContactRouteImport.update({
@@ -77,9 +67,19 @@ const ApiPublicContactRoute = ApiPublicContactRouteImport.update({
   path: '/api/public/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ApiPublicSiteContentRoute = ApiPublicSiteContentRouteImport.update({
-  id: '/api/public/site-content',
-  path: '/api/public/site-content',
+const ApiAdminUploadReelRoute = ApiAdminUploadReelRouteImport.update({
+  id: '/api/admin/upload-reel',
+  path: '/api/admin/upload-reel',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAdminLeadsRoute = ApiAdminLeadsRouteImport.update({
+  id: '/api/admin/leads',
+  path: '/api/admin/leads',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAdminContentRoute = ApiAdminContentRouteImport.update({
+  id: '/api/admin/content',
+  path: '/api/admin/content',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -188,39 +188,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/about': {
-      id: '/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AboutRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin': {
-      id: '/admin'
-      path: '/admin'
-      fullPath: '/admin'
-      preLoaderRoute: typeof AdminRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/contact': {
-      id: '/contact'
-      path: '/contact'
-      fullPath: '/contact'
-      preLoaderRoute: typeof ContactRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/portfolio': {
-      id: '/portfolio'
-      path: '/portfolio'
-      fullPath: '/portfolio'
-      preLoaderRoute: typeof PortfolioRouteImport
+    '/services': {
+      id: '/services'
+      path: '/services'
+      fullPath: '/services'
+      preLoaderRoute: typeof ServicesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/pricing': {
@@ -230,32 +202,46 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PricingRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/services': {
-      id: '/services'
-      path: '/services'
-      fullPath: '/services'
-      preLoaderRoute: typeof ServicesRouteImport
+    '/portfolio': {
+      id: '/portfolio'
+      path: '/portfolio'
+      fullPath: '/portfolio'
+      preLoaderRoute: typeof PortfolioRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/api/admin/content': {
-      id: '/api/admin/content'
-      path: '/api/admin/content'
-      fullPath: '/api/admin/content'
-      preLoaderRoute: typeof ApiAdminContentRouteImport
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/api/admin/leads': {
-      id: '/api/admin/leads'
-      path: '/api/admin/leads'
-      fullPath: '/api/admin/leads'
-      preLoaderRoute: typeof ApiAdminLeadsRouteImport
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/api/admin/upload-reel': {
-      id: '/api/admin/upload-reel'
-      path: '/api/admin/upload-reel'
-      fullPath: '/api/admin/upload-reel'
-      preLoaderRoute: typeof ApiAdminUploadReelRouteImport
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/site-content': {
+      id: '/api/public/site-content'
+      path: '/api/public/site-content'
+      fullPath: '/api/public/site-content'
+      preLoaderRoute: typeof ApiPublicSiteContentRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/public/contact': {
@@ -265,11 +251,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiPublicContactRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/api/public/site-content': {
-      id: '/api/public/site-content'
-      path: '/api/public/site-content'
-      fullPath: '/api/public/site-content'
-      preLoaderRoute: typeof ApiPublicSiteContentRouteImport
+    '/api/admin/upload-reel': {
+      id: '/api/admin/upload-reel'
+      path: '/api/admin/upload-reel'
+      fullPath: '/api/admin/upload-reel'
+      preLoaderRoute: typeof ApiAdminUploadReelRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/admin/leads': {
+      id: '/api/admin/leads'
+      path: '/api/admin/leads'
+      fullPath: '/api/admin/leads'
+      preLoaderRoute: typeof ApiAdminLeadsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/admin/content': {
+      id: '/api/admin/content'
+      path: '/api/admin/content'
+      fullPath: '/api/admin/content'
+      preLoaderRoute: typeof ApiAdminContentRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
