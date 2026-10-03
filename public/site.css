@@ -593,6 +593,34 @@
 .fq-text { font-family:'Sora',sans-serif; font-style:italic; font-size:clamp(1.1rem,2.2vw,1.5rem); line-height:1.5; color:var(--text); margin:10px 0 18px; }
 .fq-by { color:var(--teal); font-weight:600; }
 @media (max-width:768px){ .fq-grid { grid-template-columns:1fr; } }
+
+/* ─── RR CREATOR LAB (sister company, home) ─── */
+.rr-section { background:linear-gradient(135deg,#e7f5f1,#fdf3e2); padding:70px 1.5rem; }
+.rr-grid { display:grid; grid-template-columns:1fr 1.15fr; gap:48px; align-items:center; }
+.rr-card { background:linear-gradient(150deg,#f7a51b,#ee6352); border-radius:28px; padding:56px 40px; text-align:center; color:#fff; box-shadow:0 24px 60px -20px rgba(238,99,82,.45); transition:transform .3s ease, box-shadow .3s ease; }
+.rr-card:hover { transform:translateY(-6px); box-shadow:0 32px 70px -22px rgba(238,99,82,.55); }
+.rr-badge { width:96px; height:96px; margin:0 auto 22px; border-radius:26px; border:2px solid rgba(255,255,255,.65); display:flex; align-items:center; justify-content:center; font-family:'Sora',sans-serif; font-weight:800; font-size:34px; letter-spacing:1px; }
+.rr-card-title { font-family:'Sora',sans-serif; font-weight:800; font-size:clamp(1.5rem,2.4vw,2rem); margin-bottom:6px; }
+.rr-card-sub { font-size:14px; color:rgba(255,255,255,.92); margin-bottom:26px; }
+.rr-card-btn { display:inline-block; background:rgba(255,255,255,.18); border:1px solid rgba(255,255,255,.5); color:#fff; padding:12px 24px; border-radius:12px; font-weight:600; font-size:14px; text-decoration:none; transition:all .2s ease; }
+.rr-card-btn:hover { background:#fff; color:#ee6352; transform:translateY(-2px); }
+.rr-chip { display:inline-flex; align-items:center; gap:8px; background:#fdf1dd; color:#d97706; font-weight:600; font-size:13px; padding:8px 16px; border-radius:999px; margin-bottom:18px; }
+.rr-chip::before { content:""; width:8px; height:8px; border-radius:50%; background:#f59e0b; }
+.rr-title { font-family:'Sora',sans-serif; font-weight:800; font-size:clamp(1.8rem,3.2vw,2.6rem); line-height:1.2; color:var(--text); margin-bottom:18px; }
+.rr-title .rr-o { color:#f59e0b; }
+.rr-title .rr-p { color:#ee6352; }
+.rr-desc { color:var(--gray); line-height:1.7; font-size:15.5px; margin-bottom:22px; }
+.rr-checks { list-style:none; padding:0; margin:0 0 28px; display:grid; gap:14px; }
+.rr-checks li { display:flex; gap:12px; align-items:flex-start; color:var(--text); font-weight:500; font-size:15px; }
+.rr-checks .rr-tick { color:#f59e0b; font-weight:800; font-size:18px; line-height:1.2; }
+.rr-cta { display:inline-block; background:linear-gradient(135deg,#f7a51b,#ee6352); color:#fff; padding:14px 28px; border-radius:12px; font-weight:700; font-size:15px; text-decoration:none; transition:all .2s ease; box-shadow:0 10px 26px -10px rgba(238,99,82,.6); }
+.rr-cta:hover { transform:translateY(-3px); box-shadow:0 16px 34px -12px rgba(238,99,82,.7); }
+@media (max-width:900px){ .rr-grid { grid-template-columns:1fr; } }
+body.dark .rr-section { background:linear-gradient(135deg,#101c1a,#1c150e); }
+body.dark .rr-title, body.dark .rr-checks li { color:#fff; }
+body.dark .rr-desc { color:rgba(255,255,255,.72); }
+body.dark .rr-chip { background:rgba(245,158,11,.16); color:#fbbf24; }
+
 .services-grid.teaser .service-card:nth-child(n+7){ display:none; }
 .section-title.left{ text-align:left; }
 
