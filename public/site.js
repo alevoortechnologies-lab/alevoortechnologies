@@ -101,6 +101,7 @@ function renderAll() {
   renderTechStack();
 
   renderServices();
+  renderCourses();
   renderProcess();
   renderTimelineHome();
   renderWhyUs();
@@ -303,6 +304,47 @@ function closeLightbox(){
   document.getElementById('gallery-lightbox').classList.remove('open');
   document.getElementById('lightbox-content').innerHTML='';
   document.body.style.overflow='';
+}
+
+function renderCourses() {
+  const grid = document.getElementById('courses-preview-grid');
+  if (!grid || !DATA.courses) return;
+  grid.innerHTML = DATA.courses.map(c => `
+    <div class="course-preview-card" onclick="toggleCourseDetail()">
+      <div class="course-icon" style="background:${c.iconBg}">${c.icon}</div>
+      <div class="course-preview-name">${c.name}</div>
+    </div>`).join('');
+  const detail = document.getElementById('courses-detail-grid');
+  if (detail) detail.innerHTML = DATA.courses.map(c => `
+    <div class="course-card ${c.popular ? 'popular' : ''}">
+      ${c.popular ? '<div class="pop-badge">⭐ Most Popular</div>' : ''}
+      <div class="course-card-head">
+        <div class="course-card-icon" style="background:${c.iconBg}">${c.icon}</div>
+        <div>
+          <div class="course-card-name">${c.name}</div>
+          <div class="course-card-dur">Duration: ${c.duration}</div>
+        </div>
+      </div>
+      <div class="course-price-row">${(c.pricing||[]).map(p => `<div class="course-price-box"><div class="course-price-label">${p.label}</div><div class="course-price-val">${p.price}</div></div>`).join('')}</div>
+      <ul class="course-feat">${(c.features||[]).map(f => `<li>${f}</li>`).join('')}</ul>
+      <a class="course-cta" href="/contact" style="display:block;text-align:center;text-decoration:none">${c.cta}</a>
+    </div>`).join('');
+}
+
+function toggleCourseDetail(close) {
+  const d = document.getElementById('courses-detail');
+  if (!d) return;
+  if (close === true) {
+    d.classList.remove('open');
+    navScroll('courses');
+    return;
+  }
+  if (!d.classList.contains('open')) {
+    d.classList.add('open');
+    setTimeout(() => navScroll('courses-detail'), 60);
+  } else {
+    d.classList.remove('open');
+  }
 }
 
 function renderProcess() {
