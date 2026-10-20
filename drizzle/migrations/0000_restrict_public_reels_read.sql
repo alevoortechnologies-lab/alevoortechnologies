@@ -1,0 +1,1 @@
+DROP POLICY IF EXISTS "Public can read reels bucket" ON storage.objects;
