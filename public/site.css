@@ -592,6 +592,9 @@
 .fq-mark { font-family:'Sora',sans-serif; font-size:80px; line-height:.6; color:var(--teal); }
 .fq-text { font-family:'Sora',sans-serif; font-style:italic; font-size:clamp(1.1rem,2.2vw,1.5rem); line-height:1.5; color:var(--text); margin:10px 0 18px; }
 .fq-by { color:var(--teal); font-weight:600; }
+body.dark #founder-quote { background:linear-gradient(135deg,#111827,#12352f) !important; }
+body.dark #founder-quote .fq-text { color:var(--text); }
+body.dark #founder-quote .fq-by { color:#37d9ae; }
 @media (max-width:768px){ .fq-grid { grid-template-columns:1fr; } }
 
 /* ─── RR CREATOR LAB (sister company, home) ─── */
