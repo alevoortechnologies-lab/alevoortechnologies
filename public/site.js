@@ -4,6 +4,7 @@ let DATA = {};
 async function loadData() {
   showSkeletons();
   const hasContent = (o) => o && typeof o === 'object' && Object.keys(o).length > 0 && (o.services || o.brand || o.pricing);
+  const removedCourseNames = new Set(['YouTube Management & Growth Mastery', 'Content Marketing & Personal Branding']);
   let defaults = {};
   try { defaults = await (await fetch('/data.json', { cache: 'no-store' })).json(); } catch(e) {}
   try {
@@ -20,10 +21,11 @@ async function loadData() {
         if (isEmpty) return;
         // Keep new default courses visible when saved admin content predates them.
         if (k === 'courses' && Array.isArray(v) && Array.isArray(defaults[k])) {
-          const liveCourses = new Map(v.filter(course => course && course.name).map(course => [course.name, course]));
-          const defaultNames = new Set(defaults[k].map(course => course.name));
-          DATA[k] = defaults[k].map(course => ({ ...course, ...(liveCourses.get(course.name) || {}) }));
-          DATA[k].push(...v.filter(course => course && !defaultNames.has(course.name)));
+          const currentDefaults = defaults[k].filter(course => course && !removedCourseNames.has(course.name));
+          const liveCourses = new Map(v.filter(course => course && course.name && !removedCourseNames.has(course.name)).map(course => [course.name, course]));
+          const defaultNames = new Set(currentDefaults.map(course => course.name));
+          DATA[k] = currentDefaults.map(course => ({ ...course, ...(liveCourses.get(course.name) || {}) }));
+          DATA[k].push(...v.filter(course => course && !defaultNames.has(course.name) && !removedCourseNames.has(course.name)));
           return;
         }
         // For nested object maps like `pricing`, merge sub-keys so missing
