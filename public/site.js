@@ -18,6 +18,14 @@ async function loadData() {
         // keep data.json default when live value is empty/missing (e.g. team: [])
         const isEmpty = v == null || (Array.isArray(v) && v.length === 0);
         if (isEmpty) return;
+        // Keep new default courses visible when saved admin content predates them.
+        if (k === 'courses' && Array.isArray(v) && Array.isArray(defaults[k])) {
+          const liveCourses = new Map(v.filter(course => course && course.name).map(course => [course.name, course]));
+          const defaultNames = new Set(defaults[k].map(course => course.name));
+          DATA[k] = defaults[k].map(course => ({ ...course, ...(liveCourses.get(course.name) || {}) }));
+          DATA[k].push(...v.filter(course => course && !defaultNames.has(course.name)));
+          return;
+        }
         // For nested object maps like `pricing`, merge sub-keys so missing
         // sub-fields (e.g. app, appCompare) fall back to data.json defaults.
         if (v && typeof v === 'object' && !Array.isArray(v) && defaults[k] && typeof defaults[k] === 'object' && !Array.isArray(defaults[k])) {

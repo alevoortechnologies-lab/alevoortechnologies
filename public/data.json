@@ -220,6 +220,21 @@
         "Productivity Systems"
       ],
       "cta": "Join Course"
+    },
+    {
+      "icon": "💰",
+      "iconBg": "linear-gradient(135deg, #0db88a, #0891b2)",
+      "name": "Finance Course",
+      "duration": "5 Days",
+      "popular": false,
+      "pricing": [
+        {
+          "label": "PRICE",
+          "price": "₹8,000"
+        }
+      ],
+      "features": [],
+      "cta": "Join Course"
     }
   ],
   "process": [
