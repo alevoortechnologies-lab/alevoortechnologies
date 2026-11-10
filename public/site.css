@@ -603,6 +603,8 @@ body.dark #founder-quote .fq-by { color:#37d9ae; }
 .rr-card { background:linear-gradient(150deg,#f7a51b,#ee6352); border-radius:28px; padding:56px 40px; text-align:center; color:#fff; box-shadow:0 24px 60px -20px rgba(238,99,82,.45); transition:transform .3s ease, box-shadow .3s ease; }
 .rr-card:hover { transform:translateY(-6px); box-shadow:0 32px 70px -22px rgba(238,99,82,.55); }
 .rr-badge { width:96px; height:96px; margin:0 auto 22px; border-radius:26px; border:2px solid rgba(255,255,255,.65); display:flex; align-items:center; justify-content:center; font-family:'Sora',sans-serif; font-weight:800; font-size:34px; letter-spacing:1px; }
+.rr-brand-logo { display:block; width:min(100%, 300px); aspect-ratio:3 / 2; object-fit:contain; border-radius:14px; margin:0 auto 22px; }
+.eco-logo.eco-brand-logo { display:block; width:min(100%, 180px); height:auto; aspect-ratio:3 / 2; object-fit:contain; border-radius:8px; margin:0 0 14px; }
 .rr-card-title { font-family:'Sora',sans-serif; font-weight:800; font-size:clamp(1.5rem,2.4vw,2rem); margin-bottom:6px; }
 .rr-card-sub { font-size:14px; color:rgba(255,255,255,.92); margin-bottom:26px; }
 .rr-card-btn { display:inline-block; background:rgba(255,255,255,.18); border:1px solid rgba(255,255,255,.5); color:#fff; padding:12px 24px; border-radius:12px; font-weight:600; font-size:14px; text-decoration:none; transition:all .2s ease; }
