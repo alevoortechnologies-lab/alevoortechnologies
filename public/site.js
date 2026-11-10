@@ -24,7 +24,16 @@ async function loadData() {
           const currentDefaults = defaults[k].filter(course => course && !removedCourseNames.has(course.name));
           const liveCourses = new Map(v.filter(course => course && course.name && !removedCourseNames.has(course.name)).map(course => [course.name, course]));
           const defaultNames = new Set(currentDefaults.map(course => course.name));
-          DATA[k] = currentDefaults.map(course => ({ ...course, ...(liveCourses.get(course.name) || {}) }));
+          DATA[k] = currentDefaults.map(course => {
+            const savedCourse = liveCourses.get(course.name) || {};
+            return {
+              ...course,
+              ...savedCourse,
+              features: Array.isArray(savedCourse.features) && savedCourse.features.length > 0
+                ? savedCourse.features
+                : course.features,
+            };
+          });
           DATA[k].push(...v.filter(course => course && !defaultNames.has(course.name) && !removedCourseNames.has(course.name)));
           return;
         }
