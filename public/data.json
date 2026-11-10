@@ -189,7 +189,13 @@
           "price": "₹8,000"
         }
       ],
-      "features": [],
+      "features": [
+        "Day 1: Financial goals, money basics & planning",
+        "Day 2: Budgeting, saving & cash-flow management",
+        "Day 3: Banking, credit & responsible borrowing",
+        "Day 4: Investing basics, risk & long-term growth",
+        "Day 5: Business finance, tax basics & a personal action plan"
+      ],
       "cta": "Join Course"
     }
   ],
