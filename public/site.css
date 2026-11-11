@@ -483,6 +483,11 @@
     .course-feat li::before { content: '✓'; color: var(--teal); font-weight: 700; }
     .course-cta { width: 100%; background: var(--teal); color: #fff; border: none; padding: 13px; border-radius: 12px; font-size: 15px; font-weight: 600; cursor: pointer; transition: all .2s; font-family: 'DM Sans', sans-serif; }
     .course-cta:hover { background: var(--teal-dark); transform: translateY(-2px); }
+    #pricing-courses { background: var(--bg); }
+    .pricing-courses-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 310px), 1fr)); gap: 22px; align-items: stretch; }
+    .pricing-course-card { display: flex; flex-direction: column; height: 100%; }
+    .pricing-course-card .course-feat { flex: 1; }
+    .pricing-course-card .course-cta { display: block; text-align: center; text-decoration: none; }
 
     /* ─── ABOUT US ─── */
     .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
