@@ -425,6 +425,23 @@ function renderPricing() {
   if (!DATA.pricing) return;
   const P = DATA.pricing;
   const setHTML = (id, html) => { const el = document.getElementById(id); if (el) el.innerHTML = html; };
+  const courseGrid = document.getElementById('pricing-courses-grid');
+  if (courseGrid && Array.isArray(DATA.courses)) {
+    courseGrid.innerHTML = DATA.courses.map(c => `
+      <article class="course-card pricing-course-card ${c.popular ? 'popular' : ''}">
+        ${c.popular ? '<div class="pop-badge">⭐ Most Popular</div>' : ''}
+        <div class="course-card-head">
+          <div class="course-card-icon" style="background:${c.iconBg}">${c.icon}</div>
+          <div>
+            <h3 class="course-card-name">${c.name}</h3>
+            <div class="course-card-dur">Duration: ${c.duration}</div>
+          </div>
+        </div>
+        <div class="course-price-row">${(c.pricing || []).map(p => `<div class="course-price-box"><div class="course-price-label">${p.label}</div><div class="course-price-val">${p.price}</div></div>`).join('')}</div>
+        <ul class="course-feat">${(c.features || []).map(f => `<li>${f}</li>`).join('')}</ul>
+        <a class="course-cta" href="/contact">${c.cta || 'Enroll Now'}</a>
+      </article>`).join('');
+  }
   // Content Marketing
   setHTML('panel-content', `<div class="pricing-grid">${(P.content||[]).map(p => `
     <div class="pricing-card ${p.popular?'popular':''}">
