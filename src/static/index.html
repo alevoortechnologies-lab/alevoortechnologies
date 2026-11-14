@@ -11,7 +11,7 @@
   <link rel="icon" type="image/png" href="/favicon.png" />
   <link rel="stylesheet" href="/site.css" />
 </head>
-<body>
+<body class="home-page">
 
 <div id="loading"><img class="loading-logo" src="/assets/logo.png" alt="Alevoor Technologies" /></div>
 
@@ -54,23 +54,31 @@
 </div>
 
 <section id="hero">
-  <div class="hero-blob hero-blob-1"></div>
-  <div class="hero-blob hero-blob-2"></div>
-  <div class="hero-chip">Now Serving 100+ Clients Across India 🇮🇳</div>
-  <div class="hero-slideshow" id="hero-slideshow">
-    <img class="hero-slide active" src="/assets/slide-1.jpg" alt="Modern tech workspace" />
-    <img class="hero-slide" src="/assets/slide-2.jpg" alt="Software team building digital products" />
-    <img class="hero-slide" src="/assets/slide-3.jpg" alt="AI and cloud technology solutions" />
-    <div class="hero-dots" id="hero-dots"></div>
+  <div class="hero-shell">
+    <div class="hero-copy">
+      <div class="hero-chip">Now Serving 100+ Clients Across India 🇮🇳</div>
+      <h1 class="hero-h1" id="hero-headline">Where Technology<span class="hero-h1-accent">Meets Growth.</span></h1>
+      <p class="hero-sub" id="hero-subtitle">We build software. We scale creators. We power businesses.</p>
+      <div class="hero-btns">
+        <a class="btn-primary" href="/contact">Start Your Project <span aria-hidden="true">→</span></a>
+        <a class="btn-outline" href="/portfolio">View Our Work</a>
+      </div>
+      <div class="hero-stats" id="hero-stats"></div>
+      <a class="hero-scroll-link" href="#services"><span class="hero-scroll-mark" aria-hidden="true">↓</span> Explore what we do</a>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-visual-frame">
+        <div class="hero-slideshow" id="hero-slideshow">
+          <img class="hero-slide active" src="/assets/slide-1.jpg" alt="Modern tech workspace" />
+          <img class="hero-slide" src="/assets/slide-2.jpg" alt="Software team building digital products" />
+          <img class="hero-slide" src="/assets/slide-3.jpg" alt="AI and cloud technology solutions" />
+          <div class="hero-dots" id="hero-dots"></div>
+        </div>
+        <div class="hero-visual-caption"><span class="hero-caption-mark" aria-hidden="true">✦</span><span><strong>Ideas into impact</strong><small>Technology · Creativity · Growth</small></span></div>
+      </div>
+      <div class="hero-visual-orbit" aria-hidden="true"></div>
+    </div>
   </div>
-  <h1 class="hero-h1" id="hero-headline">Where Technology<span class="hero-h1-accent">Meets Growth.</span></h1>
-  <p class="hero-sub" id="hero-subtitle">We build software. We scale creators. We power businesses.</p>
-  <div class="hero-btns">
-    <a class="btn-primary" href="/contact">Start Your Project →</a>
-    <a class="btn-outline" href="/portfolio">View Our Work</a>
-  </div>
-  <div class="hero-stats" id="hero-stats"></div>
-  <div class="hero-wave-text">🌊 Rooted Strong. Flowing Forward.</div>
 </section>
 
 <section class="marquee-section">
@@ -93,8 +101,24 @@
       <h2 class="section-title">Software. Content. <span class="accent">Growth.</span></h2>
       <p class="section-sub">From custom software to content systems — everything you need to build and scale, under one roof.</p>
     </div>
+    <div class="home-service-finder" aria-label="Explore services">
+      <label class="home-service-search-wrap" for="home-service-search">
+        <span class="home-service-search-icon" aria-hidden="true">⌕</span>
+        <input id="home-service-search" type="search" placeholder="Search services…" autocomplete="off" oninput="filterHomeServices()" />
+        <span class="home-search-hint">Find what you need</span>
+      </label>
+      <div class="home-service-filters" id="home-service-filters" role="group" aria-label="Filter services">
+        <button class="home-filter-btn active" type="button" onclick="filterHomeServices('All', this)" aria-pressed="true">All</button>
+        <button class="home-filter-btn" type="button" onclick="filterHomeServices('Software', this)" aria-pressed="false">Software</button>
+        <button class="home-filter-btn" type="button" onclick="filterHomeServices('Marketing', this)" aria-pressed="false">Marketing</button>
+        <button class="home-filter-btn" type="button" onclick="filterHomeServices('Content', this)" aria-pressed="false">Content</button>
+        <button class="home-filter-btn" type="button" onclick="filterHomeServices('Tech', this)" aria-pressed="false">Tech</button>
+      </div>
+      <p class="home-service-count" id="home-service-count" aria-live="polite"></p>
+    </div>
     <div class="services-grid teaser fade-up stagger" id="services-grid"></div>
-    <div class="text-center" style="margin-top:30px">
+    <div class="home-services-actions">
+      <button class="home-show-services" id="home-show-services" type="button" aria-expanded="false" onclick="toggleHomeServices()">Show all services</button>
       <a class="btn-primary" href="/services">View All Services →</a>
     </div>
   </div>

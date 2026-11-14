@@ -266,6 +266,60 @@ function renderServices() {
         <div class="service-desc">${s.desc}</div>
       </div>
     </div>`).join('');
+  applyHomeServiceFilters();
+}
+
+let homeServiceCategory = 'All';
+let homeServicesExpanded = false;
+
+function filterHomeServices(category, btn) {
+  if (category) {
+    homeServiceCategory = category;
+    homeServicesExpanded = false;
+    document.querySelectorAll('#home-service-filters .home-filter-btn').forEach(button => {
+      const active = button === btn;
+      button.classList.toggle('active', active);
+      button.setAttribute('aria-pressed', String(active));
+    });
+  }
+  applyHomeServiceFilters();
+}
+
+function applyHomeServiceFilters() {
+  const grid = document.getElementById('services-grid');
+  if (!grid) return;
+  const query = (document.getElementById('home-service-search')?.value || '').trim().toLowerCase();
+  const filtered = homeServiceCategory !== 'All' || query.length > 0;
+  const cards = [...grid.querySelectorAll('.service-card')];
+  let matches = 0;
+  cards.forEach(card => {
+    const matchesCategory = homeServiceCategory === 'All' || card.dataset.cat === homeServiceCategory;
+    const matchesQuery = !query || card.textContent.toLowerCase().includes(query);
+    const visible = matchesCategory && matchesQuery;
+    card.style.display = visible ? (filtered || homeServicesExpanded ? 'flex' : '') : 'none';
+    if (visible) matches += 1;
+  });
+  grid.classList.toggle('is-filtered', filtered);
+  grid.classList.toggle('show-all', homeServicesExpanded && !filtered);
+
+  const count = document.getElementById('home-service-count');
+  if (count) {
+    const shown = filtered || homeServicesExpanded ? matches : Math.min(matches, 6);
+    count.textContent = filtered ? `${matches} ${matches === 1 ? 'service' : 'services'} found` : `Showing ${shown} of ${matches} services`;
+  }
+
+  const toggle = document.getElementById('home-show-services');
+  if (toggle) {
+    const canExpand = !filtered && matches > 6;
+    toggle.hidden = !canExpand;
+    toggle.textContent = homeServicesExpanded ? 'Show fewer services' : `Show all ${matches} services`;
+    toggle.setAttribute('aria-expanded', String(homeServicesExpanded));
+  }
+}
+
+function toggleHomeServices() {
+  homeServicesExpanded = !homeServicesExpanded;
+  applyHomeServiceFilters();
 }
 function filterServices(cat, btn) {
   document.querySelectorAll('#service-filters .filter-btn').forEach(b => b.classList.remove('active'));
